@@ -1,0 +1,11 @@
+--- a/src/text_2.c
++++ b/src/text_2.c
+@@ -1184,7 +1184,7 @@
+ 
+         // BUG: The background array is 161 entries long, but this function will potentially write
+         // up to index 160 + 12 = 172, overflowing the array.
+-#ifdef UBFIX
++#if 1 /* Native port: keep animated window headers inside gWindowBg. */
+         if (yStart > Y_MAX - 12) {
+             yStart = Y_MAX - 12;
+         }

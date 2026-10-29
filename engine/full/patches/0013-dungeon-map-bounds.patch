@@ -1,0 +1,11 @@
+--- a/src/dungeon_map.c
++++ b/src/dungeon_map.c
+@@ -572,7 +572,7 @@
+     s32 x, y;
+     Dungeon *dungeon = gDungeon;
+     if (dungeon->dungeonMap.resetTilesScheduledForCopy) {
+-        #ifdef UBFIX
++        #if 1 /* Native port: use the bounded upstream fix before optimizing. */
+         for (y = 0; y < DUNGEON_MAP_MAX_Y; y++) {
+             for (x = 0; x < DUNGEON_MAP_MAX_X; x++) {
+                 dungeon->dungeonMap.tileScheduledForCopy[y][x] = FALSE;

@@ -1,0 +1,17 @@
+{
+  "upstream": "https://github.com/visualboyadvance-m/visualboyadvance-m",
+  "commit": "3924aab43a646b6291ae29a26cb3bd7f67a0d297",
+  "files": {
+    "Gb_Apu.cpp": "f51cff104043116879ae48bb1a559047380e8f59d3012720bb037c68d37f6134",
+    "Gb_Apu.h": "a70e9d1178d72b10e0ef6c3d2541bda223d8427a298e0cae7c9b6b751355745c",
+    "Gb_Oscs.cpp": "da982fea11ed9ab6d57f9bc43ed41c8f5677e81c7baf2e0e1c2baf986d6bcc71",
+    "Gb_Oscs.h": "076f79f288df6dd8176f13fdd5df18eed7d800ec44fc44bd15753004246ce00c",
+    "Blip_Buffer.cpp": "fb347cf9b684eb4213b38875174f90c6a2ca9fcac5d1e7d9ddcaa336d61ccbd8",
+    "Blip_Buffer.h": "4cb41497b99f88b807fa476f85ab7b821ac2be345a470128a96d1f200ec7d68a",
+    "Multi_Buffer.cpp": "21446d33188257344f98ab49bac0a1b3ab2b49347943d2bfc8c7bc249587655d",
+    "Multi_Buffer.h": "e6b6b93f854719451c428a99be523a4b0c8e805557f48281129709253b376509",
+    "blargg_common.h": "616e59cd3a2a8e4fd7d0a30297f6567554195ce00e126a6021f3afda321c26e1",
+    "blargg_config.h": "e7b455ef29291d219c88cec17a6a9dc481f727272b9779f33103f5120ffef50e",
+    "blargg_source.h": "8391b31de7176a2054b2cadc53e9d36a7743af8a21a0070b4e62b1ebdb97d6e6"
+  }
+}

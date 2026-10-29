@@ -1,0 +1,18 @@
+--- a/src/music.c
++++ b/src/music.c
+@@ -3,6 +3,7 @@
+ #include "m4a.h"
+ #include "reg_control.h"
+ #include "music.h"
++#include "platform_audio_game.h"
+ 
+ static EWRAM_DATA u16 sBGMusicPlayerstate = {0};
+ static EWRAM_DATA u16 sCurrentBGSong = {0};
+@@ -517,6 +518,7 @@
+     s32 musicPlayerIndex;
+ 
+     m4aSoundMain();
++    pmd_audio_game_update();
+ 
+     if (sFanfareMusicPlayerState != 0) {
+         switch (sFanfareMusicPlayerState) {

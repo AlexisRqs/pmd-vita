@@ -1,0 +1,697 @@
+{
+  "baseline": "0.28",
+  "archive_sha256": "c3d0913ea7cd5a98711dce309b9d2bb1d7628498f975068223566213c3d29c61",
+  "pmd_red_commit": "ce5a84a02e9bc5101977908da470fa85fc59e5ff",
+  "files": [
+    {
+      "path": "engine/full/audio_diagnostic_main.c",
+      "sha256": "8c7d851a0d1113044d1693abd2f616704f546e29ad58f1fc9dc9b7fe1a559ab2",
+      "origin": "0.28 source archive: audio_diagnostic_main.c"
+    },
+    {
+      "path": "engine/full/audio_diagnostic_source.c",
+      "sha256": "993097d93af66354dfe75f0897c159b9b59a86c3543a040c513a22cbbe59aad7",
+      "origin": "0.28 source archive: audio_diagnostic_source.c"
+    },
+    {
+      "path": "engine/full/audio_diagnostic_source.h",
+      "sha256": "f8203dfcee631ba0cde1d3fb7b10deea261ce7b9815eb016b37ab1c3335940bc",
+      "origin": "0.28 source archive: audio_diagnostic_source.h"
+    },
+    {
+      "path": "engine/full/data-assets.mk",
+      "sha256": "e958f8b22f0ac1cd05d06d08a4dee4d11a0d7d5b3de35484fdf9e111148c1ef1",
+      "origin": "0.28 source archive: data-assets.mk"
+    },
+    {
+      "path": "engine/full/native_prelude.h",
+      "sha256": "29d5bd17544e8a0a41712b5800d6104f9fdb4ff0f64c5597df57d2357708c780",
+      "origin": "0.28 source archive: native_prelude.h"
+    },
+    {
+      "path": "engine/full/patches/0001-dungeon-native-vram.patch",
+      "sha256": "af667333f9c0a336d7c48b0a10b55ad2ca47d7c033a5f9d77b97646d5a09bdb5",
+      "origin": "0.28 source archive: patches/0001-dungeon-native-vram.patch"
+    },
+    {
+      "path": "engine/full/patches/0002-native-frame-dispatch.patch",
+      "sha256": "930841e076ad680a251eebdcf98a52482806a17575ccd8097cde85d4d8fb2491",
+      "origin": "0.28 source archive: patches/0002-native-frame-dispatch.patch"
+    },
+    {
+      "path": "engine/full/patches/0003-remove-dma-bus-delay.patch",
+      "sha256": "3a9a735c901b1c4b47660991caef05d89cbe9044b41149651e55403c789c5d8d",
+      "origin": "0.28 source archive: patches/0003-remove-dma-bus-delay.patch"
+    },
+    {
+      "path": "engine/full/patches/0004-native-startup-memory.patch",
+      "sha256": "1a2d7390671e68d243006012ddf4960cc7fe0a3740321da091f70f83f66b6a80",
+      "origin": "0.28 source archive: patches/0004-native-startup-memory.patch"
+    },
+    {
+      "path": "engine/full/patches/0005-native-flash-validation.patch",
+      "sha256": "a5a6fca1726292b4870a655d9c8da9d4662a5127f7b60f2dc5b11d00b35b299f",
+      "origin": "0.28 source archive: patches/0005-native-flash-validation.patch"
+    },
+    {
+      "path": "engine/full/patches/0006-native-m4a-addresses.patch",
+      "sha256": "bdbbc602c281de827fa01a5dd1ca930eac57639b2df76e7c63eb8f9a0a69f59a",
+      "origin": "0.28 source archive: patches/0006-native-m4a-addresses.patch"
+    },
+    {
+      "path": "engine/full/patches/0007-native-m4a-startup.patch",
+      "sha256": "4a712e8ca81a94852c22a3ecdc9b595aa3baa6e52821287457f18b939c5f2b05",
+      "origin": "0.28 source archive: patches/0007-native-m4a-startup.patch"
+    },
+    {
+      "path": "engine/full/patches/0008-native-psg-events.patch",
+      "sha256": "833dd733444c7fdef6ba9333075456452a8437404609935c38885cb771ec9b44",
+      "origin": "0.28 source archive: patches/0008-native-psg-events.patch"
+    },
+    {
+      "path": "engine/full/patches/0009-native-serial-code.patch",
+      "sha256": "845eb9a71a4711ce405e545f2bb30e5a74d0e1b58912c9c9c8377283689a4cf0",
+      "origin": "0.28 source archive: patches/0009-native-serial-code.patch"
+    },
+    {
+      "path": "engine/full/patches/0010-native-halt-and-unused-bios.patch",
+      "sha256": "391f9c8408064bcf4024a31e0600394fdf06a54e25eb0db06b181401fc0b5b6b",
+      "origin": "0.28 source archive: patches/0010-native-halt-and-unused-bios.patch"
+    },
+    {
+      "path": "engine/full/patches/0011-native-audio-update.patch",
+      "sha256": "6fe20485a7f71458a29c09c5b4bf4800d4b64eafd43ad01cdb158d9641e087ce",
+      "origin": "0.28 source archive: patches/0011-native-audio-update.patch"
+    },
+    {
+      "path": "engine/full/patches/0012-relocate-second-font.patch",
+      "sha256": "4ad63a79eeab1c98e335b698dcdb08c76847738b16d25b7c1d1417faec781848",
+      "origin": "0.28 source archive: patches/0012-relocate-second-font.patch"
+    },
+    {
+      "path": "engine/full/patches/0013-dungeon-map-bounds.patch",
+      "sha256": "c774dfc59e5c5d556107d0788da5e9607b6680bb8337876ef2b279ac15434bab",
+      "origin": "0.28 source archive: patches/0013-dungeon-map-bounds.patch"
+    },
+    {
+      "path": "engine/full/patches/0014-native-window-header-bounds.patch",
+      "sha256": "bbacac61b234e9719e8f3ee0f4c142bb4e74f45d04f94e314fabb7cb5e34f18e",
+      "origin": "0.28 source archive: patches/0014-native-window-header-bounds.patch"
+    },
+    {
+      "path": "engine/full/patches/0015-native-xwave-defined-shifts.patch",
+      "sha256": "bca5c93ad0537f7c2b8c1d045c6dafc7a342abace7171a40f50b414014993c9c",
+      "origin": "0.28 source archive: patches/0015-native-xwave-defined-shifts.patch"
+    },
+    {
+      "path": "engine/full/patches/0016-native-quick-start.patch",
+      "sha256": "ec7f887cc526df455da572fee3044c29044b4dd543c45c83609dd166a70f2eec",
+      "origin": "0.28 source archive: patches/0016-native-quick-start.patch"
+    },
+    {
+      "path": "engine/full/platform_audio_blocks.c",
+      "sha256": "2f0bc546e720a6a641e6ef4f746377ba30290a702330eb2399ae938507ef8ff1",
+      "origin": "0.28 source archive: platform_audio_blocks.c"
+    },
+    {
+      "path": "engine/full/platform_audio_blocks.h",
+      "sha256": "94bf2b0d417b58e4b054b8cd1a4b30183991cc42734cee0f6572a6a1f2925801",
+      "origin": "0.28 source archive: platform_audio_blocks.h"
+    },
+    {
+      "path": "engine/full/platform_audio_game.c",
+      "sha256": "0d63854ace054a792785f40970f1e41773f8926f55adff483befbeb6a307b86c",
+      "origin": "0.28 source archive: platform_audio_game.c"
+    },
+    {
+      "path": "engine/full/platform_audio_game.h",
+      "sha256": "8cb11f16344b3ded2d31c75260a9dac353ec730480b11578f079c44de53b19d7",
+      "origin": "0.28 source archive: platform_audio_game.h"
+    },
+    {
+      "path": "engine/full/platform_backup.c",
+      "sha256": "c8b69e6833ee4f74e2dcad02ef241fc190297f4996c726df5d538ffb70c8e14c",
+      "origin": "0.28 source archive: platform_backup.c"
+    },
+    {
+      "path": "engine/full/platform_backup.h",
+      "sha256": "069e9d7f45215664c3e6949b2017667ff18752b3e617aa02d2476a14b8dabbea",
+      "origin": "0.28 source archive: platform_backup.h"
+    },
+    {
+      "path": "engine/full/platform_flash.c",
+      "sha256": "aa327cfa5ba704e2072c67a0784dc9ab3b6df54955543f95cde98a2f9df609be",
+      "origin": "0.28 source archive: platform_flash.c"
+    },
+    {
+      "path": "engine/full/platform_flash.h",
+      "sha256": "7ea7665c353792d7cee5541f7b320fdaff45da63fd95506aab9906fcb2e6d9d9",
+      "origin": "0.28 source archive: platform_flash.h"
+    },
+    {
+      "path": "engine/full/platform_frame.c",
+      "sha256": "f3e08d10fa52a740467822c57b9be5b212853e95a4e17e4fb842fc755762c894",
+      "origin": "0.28 source archive: platform_frame.c"
+    },
+    {
+      "path": "engine/full/platform_frame.h",
+      "sha256": "5e5abb07e8a451098c71dedc90e5c16bbfde17fee19cda1a58b8ccc2ba69ef7b",
+      "origin": "0.28 source archive: platform_frame.h"
+    },
+    {
+      "path": "engine/full/platform_link_session.c",
+      "sha256": "fb2f38e3cf4f313dd1f6ee6af56d660314a8c34bcd47f95350988dc9e4597d50",
+      "origin": "0.28 source archive: platform_link_session.c"
+    },
+    {
+      "path": "engine/full/platform_link_session.h",
+      "sha256": "6b720b24ad74db201bfdc640e1a2915756f55ae97303224c74d08c6cf3a5fa88",
+      "origin": "0.28 source archive: platform_link_session.h"
+    },
+    {
+      "path": "engine/full/platform_link_stream.c",
+      "sha256": "a43fd5c9605fb0369ec368bd635a114c363568b4178a4d4a33ed36b9ec12f6c3",
+      "origin": "0.28 source archive: platform_link_stream.c"
+    },
+    {
+      "path": "engine/full/platform_link_stream.h",
+      "sha256": "c76dd69489dad6ef6383d4d2eb7a3e97c1408f67fd4e40c8f123603da641c212",
+      "origin": "0.28 source archive: platform_link_stream.h"
+    },
+    {
+      "path": "engine/full/platform_link_wire.c",
+      "sha256": "53137ab9aa26d6602fd48cec63293353c6980bbd1ee9bb6c4808d0dcce691224",
+      "origin": "0.28 source archive: platform_link_wire.c"
+    },
+    {
+      "path": "engine/full/platform_link_wire.h",
+      "sha256": "3db4b278e2e05bc329f224ac2c27a1cc78f288b32f2c290ee73f8c18680f5b06",
+      "origin": "0.28 source archive: platform_link_wire.h"
+    },
+    {
+      "path": "engine/full/platform_memory.c",
+      "sha256": "ab2e827d2d5fc518a2974944c581a13230a62bff6ebd84a605ac681081cc1eeb",
+      "origin": "0.28 source archive: platform_memory.c"
+    },
+    {
+      "path": "engine/full/platform_memory.h",
+      "sha256": "fa0a137f03340890eb2e88ca6fec4f7c3dd91bd3d4c5e4c5aa895ad766f6eba4",
+      "origin": "0.28 source archive: platform_memory.h"
+    },
+    {
+      "path": "engine/full/platform_pcm.cpp",
+      "sha256": "7aa780e58e798fc3da48ab6d2daf07e75cebb5b0f25fdf9bb6374bf93f70de59",
+      "origin": "0.28 source archive: platform_pcm.cpp"
+    },
+    {
+      "path": "engine/full/platform_pcm.h",
+      "sha256": "679f44eda1d3524bd35886a3e1e5b4f6e8b62e3797bc9d401143fc5e3b886928",
+      "origin": "0.28 source archive: platform_pcm.h"
+    },
+    {
+      "path": "engine/full/platform_present.h",
+      "sha256": "92a13f1bcfae00027c260a7b70557d550fadeb20071a95beaca13a39fe9972f6",
+      "origin": "0.28 source archive: platform_present.h"
+    },
+    {
+      "path": "engine/full/platform_psg.cpp",
+      "sha256": "882d46fc8e42a2de76112ae7a7d63a3d702b0878f06f0d7d4fccbbde33905374",
+      "origin": "0.28 source archive: platform_psg.cpp"
+    },
+    {
+      "path": "engine/full/platform_psg.h",
+      "sha256": "6e85181d6db75ac1a0f333ea3e6ff5bad9dd985640b48f8ce2707c95a4c0d8b6",
+      "origin": "0.28 source archive: platform_psg.h"
+    },
+    {
+      "path": "engine/full/platform_settings.c",
+      "sha256": "07f82dfe4c65cfb69cd0fe6736c9d0720e86819ee0854c69ead21ddd36c197b7",
+      "origin": "0.28 source archive: platform_settings.c"
+    },
+    {
+      "path": "engine/full/platform_settings.h",
+      "sha256": "7a6f2920da8ba3fb62a2269278c10838f321d9222d21d0fdca99179b23dad6e3",
+      "origin": "0.28 source archive: platform_settings.h"
+    },
+    {
+      "path": "engine/full/platform_speed.c",
+      "sha256": "78ce6e0889b60a8f6b9fae12663b82b88c06d059b5ea64436fcbff695f0cf229",
+      "origin": "0.28 source archive: platform_speed.c"
+    },
+    {
+      "path": "engine/full/platform_speed.h",
+      "sha256": "a37a4f7c40a0e689a97fbd86bd5da4ef6fc2d98a257c29a3a3e1424c48bd2e6f",
+      "origin": "0.28 source archive: platform_speed.h"
+    },
+    {
+      "path": "engine/full/platform_video.c",
+      "sha256": "387089ec963e0d761a3f1660531365709a4a34cc5087b62eeca3a4b5d90f9e85",
+      "origin": "0.28 source archive: platform_video.c"
+    },
+    {
+      "path": "engine/full/platform_video.h",
+      "sha256": "22abb318e35e1b1eb0e4c60ee1c99193c19ce234a16ea42e43379b59ca0a8965",
+      "origin": "0.28 source archive: platform_video.h"
+    },
+    {
+      "path": "engine/full/platform_vita_audio.c",
+      "sha256": "a5dd8d25d4fc1b7f27ccf2987032a139fa47f79f80af0fcb4154961b793f0316",
+      "origin": "0.28 source archive: platform_vita_audio.c"
+    },
+    {
+      "path": "engine/full/platform_vita_audio.h",
+      "sha256": "77ac1ff86229203cc480e23168c9cc596e5b08f734d57c0d8e33050bb2886464",
+      "origin": "0.28 source archive: platform_vita_audio.h"
+    },
+    {
+      "path": "engine/full/platform_vita_main.c",
+      "sha256": "ea1600e086c13603b904cd7f5e2d3adb6fb3c1dbf8bd8a33ddc97a46159b09ed",
+      "origin": "0.28 source archive: platform_vita_main.c"
+    },
+    {
+      "path": "engine/full/platform_vita_video.c",
+      "sha256": "7d3e884a1dda2ae9242bd6a6f9bd042ea4f899de7548921f798bede367c92102",
+      "origin": "0.28 source archive: platform_vita_video.c"
+    },
+    {
+      "path": "engine/full/platform_vita_video.h",
+      "sha256": "4ff68e424295a0603351c605523d1ced381581d7a699734c8e2282289050aab4",
+      "origin": "0.28 source archive: platform_vita_video.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/COPYING.LESSER",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "origin": "0.28 source archive: vendor/gbapu/COPYING.LESSER"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/COPYING.VBA-M",
+      "sha256": "d7de33e6edf6d087efab25daa106653a4dd6f09f3d136ab07fb8c40d9476fc43",
+      "origin": "0.28 source archive: vendor/gbapu/COPYING.VBA-M"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/NOTICE.txt",
+      "sha256": "26616a1359b2d6f4db0326b09682ae805676cba78bfe8ebaa96c258d1d26e5a7",
+      "origin": "0.28 source archive: vendor/gbapu/NOTICE.txt"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Blip_Buffer.cpp",
+      "sha256": "fb347cf9b684eb4213b38875174f90c6a2ca9fcac5d1e7d9ddcaa336d61ccbd8",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Blip_Buffer.cpp"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Blip_Buffer.h",
+      "sha256": "4cb41497b99f88b807fa476f85ab7b821ac2be345a470128a96d1f200ec7d68a",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Blip_Buffer.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Gb_Apu.cpp",
+      "sha256": "f51cff104043116879ae48bb1a559047380e8f59d3012720bb037c68d37f6134",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Gb_Apu.cpp"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Gb_Apu.h",
+      "sha256": "a70e9d1178d72b10e0ef6c3d2541bda223d8427a298e0cae7c9b6b751355745c",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Gb_Apu.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Gb_Oscs.cpp",
+      "sha256": "da982fea11ed9ab6d57f9bc43ed41c8f5677e81c7baf2e0e1c2baf986d6bcc71",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Gb_Oscs.cpp"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Gb_Oscs.h",
+      "sha256": "076f79f288df6dd8176f13fdd5df18eed7d800ec44fc44bd15753004246ce00c",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Gb_Oscs.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Multi_Buffer.cpp",
+      "sha256": "21446d33188257344f98ab49bac0a1b3ab2b49347943d2bfc8c7bc249587655d",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Multi_Buffer.cpp"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/Multi_Buffer.h",
+      "sha256": "e6b6b93f854719451c428a99be523a4b0c8e805557f48281129709253b376509",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/Multi_Buffer.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/blargg_common.h",
+      "sha256": "616e59cd3a2a8e4fd7d0a30297f6567554195ce00e126a6021f3afda321c26e1",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/blargg_common.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/blargg_config.h",
+      "sha256": "e7b455ef29291d219c88cec17a6a9dc481f727272b9779f33103f5120ffef50e",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/blargg_config.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/core/apu/blargg_source.h",
+      "sha256": "8391b31de7176a2054b2cadc53e9d36a7743af8a21a0070b4e62b1ebdb97d6e6",
+      "origin": "0.28 source archive: vendor/gbapu/core/apu/blargg_source.h"
+    },
+    {
+      "path": "engine/full/vendor/gbapu/manifest.json",
+      "sha256": "c0608dca5bc3cd8e365e45ef189ea816468fbe92dd07dc8af64b5e2d87c681eb",
+      "origin": "0.28 source archive: vendor/gbapu/manifest.json"
+    },
+    {
+      "path": "engine/full/vendor/vita2d/LICENSE",
+      "sha256": "bfcd754f76d4c3746c58b62e838becc8f36555b409cd0c1b9b6d665b9d184b68",
+      "origin": "0.28 source archive: vendor/vita2d/LICENSE"
+    },
+    {
+      "path": "engine/full/vendor/vita2d/NOTICE.txt",
+      "sha256": "fc03b51e1373a5ef1a1ed608d41da3e680e0ba4551687ad9cfaedd54955bf3cc",
+      "origin": "0.28 source archive: vendor/vita2d/NOTICE.txt"
+    },
+    {
+      "path": "engine/full/variants/fr028/platform_vita_main_fr.c",
+      "sha256": "d0067f7a32ecb3c63c2c72484042f628a322ae35d87348446bdb8d876391164d",
+      "origin": "0.28 frozen French entrypoint"
+    },
+    {
+      "path": "engine/full/patches/0017-vita-right-stick-aim.patch",
+      "sha256": "55f4a951c708ac729c29dbe3506a5208b1242cc787b302314bffe34ef41b02bd",
+      "origin": "0.26 aiming delta, retained in 0.28"
+    },
+    {
+      "path": "sample/debugScreen.c",
+      "sha256": "a69ab5b35f825858630b704402c09befe9855186b7e17e9f1e9b7b8b32c99d46",
+      "origin": "Vita debug screen support; provenance notices retained"
+    },
+    {
+      "path": "sample/debugScreen_custom.h",
+      "sha256": "1380e5926689806b4b8d4df85cbc626ee03a5282fa2f40e4447c0e0b29b6dc0e",
+      "origin": "Vita debug screen support; provenance notices retained"
+    },
+    {
+      "path": "sample/debugScreenFont.c",
+      "sha256": "2bffe4bd8cac67101d063c1d64336dfa936ec7411570176ce57baceb302c6bca",
+      "origin": "Vita debug screen support; provenance notices retained"
+    },
+    {
+      "path": "sample/debugScreen.h",
+      "sha256": "b9b790bad51444cb474cc16acf8e331ffe3aca082840b067781aa81c49b96592",
+      "origin": "Vita debug screen support; provenance notices retained"
+    },
+    {
+      "path": "tools/link_full_objects.py",
+      "sha256": "ba3903aae0bd34a62abcb2651971a314cba33d505226a811ff2ab291ff77b278",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_native_ub_fixes.py",
+      "sha256": "a224bdd30c4d056827c27f46b058d3727ea921f84033be4cc3d8f8e6fabac4de",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_present_arm.py",
+      "sha256": "f310ea9985b2fa13af523adb250cbffdbaa725327ae37ee87bb072f5a7a10d9f",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_platform.py",
+      "sha256": "8bf1a1528dcd3596fdb33088b1aaa21e7daa34df549994a7539daf0745055de1",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_native_source.py",
+      "sha256": "954c322abf817ed25ec1177d4c5cea172d5dd982c621a707d4716934ebd1933d",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_audio_songs.py",
+      "sha256": "a769c460e4e849102e24d27a398e71817f401bd6a455268399a8a90eca234336",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_serial.py",
+      "sha256": "376ee0b8b650337ab02b9a3abd08d0b4d57022e84effd195023e7ada6ad0e1ca",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_audio_game.py",
+      "sha256": "9a7ba2f20b8af6c66c658d93af59861950f4fc3839d19eee0b9018b5ff7d86bf",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_scene_sample.py",
+      "sha256": "bb0f81bb873da43344c958ca8a6b4755740f34198413b3681413d6f11d63c8a8",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/extract_sprites.py",
+      "sha256": "985511880ce77b28d5ecdefcac67bab27a6fc1c45a47e59a85597339bb962af2",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/extract_title.py",
+      "sha256": "8ceabc0c83d5fbb88eef39b88786d681eaa8ea60d618c60b0b9d611f002ef2c7",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_dungeon_map_bounds.py",
+      "sha256": "60611798253e58bdf5aa34265ae11824197b90e67b397f55f7d3cc1e4f0fdb0b",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_audio_arm.py",
+      "sha256": "920d80b8d90b597cb90e4abd7077fd1d2a7ecaa6f508447fc86a62981b550f16",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_m4a_assembly_resources.py",
+      "sha256": "5d8b40441f914c8678680ec7ececa51b8fac2818a3b14cb65af6bc36dd22d50b",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/prepare_french_variant.py",
+      "sha256": "fa5a7643783dc42c3b3139132dd4f13a6e2e1a85626f0384ead7228ecf70fcfb",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_native_resource_layout.py",
+      "sha256": "726064e5485f5d17781b29cf40dbba5508ddd27ecf6f4e644a56977b72c1caad",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_native_halt.py",
+      "sha256": "18ca36d106e2b3c500dd87ae612bb26a9a6caab05a085543d316c80e1972217d",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_objects.py",
+      "sha256": "bc22746f33d428fe18988fb2e3237c437219f1ade4dc22e036c4e723802d17d7",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_audio_output.py",
+      "sha256": "5d27899932d3f456e84ca1ba8702a8b209e8414b0b422c8102bb32f87541f896",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/inspect_dungeon_checkpoint.py",
+      "sha256": "477c5b0259169d997550db022c8ef9a740ed55287aa4a8c955e9307cb8b4c57b",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/prepare_gameplay_locale.py",
+      "sha256": "d5000d3c7a6fc5d8c6c5f52786085bf61ec55ad9dadcf194306d54202497f55e",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_data.py",
+      "sha256": "174d9b867b53d6b0f9abee45861c74a2f7a6b4d5a03c5366fec56bfaccb360b1",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/inspect_ground_checkpoint.py",
+      "sha256": "d1dfc965c1bb9d66e977fa25a1a0e5dc59970a8fa48c7bad3bfd5b66711d608c",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_full_portrait_resources.py",
+      "sha256": "8f89371858cef42e793b1386ef911c2b3c99bb0ca3aabd9f01b60c7c5658591e",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_full_resources_arm.py",
+      "sha256": "ca5eda9e16ea70e2209ed38ff7c12dcb6594eeb11e6f868e8a6b9f30009253cf",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_french_objects.py",
+      "sha256": "f2dbdb1b2fc17a116462556fd7ff08c0366edb0142e2e07548e8e39e727f45a3",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_vita_video.py",
+      "sha256": "78a4fefe80a3156a523683c5bd1b1b7bbb79a82f36a3767ad5b1cc0d57c2f525",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/prepare_scene_sample.py",
+      "sha256": "836a3970552c4212c3f1f749d672f22bc6fab30c960be54c3b4c5c56ecde320f",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_vita_elf.py",
+      "sha256": "c3881a4b8203c7ebf8c0a4b57864e4d98f91c9a9e38a5ca00e7740dd66a6f297",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/plan_dungeon_walk.py",
+      "sha256": "9ce48f2b608c1d08ac1c99df232c3f51829541a56a08e53caab96262f5cb5ad1",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/compare_dungeon_snapshots.py",
+      "sha256": "aff072dbf13d3bc447e3ff6117c0c4d7b60b05f57fa22df3496e2164ef983b57",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_native_link_layout.py",
+      "sha256": "4351cdce0f2c041565b5e4e145bc4bc4ca8fc66aeb001f4da5c5c85b010a3ab9",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_ground_scripts.py",
+      "sha256": "f06bb2f6e67b44c45eb891c1d051e206752b0fa4c8f63e0de15854cb3b7d98ba",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_full_resources.py",
+      "sha256": "b0d6ea870d6cdf45e3eeb04d674b953e79dcc9203e59adceb3a53e847322be3e",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_audio_diagnostic.py",
+      "sha256": "833282b3f1b9baffe8162e830a03d6c94c67523cbcda9537a0b04a6fa6fd4ee5",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/eu_text_catalog.py",
+      "sha256": "98f9b806d04b63648d5b617f99321a5821a22344fbeeca86a79f70251116a8c0",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_link_session.py",
+      "sha256": "effbfaecb73db4340d75c65c70b1121c29e70653ab511c4d3b06bb2d58b6c51f",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_full_boot_arm.py",
+      "sha256": "a301bf12ed89b64174d4e3bf05008ac5f44d3ebf58f373a0cccd85cff794d5b5",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_livearea_assets.py",
+      "sha256": "b9cb68a32e7a6a4d04aaed4d977598e5296a02feeccb68507b7d3387cc0759e5",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_vita2d.py",
+      "sha256": "0ae2be2ea461b2f61ca251e4403e1f384be1d4feb67c00f4195ba815e1163b29",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_portrait_resource_audit_negative.py",
+      "sha256": "0d773bb89a5d0ae1c7bd908a745657f657cde0566969b7e5286b5b6a30c777bb",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_link_wire.py",
+      "sha256": "cd773ab03a9ffdc5b27ec7f0f6b3e85274deb581c1d0ad150601591d6eafd051",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_sprite_resource_audit_negative.py",
+      "sha256": "e297e13adfa3995e8e6a67855990b301f15a6a5c7fb5188b7afa0795e1d2fe42",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_full_sprite_resources.py",
+      "sha256": "17054b18cd6c811567465c33a0bd7809a5a64d30f4fa674bee4fbb0b07f5d925",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/requirements-arm-tests.txt",
+      "sha256": "36e1b51b4a0990cd618486289616377a2d6c30983dcb44dd0686452ea8a75e70",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_audio.py",
+      "sha256": "89a33437d94f3cd1d203b78174ffd0e9f154d4082c5d9d762c61150c97b16bc2",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_psg_songs.py",
+      "sha256": "d9ec3ee9c7834153021547abd7c229b557a51e5cc147bb2f5d00db74d52f8427",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/extract_scene_locale.py",
+      "sha256": "c2fc83746e33ba853ed1c2e1a0f020eceb48553c85d5c15ead539b4795add003",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/audit_locale_tables.py",
+      "sha256": "0778bc3645f621497ebdb5f7243620d0d2757c46704d78f17f44c097f031d6de",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_serial_arm.py",
+      "sha256": "3b7b3c787002f0ae01970938c7a7ce61ac0fd0a92bcdca5730e0f8b03c00e60c",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/build_full_psg.py",
+      "sha256": "0d28221081cd296dc65f6b109f8f501f6f75bb8e8efb3acd028bd620d37321c7",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/package_full_vita.py",
+      "sha256": "4e2c601f02720690d7340244824e72535a21a81dde132c977c4479e7f1da1f39",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/make_fixture.py",
+      "sha256": "a6d83c10e5d7ff999ca9bbe986b18b0493dd2ed54cdabd5e02b9a3ac79c8e249",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tools/test_native_cable_exit.py",
+      "sha256": "2d03c35b7385e46be79efacdd3ce7ee03e97aa44dcc21a59534c0fcff1c7f04a",
+      "origin": "development tool snapshot; full build not yet reproducible"
+    },
+    {
+      "path": "tests/backup_test.c",
+      "sha256": "415881fde8857785ae56b6e4a5eae89c7c66a025da4a4f133fa2f08352f303e4",
+      "origin": "frozen synthetic regression test"
+    },
+    {
+      "path": "tests/speed_test.c",
+      "sha256": "f42597b1799a7c6489b47b5fd220b7778b091596e43b52db3bddef34d9d7d9b6",
+      "origin": "frozen synthetic regression test"
+    },
+    {
+      "path": "tests/frame_speed_test.c",
+      "sha256": "4cf599964524b53e9cc87d7755a1a109dc4ca2709136020ca99dcee0d12edc33",
+      "origin": "frozen synthetic regression test"
+    },
+    {
+      "path": "tests/settings_test.c",
+      "sha256": "eaf43ac02883fc9ed669d0cd08241888596e1451ff8314dbde56e7cefa5a864a",
+      "origin": "host-only test source"
+    },
+    {
+      "path": "tests/vita_video_test.c",
+      "sha256": "fbd15145c1308a4e66489bdc41eb8f2415c5e3c77d22a522c2a13735902f975b",
+      "origin": "host-only test source"
+    },
+    {
+      "path": "tests/vita_video_stub/vita2d.h",
+      "sha256": "303d68c2c87e2e03e42ff8df65a6ebd5e5d34b25e77eb31696ff982deae5b175",
+      "origin": "host GPU API double"
+    }
+  ]
+}

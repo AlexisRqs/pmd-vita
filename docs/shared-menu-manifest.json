@@ -1,0 +1,116 @@
+{
+  "adapter_version": "0.46",
+  "module_version": "v0.3.0",
+  "module_commit": "b181eb6a427678b2d374c98432abf114b0330693",
+  "files": [
+    {
+      "path": "PORT-MENU.md",
+      "sha256": "7ba365e5d3c625a1e0399ec51d180be80e9dd3e134e17a49a025bdb378795f5a"
+    },
+    {
+      "path": "engine/full/platform_backup.c",
+      "sha256": "8c08740d28a22a3be3ab90238ec11f91f606cd83643e40129f47e1b9256dea49"
+    },
+    {
+      "path": "engine/full/platform_backup.h",
+      "sha256": "550b024ccd91350d5ae53f6041a301b98d4ddec3251116fe1b37584bfa259dc8"
+    },
+    {
+      "path": "engine/full/platform_flash.c",
+      "sha256": "1f973b1082816e8380a1f573407dcaf5982e45e06d754e3f193ea59c6a697d61"
+    },
+    {
+      "path": "engine/full/platform_locale_name.h",
+      "sha256": "82f2f6c381ad0154d8ca986ecf2a5487d857061db7ca17d4de143bc2d0fc886b"
+    },
+    {
+      "path": "engine/full/platform_menu_shared.c",
+      "sha256": "ee6b9f9a7b7cffa893bccdfe583a2153e6d2007b5024c2cf7dc9e8e0326bc9d0"
+    },
+    {
+      "path": "engine/full/platform_menu_shared.h",
+      "sha256": "6ca019ceb68e943f59470c6e03d3e11a564ff46ec8cea9a8eb35f12922061449"
+    },
+    {
+      "path": "engine/full/platform_settings.c",
+      "sha256": "3309cd82f3640ec872ba353e93726a24ac39ebea4bfa8fe2643d459d1f2bc1b4"
+    },
+    {
+      "path": "engine/full/platform_settings.h",
+      "sha256": "8d79774e7f90f2f98bd68580d0f7aa4fa851343acaf230acb6d8b78dad8d6f42"
+    },
+    {
+      "path": "engine/full/platform_ui_locale.h",
+      "sha256": "f743d357841404d9ac486503e26c8d7067b8adc8a96bd944140082868b87cda0"
+    },
+    {
+      "path": "engine/full/platform_vita_video.c",
+      "sha256": "02f3d4f6a6ef525665ebf3ae84d9090fa1fa9626e15702d8830a6b43e9a8d9f8"
+    },
+    {
+      "path": "engine/full/platform_vita_video.h",
+      "sha256": "75dcbb81873828be3e0313bf5e5908e32da3b061f8860b0f22346d48fb20494c"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_backup.c",
+      "sha256": "8c08740d28a22a3be3ab90238ec11f91f606cd83643e40129f47e1b9256dea49"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_backup.h",
+      "sha256": "550b024ccd91350d5ae53f6041a301b98d4ddec3251116fe1b37584bfa259dc8"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_menu_shared.c",
+      "sha256": "ee6b9f9a7b7cffa893bccdfe583a2153e6d2007b5024c2cf7dc9e8e0326bc9d0"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_menu_shared.h",
+      "sha256": "6ca019ceb68e943f59470c6e03d3e11a564ff46ec8cea9a8eb35f12922061449"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_settings.c",
+      "sha256": "3309cd82f3640ec872ba353e93726a24ac39ebea4bfa8fe2643d459d1f2bc1b4"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_settings.h",
+      "sha256": "8d79774e7f90f2f98bd68580d0f7aa4fa851343acaf230acb6d8b78dad8d6f42"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_ui_locale.h",
+      "sha256": "f743d357841404d9ac486503e26c8d7067b8adc8a96bd944140082868b87cda0"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_vita_main_fr.c",
+      "sha256": "c304f64b437b4f8796977781fbaf12be0e79482758b8d0929467142aa02411b5"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_vita_video.c",
+      "sha256": "02f3d4f6a6ef525665ebf3ae84d9090fa1fa9626e15702d8830a6b43e9a8d9f8"
+    },
+    {
+      "path": "engine/full/variants/fr046/platform_vita_video.h",
+      "sha256": "75dcbb81873828be3e0313bf5e5908e32da3b061f8860b0f22346d48fb20494c"
+    },
+    {
+      "path": "tools/build_full_vita_elf.py",
+      "sha256": "8973b001abc5fef39c832537a6a9fab9dc83fe174c6ddfbc699f0a3c2cd07161"
+    },
+    {
+      "path": "tools/check_source_tree.py",
+      "sha256": "c178ae1e679d83be363aefcc28145dc371fc7c2883a47f04607de47dda0f7181"
+    },
+    {
+      "path": "tools/package_full_vita.py",
+      "sha256": "5869274ee4d6d9285077b54f6eff5dfa467b258780afb842e1f893c682891fad"
+    },
+    {
+      "path": "tools/test_shared_menu_input.py",
+      "sha256": "bea2d115a6b59f6cba7326c7ae205157c59af782f06c1470e0385e3952632058"
+    },
+    {
+      "path": "tools/test_vita_video.py",
+      "sha256": "cf302c01c1e049da954e74f7a2f115ff1b593ed018df5e0927d8948a5fe00c8c"
+    }
+  ],
+  "distribution": "bundled unchanged source; see tools/port-menu-source.json"
+}

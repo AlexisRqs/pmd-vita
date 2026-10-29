@@ -1,0 +1,29 @@
+--- a/src/flash.c
++++ b/src/flash.c
+@@ -11,6 +11,7 @@
+ 
+ void InitFlash(void)
+ {
++    gFlashEnabled = FALSE;
+     if (!IdentifyFlash() && !SetFlashTimerIntr(2, GetInterruptHandler(3)))
+         gFlashEnabled = TRUE;
+ }
+@@ -23,6 +24,8 @@
+ 
+ s32 ReadFlashData(s32 sector, u8 *dest, s32 size)
+ {
++    if (!pmd_flash_range_valid(sector, size) || (size && dest == NULL))
++        return 3;
+     if (gFlashEnabled)
+     {
+         u8 *_dest = dest;
+@@ -46,6 +49,9 @@
+ s32 WriteFlashData(s32 sector, u8 *src, s32 size)
+ {
+     u8 buffer[0x1000];
++
++    if (!pmd_flash_range_valid(sector, size) || (size && src == NULL))
++        return 3;
+ 
+     if (gFlashEnabled)
+     {

@@ -1,0 +1,3631 @@
+
+
+
+
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs12_g0_s0_station_sref_script[] = { /* 0x81e1954 */
+    DEBUGINFO_O(14),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    CJUMP_SCENARIO_0(SCENARIO_MAIN),
+    COND(JUDGE_EQ, 3, /* to label */ 0),
+    COND(JUDGE_EQ, 18, /* to label */ 1),
+    JUMP_LABEL(2),
+  LABEL(0), /* = 0x00 */
+    CJUMP_SCENARIO_1(SCENARIO_MAIN),
+    COND(JUDGE_LE, 2, /* to label */ 3),
+    JUMP_LABEL(2),
+  LABEL(3), /* = 0x03 */
+    EXECUTE_STATION(-1, 16, 1),
+    RET,
+  LABEL(1), /* = 0x01 */
+    CJUMP_SCENARIO_1(SCENARIO_MAIN),
+    COND(JUDGE_LE, 1, /* to label */ 4),
+    COND(JUDGE_LE, 2, /* to label */ 5),
+    JUMP_LABEL(2),
+  LABEL(4), /* = 0x04 */
+    EXECUTE_STATION(-1, 45, 0),
+    RET,
+  LABEL(5), /* = 0x05 */
+    EXECUTE_STATION(-1, 46, 1),
+    RET,
+  LABEL(2), /* = 0x02 */
+    CJUMP_VAR(START_MODE),
+    COND_EQUAL(STARTMODE_CONTINUE_GAME, /* to label */ 6),
+    COND_EQUAL(STARTMODE_GROUND, /* to label */ 7),
+    COND_EQUAL(STARTMODE_DUNGEON_LOST, /* to label */ 8),
+    COND_EQUAL(STARTMODE_11, /* to label */ 8),
+    COND_EQUAL(STARTMODE_10, /* to label */ 9),
+    COND_EQUAL(STARTMODE_DUNGEON_WON, /* to label */ 10),
+    JUMP_LABEL(6),
+  LABEL(7), /* = 0x07 */
+    CJUMP_VAR(GROUND_GETOUT),
+    COND_EQUAL(9, /* to label */ 11),
+    COND_EQUAL(10, /* to label */ 11),
+    COND_EQUAL(11, /* to label */ 11),
+    COND_EQUAL(12, /* to label */ 6),
+    COND_EQUAL(13, /* to label */ 6),
+    COND_EQUAL(14, /* to label */ 6),
+    JUMP_LABEL(11),
+  LABEL(6), /* = 0x06 */
+    SELECT_LIVES(0, 2),
+    JUMP_LABEL(12),
+  LABEL(8), /* = 0x08 */
+    CALL_SCRIPT(DISMISSAL_SALLY_MEMBER3_FUNC),
+    CALL_SCRIPT(EVENT_DIVIDE_NEXT_DAY_FUNC),
+    EXECUTE_SUBSTATION(-1, 7, 0),
+    RET,
+  LABEL(10), /* = 0x0a */
+    CALL_SCRIPT(DISMISSAL_SALLY_MEMBER_FUNC),
+    CALL_SCRIPT(EVENT_DIVIDE_NEXT_DAY_FUNC),
+    EXECUTE_SUBSTATION(-1, 8, 0),
+    RET,
+  LABEL(9), /* = 0x09 */
+    CALL_SCRIPT(DISMISSAL_SALLY_MEMBER2_FUNC),
+    CALL_SCRIPT(EVENT_DIVIDE_NEXT_DAY_FUNC),
+    EXECUTE_SUBSTATION(-1, 7, 0),
+    RET,
+  LABEL(11), /* = 0x0b */
+    SELECT_LIVES(0, 1),
+    JUMP_LABEL(12),
+  LABEL(12), /* = 0x0c */
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    JUMP_SCRIPT(COMMON_ENTER),
+};
+
+static const ScriptRef s_gs12_g0_s0_station_sref = { ENTER_CONTROL, SCRIPT_TYPE_01, NULL, s_gs12_g0_s0_station_sref_script }; /* 0x81e1da4 */
+
+static const struct ScriptCommand s_gs12_g0_s0_evt0_sref_script[] = { /* 0x81e1db0 */
+    DEBUGINFO_O(85),
+    { 0x01, 0x00, -0x0001,  0x00000009,  0x00000000, NULL },
+    HALT,
+};
+
+static const ScriptRef s_gs12_g0_s0_evt0_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs12_g0_s0_evt0_sref_script }; /* 0x81e1de0 */
+
+static const struct ScriptCommand s_gs12_g0_s0_evt1_sref_script[] = { /* 0x81e1dec */
+    DEBUGINFO_O(93),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x3a, 0x00,  0x0000,  0x00000000, -0x00000001, (@@STRING:9209b7abe1abdc9a63567474ff4c3ac9e271c1354553a3688ca3411003c4bf91@@) },
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    TEXTBOX_CLEAR,
+    CALL_SCRIPT(SAVE_START_FUNC),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    SPECIAL_TEXT(SPECIAL_TEXT_SAVE_1, 0, 0),
+    CALL_SCRIPT(SAVE_END_FUNC),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const ScriptRef s_gs12_g0_s0_evt1_sref = { NORMAL_EVENT, SCRIPT_TYPE_07, NULL, s_gs12_g0_s0_evt1_sref_script }; /* 0x81e1ee4 */
+
+static const struct ScriptCommand s_gs12_g0_s0_obj0_dlg0[] = { /* 0x81e1ef0 */
+    DEBUGINFO_O(111),
+    JUMPIF(JUDGE_GE, BASE_LEVEL, 2, /* to label */ 0),
+    END_DELETE,
+  LABEL(0), /* = 0x00 */
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g0_s0_obj0_dlg2[] = { /* 0x81e1f40 */
+    DEBUGINFO_O(119),
+    CJUMP_DIR_TO_LINK(0),
+    COND_EQUAL(4, /* to label */ 0),
+    COND_EQUAL(5, /* to label */ 1),
+    COND_EQUAL(6, /* to label */ 2),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    CJUMP_DIRECTION,
+    COND_EQUAL(4, /* to label */ 3),
+    COND_EQUAL(5, /* to label */ 3),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(1), /* = 0x01 */
+    CJUMP_DIRECTION,
+    COND_EQUAL(4, /* to label */ 3),
+    COND_EQUAL(5, /* to label */ 3),
+    COND_EQUAL(6, /* to label */ 3),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(2), /* = 0x02 */
+    CJUMP_DIRECTION,
+    COND_EQUAL(5, /* to label */ 3),
+    COND_EQUAL(6, /* to label */ 3),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(3), /* = 0x03 */
+    EXECUTE_STATION(-1, 1, 0),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g0_s1_lives0_dlg0[] = { /* 0x81e20d0 */
+    DEBUGINFO_O(147),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g0_s1_lives1_dlg0[] = { /* 0x81e2110 */
+    DEBUGINFO_O(154),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g0_s2_lives0_dlg0[] = { /* 0x81e2150 */
+    DEBUGINFO_O(161),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g0_s2_lives1_dlg0[] = { /* 0x81e2190 */
+    DEBUGINFO_O(168),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g1_s0_station_sref_script[] = { /* 0x81e21d0 */
+    DEBUGINFO_O(175),
+    SELECT_ENTITIES(-1, -1),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    EXECUTE_FUNCTION(WORLD_MAP_POINT),
+    RET,
+};
+
+static const ScriptRef s_gs12_g1_s0_station_sref = { EVENT_WAKEUP, SCRIPT_TYPE_07, NULL, s_gs12_g1_s0_station_sref_script }; /* 0x81e2220 */
+
+static const struct ScriptCommand s_gs12_g1_s0_lives0_dlg0[] = { /* 0x81e222c */
+    DEBUGINFO_O(185),
+    SELECT_ANIMATION(2),
+    { 0x5f, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g1_s0_lives1_dlg0[] = { /* 0x81e226c */
+    DEBUGINFO_O(192),
+    SELECT_ANIMATION(2),
+    { 0x5f, 0x00,  0x0000,  0x00000001,  0x00000000, NULL },
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g1_s1_station_sref_script[] = { /* 0x81e22ac */
+    DEBUGINFO_O(199),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    SELECT_EVENTS(0, 0),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g1_s1_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g1_s1_station_sref_script }; /* 0x81e230c */
+
+static const struct ScriptCommand s_gs12_g1_s1_lives0_dlg0[] = { /* 0x81e2318 */
+    DEBUGINFO_O(210),
+    SELECT_ANIMATION(2),
+    { 0x5e, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g1_s1_lives1_dlg0[] = { /* 0x81e2368 */
+    DEBUGINFO_O(218),
+    SELECT_ANIMATION(2),
+    { 0x5e, 0x00,  0x0000,  0x00000001,  0x00000000, NULL },
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g2_s0_station_sref_script[] = { /* 0x81e23b8 */
+    DEBUGINFO_O(226),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_STOP,
+    FLASH_FROM(TRUE, PALUTIL_KIND_13, 60, RGB_U32(0x00, 0x00, 0x00)),
+    AWAIT_CUE(3),
+    FLASH_TO(TRUE, PALUTIL_KIND_13, 60, RGB_U32(0x00, 0x00, 0x00)),
+    RET,
+};
+
+static const ScriptRef s_gs12_g2_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g2_s0_station_sref_script }; /* 0x81e2438 */
+
+static const struct ScriptCommand s_gs12_g2_s0_lives0_dlg0[] = { /* 0x81e2444 */
+    DEBUGINFO_O(239),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(120),
+    ALERT_CUE(3),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g3_s0_station_sref_script[] = { /* 0x81e24a4 */
+    DEBUGINFO_O(248),
+    SET_DUNGEON_RES(/* result */ 6, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g3_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g3_s0_station_sref_script }; /* 0x81e25fc */
+
+static const struct ScriptCommand s_gs12_g3_s0_lives0_dlg0[] = { /* 0x81e2608 */
+    DEBUGINFO_O(273),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g4_s0_station_sref_script[] = { /* 0x81e2688 */
+    DEBUGINFO_O(284),
+    SET_DUNGEON_RES(/* result */ 6, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g4_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g4_s0_station_sref_script }; /* 0x81e2758 */
+
+static const struct ScriptCommand s_gs12_g4_s0_lives0_dlg0[] = { /* 0x81e2764 */
+    DEBUGINFO_O(302),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g5_s0_station_sref_script[] = { /* 0x81e27e4 */
+    DEBUGINFO_O(313),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(0, 2),
+    SELECT_EVENTS(0, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g5_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g5_s0_station_sref_script }; /* 0x81e2874 */
+
+static const struct ScriptCommand s_gs12_g6_s0_station_sref_script[] = { /* 0x81e2880 */
+    DEBUGINFO_O(327),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g6_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g6_s0_station_sref_script }; /* 0x81e29c0 */
+
+static const struct ScriptCommand s_gs12_g6_s0_lives0_dlg0[] = { /* 0x81e29cc */
+    DEBUGINFO_O(352),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g7_s0_station_sref_script[] = { /* 0x81e2a4c */
+    DEBUGINFO_O(363),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g7_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g7_s0_station_sref_script }; /* 0x81e2b0c */
+
+static const struct ScriptCommand s_gs12_g7_s0_lives0_dlg0[] = { /* 0x81e2b18 */
+    DEBUGINFO_O(380),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g8_s0_station_sref_script[] = { /* 0x81e2b98 */
+    DEBUGINFO_O(391),
+    SET_DUNGEON_RES(/* result */ 6, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g8_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g8_s0_station_sref_script }; /* 0x81e2c68 */
+
+static const struct ScriptCommand s_gs12_g8_s0_lives0_dlg0[] = { /* 0x81e2c74 */
+    DEBUGINFO_O(409),
+    SELECT_ANIMATION(6),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    SELECT_ANIMATION(2),
+    WAIT(60),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g9_s0_station_sref_script[] = { /* 0x81e2d14 */
+    DEBUGINFO_O(422),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    { 0x23, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    CANCEL_LIVES(9, 0),
+    SELECT_LIVES(9, 1),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    RET,
+};
+
+static const ScriptRef s_gs12_g9_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g9_s0_station_sref_script }; /* 0x81e2e54 */
+
+static const struct ScriptCommand s_gs12_g9_s0_eff0_script[] = { /* 0x81e2e60 */
+    DEBUGINFO_O(447),
+    CAMERA_INIT_PAN,
+    WAIT(1),
+    AWAIT_CUE(4),
+    WALK_RELATIVE(256, 0, 40),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g9_s0_lives0_dlg0[] = { /* 0x81e2ec0 */
+    DEBUGINFO_O(456),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    MSG_NPC(-1, (@@STRING:f25d6c81586e3509a7de52fcb833a85c7ff10f5968929f291b5554f3b9f90d30@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTHEAST),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:fbb6ee63608b7e79683ac946ad00e37ce8970dec7fef6b7df408f587d2f8840f@@)),
+    VARIANT(/* == */  1, (@@STRING:8d8719ce101cb45f8a2c92d5a7f97970671c2043daea255af2c637c1f0c136b6@@)),
+    VARIANT(/* == */  3, (@@STRING:fbb6ee63608b7e79683ac946ad00e37ce8970dec7fef6b7df408f587d2f8840f@@)),
+    VARIANT(/* == */  3, (@@STRING:8d8719ce101cb45f8a2c92d5a7f97970671c2043daea255af2c637c1f0c136b6@@)),
+    VARIANT_DEFAULT((@@STRING:fbb6ee63608b7e79683ac946ad00e37ce8970dec7fef6b7df408f587d2f8840f@@)),
+    VARIANT_DEFAULT((@@STRING:8d8719ce101cb45f8a2c92d5a7f97970671c2043daea255af2c637c1f0c136b6@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    MSG_NPC(-1, (@@STRING:c5f20cebf9dde699b4636cd06c327759c4f8313731fd69ac0848d29aac259a81@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTH),
+    AWAIT_CUE(5),
+    MSG_NPC(-1, (@@STRING:0272c3d2c0e433d4ac12aaf835cee35adb06c66f2acda30278f1781bad262918@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000009),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:7cde74c33dfc2471e2d9a2ec90a61fb7709f78f866ff533a83c5b400b7616a11@@)),
+    VARIANT(/* == */  1, (@@STRING:78b7a1dec8b68de3ceddbe6d47df05aedd43fbb29c8b188000298d7ed533c520@@)),
+    VARIANT_DEFAULT((@@STRING:7cde74c33dfc2471e2d9a2ec90a61fb7709f78f866ff533a83c5b400b7616a11@@)),
+    VARIANT_DEFAULT((@@STRING:78b7a1dec8b68de3ceddbe6d47df05aedd43fbb29c8b188000298d7ed533c520@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    MSG_NPC(-1, (@@STRING:d10b904a50bbad35fc680bafaea1cb4c6609ba72154e9319d84e7e14ebe12231@@)),
+    PORTRAIT(PLACEMENT_MIDLEFT_TOP, 0x0002, 0x00000000),
+    PORTRAIT_POS(2, -1, 0),
+    { 0x2d, 0x03,  0x0002,  0x00000073,  0x00000000, NULL },
+    MSG_NPC(2, (@@STRING:d07991c4a7f51c0b0fcb693a8b675fc03f838838b7246431bd753c8569286e15@@)),
+    { 0x2d, 0x09,  0x0002,  0x00000073,  0x00000000, NULL },
+    MSG_NPC(2, (@@STRING:50eaedef91ca7e0f1ecb463c7b89f16026f14e30ff16ea0e8c6e28c227a8690b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(2, (@@STRING:5815a5e94e67822f4ddcf2f67bf07f388b590dbd85ba7804225511d8a35ba8c1@@)),
+    MSG_NPC(2, (@@STRING:b4de800102b04419e3502dde9236595ad8acdfe7e5c6ed97059c25919b156d49@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    ALERT_CUE(6),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000004),
+    MSG_NPC(1, (@@STRING:20bc717c658c4d2e07e84fb2f783374ce3fe07364b3c80965c894441cc98ba7a@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0002, 0x00000000),
+    MSG_NPC(2, (@@STRING:f92b2844804ff51040050957b7219ec6fc0b537dd383860eab8c0a97d895e0e5@@)),
+    ALERT_CUE(7),
+    MSG_NPC(2, (@@STRING:47c3cf3f33a84125fe9562eec2635330bfb0ff75a29d08fab50ccc61717792f6@@)),
+    MSG_NPC(2, (@@STRING:0fd1f0e8a23a92ef217bddc0f605530e892e6ff2c1cc8b93a58fef74dce561eb@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    FANFARE_PLAY2(465),
+    CALL_SCRIPT(SHOCK_FUNC),
+    PORTRAIT_REP(0x0002, 0x00000041),
+    MSG_NPC(2, (@@STRING:995f677b58b07fe880b1776ccf2c4078c545ecc9450cd30e13504e3534233bb8@@)),
+    MSG_NPC(2, (@@STRING:79c0b4ee7ecf9cad4115c7bea4aa140a7dacdc26271e2ba8f132835b8ba4036e@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x0000000c),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:0e0b6773c197c03e8eebb87c2206a15b83a32a424e035cab1a298b252cb22651@@)),
+    VARIANT_DEFAULT((@@STRING:b841481e081f0e02e402e73037acd04d3afd5708923635510397d2aec5f54b3d@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    MSG_NPC(2, (@@STRING:357d5f8f4b0b8a59a3514b92a7ee32f959aa917affbf5dcbdf6f2e71fe9e1f8f@@)),
+    MSG_NPC(2, (@@STRING:8eca4276d71d74e84cf6f8472720db2f38780077496e0d98b1cd8fc56ab7cc16@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0002, 0x00000000),
+    MSG_NPC(2, (@@STRING:f93c70c158a665783544c57ddb5cd2d5cc3e61cb77f67e6a39bc9f14bd442636@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    BGM_STOP,
+    FANFARE_PLAY(212),
+    MSG_INSTANT((@@STRING:915316b22bc38bedee7431fb8a2f8c46149e5ec7198231ef7bba92dfd1743834@@)),
+    WAIT_FANFARE1(212),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    WALK_RELATIVE(256, 0, -24),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTHEAST),
+    WAIT(30),
+    SELECT_EFFECTS(9, 1),
+    WAIT(30),
+    ALERT_CUE(6),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000004),
+    MSG_NPC(1, (@@STRING:63fb5e527068cb2d1f86a49372a6de5322efe9c290dd3a29f468a137b21dbdff@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTHEAST),
+    MSG_NPC(2, (@@STRING:fd6faf4e6e9abf55a44561440c0db2b496a307f5c85f38a7d5e5b03ca92ecf4b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(1, (@@STRING:aa4b2f187948c9e5c7b629d4a98ded76bbc07c8377a9f3e5e10ff26d9c28de4f@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(2, (@@STRING:1d717cc6069e84f183ae1cc2e8ffc3ce2fe761c3c4c8a3573b2e1b3786796687@@)),
+    MSG_NPC(2, (@@STRING:de1dab13e76a3295b8325d98c124dfc021c0f2860bea0775701cef3fc97e202b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    CANCEL_EFFECTS(9, 1),
+    ALERT_CUE(7),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTH),
+    AWAIT_CUE(5),
+    MSG_NPC(2, (@@STRING:50c11559b022b28e610207ed657eb2df33cc46a1da36355cf29b95c0b0bf391d@@)),
+    ALERT_CUE(7),
+    CANCEL_EFFECTS(9, 2),
+    MSG_NPC(2, (@@STRING:bff2d095d270351975d2932883e91a926593f515f4388b008ce10a06b05a7d9b@@)),
+    MSG_NPC(2, (@@STRING:c9adb040527f1d7d877a0c0850c66b30d03b47996d42df2411c95e60377bebbf@@)),
+    MSG_NPC(2, (@@STRING:865d416c38a3a6b554148d3943484b48dfe8acc080aeead1f02b14e2472a37f0@@)),
+    MSG_NPC(2, (@@STRING:c5e156cd572176e83bc3f154e42e7deec27ebe480597e9dbfeb2a8b5ce5ecdb6@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTHWEST),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x0000000c),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:fcc1653e2db37186dff9f42b779b4c3279471955e5fe5f6552488d64d65b62e2@@)),
+    VARIANT_DEFAULT((@@STRING:f043c8726ea61b51b2a25ee9819448638c6e3358013f059fa89b7140a247ad5a@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0002, 0x00000000),
+    MSG_NPC(2, (@@STRING:6030a17141c98890f695d46986a03d54ec1d026494cbdfc8e6b3d948080d0fa0@@)),
+    TEXTBOX_CLEAR,
+    WAIT(20),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    AWAIT_CUE(5),
+    WAIT(30),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000004),
+    MSG_NPC(1, (@@STRING:8608b7ebe05b99e923a38003290b6ba895fe5524a8ce2cc2f834c84502723cb3@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:20d86a77b9a2f5c090b8e7862e1bf3b6e4ddd5b08f5ead7557c54974c51d6df0@@)),
+    VARIANT(/* == */  1, (@@STRING:3c190ffb959b2cefc8f05b559155a26754c385bb2bb23d4e28441818213c0eb7@@)),
+    VARIANT(/* == */  1, (@@STRING:9096b6d437dfc0d4735355b1b95566d2d32384b46a441cd4f9819f34a444c865@@)),
+    VARIANT(/* == */  1, (@@STRING:41c3f91b6cac85c369aa18a0f3cdffbcfbccd3b76abe0d239a0eb9d46ac126e1@@)),
+    VARIANT_DEFAULT((@@STRING:ff6ced44bca86bccebfb799a487a758ced7e5c6e845fbdbbbf2179864a1fca9e@@)),
+    VARIANT_DEFAULT((@@STRING:3c190ffb959b2cefc8f05b559155a26754c385bb2bb23d4e28441818213c0eb7@@)),
+    VARIANT_DEFAULT((@@STRING:9096b6d437dfc0d4735355b1b95566d2d32384b46a441cd4f9819f34a444c865@@)),
+    VARIANT_DEFAULT((@@STRING:07b99b84cb7a264bbbb45c492925f7a039f6cbfc630f9258d0f3cb6864b05e21@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs12_g9_s0_lives1_dlg0[] = { /* 0x81e4480 */
+    DEBUGINFO_O(673),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTH),
+    AWAIT_CUE(6),
+    FANFARE_PLAY2(469),
+    CALL_SCRIPT(QUESTION_FUNC),
+    WAIT_FANFARE2(469),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(SHOCK_FUNC),
+    AWAIT_CUE(6),
+    WALK_RELATIVE(512, 0, -24),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    FANFARE_PLAY2(469),
+    CALL_SCRIPT(QUESTION_FUNC),
+    WAIT_FANFARE2(469),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTH),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTH),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTHWEST),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    AWAIT_CUE(6),
+    ALERT_CUE(4),
+    WALK_RELATIVE(256, 0, 40),
+    { 0x56, 0x00,  0x0000,  0x00000047,  0x00000000, NULL },
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_SOUTHWEST),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTH),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHWEST),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g9_s0_lives2_dlg0[] = { /* 0x81e4720 */
+    DEBUGINFO_O(718),
+    SELECT_ANIMATION(6),
+    { 0x2d, 0x07,  0x0002,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(7),
+    SELECT_ANIMATION(2),
+    WAIT(10),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    FANFARE_PLAY2(465),
+    CALL_SCRIPT(NOTICE_FUNC),
+    WAIT_FANFARE2(465),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    { 0x62, 0x00,  0x0100,  0x00000000, -0x00000008, NULL },
+    WAIT(20),
+    FANFARE_PLAY2(812),
+    SELECT_ANIMATION(19),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    SELECT_ANIMATION(2),
+    AWAIT_CUE(7),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    AWAIT_CUE(7),
+    FANFARE_PLAY2(470),
+    SELECT_ANIMATION(22),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    FANFARE_PLAY2(510),
+    WAIT(10),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    SELECT_ANIMATION(2),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    { 0x62, 0x00,  0x0100,  0x00000000,  0x00000010, NULL },
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    SELECT_ANIMATION(5),
+    WAIT(60),
+    SELECT_ANIMATION(2),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    { 0x62, 0x00,  0x0100,  0x00000000, -0x00000008, NULL },
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_SOUTH),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    AWAIT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    SELECT_ANIMATION(7),
+    SELECT_EFFECTS(9, 2),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    SELECT_ANIMATION(2),
+    AWAIT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTHEAST),
+    SELECT_ANIMATION(5),
+    WAIT(60),
+    WALK_RELATIVE(256, 0, 32),
+    ALERT_CUE(5),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    WAIT(30),
+    WALK_RELATIVE(256, -32, 16),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTH),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    ALERT_CUE(5),
+    WAIT(30),
+    WALK_RELATIVE(256, 64, 16),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    ALERT_CUE(5),
+    WAIT(30),
+    WALK_RELATIVE(256, -32, 24),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTH),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    WAIT(30),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    WALK_RELATIVE(256, 16, 16),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    WAIT(60),
+    WALK_RELATIVE(256, -16, 16),
+    FANFARE_PLAY2(468),
+    WAIT_FANFARE2(468),
+    FANFARE_PLAY2(468),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_SOUTH),
+    WAIT(30),
+    ALERT_CUE(5),
+    WALK_RELATIVE(256, 0, 16),
+    { 0x52, 0x00,  0x0000,  0x00400000,  0x00000000, NULL },
+    WAIT(60),
+    ALERT_CUE(5),
+    END_DELETE,
+};
+
+static const struct ScriptCommand s_gs12_g9_s1_eff0_script[] = { /* 0x81e4e10 */
+    DEBUGINFO_O(832),
+    { 0x56, 0x00,  0x0000,  0x000000ab,  0x00000000, NULL },
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g9_s1_lives0_dlg0[] = { /* 0x81e4e40 */
+    DEBUGINFO_O(838),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    SET_DIR_WAIT(DIRECTION_SOUTH, 1),
+    { 0x58, 0x01,  0x0000,  0x000000f0,  0x00000120, NULL },
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g9_s2_eff0_script[] = { /* 0x81e4ed0 */
+    DEBUGINFO_O(850),
+    { 0x56, 0x00,  0x0000,  0x000000ab,  0x00000000, NULL },
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g10_s0_station_sref_script[] = { /* 0x81e4f00 */
+    DEBUGINFO_O(856),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:1b455ce839631d987ea8f525482e6cfdca0e2e714a085f4c30ab85a837b6b121@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:4283704109774d09fce34b26fae239d2405d459601aca90d568f1b2be93d43fb@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g10_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g10_s0_station_sref_script }; /* 0x81e5070 */
+
+
+static const struct ScriptCommand s_gs12_g10_s0_lives0_dlg0[] = { /* 0x81e507c */
+    DEBUGINFO_O(878),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    MSG_QUIET(-1, (@@STRING:c727263cbbf3e2bc5179928bbaa33098be2d3a6fb3d4fae6b23c901332c9c762@@)),
+    MSG_QUIET(-1, (@@STRING:cc71399372d6f2677e0a9bc67448537f8fcdfc6f7f7db752966ee67161e95f5a@@)),
+    MSG_QUIET(-1, (@@STRING:8c279b6d53d548819bf5ea68034fba7176a000d9ecc4e64c8c229113892a7dc6@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(508),
+    { 0x97, 0x00,  0x0002,  0x00000001,  0x00000003, NULL },
+    MSG_OVERHEARD((@@STRING:8673139691f70fa1c86d4aefffa7be966bd8dbb8d805b9385e6de97b09945889@@)),
+    CALL_SCRIPT(JUMP_SURPRISE_FUNC),
+    WAIT(20),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTH),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x0000000c),
+    MSG_QUIET(0, (@@STRING:049569b5253724dbe1a03fa3b04144779389acd5d1c9a6fa11c4e4462477cca9@@)),
+    MSG_QUIET(0, (@@STRING:5b97464da33b1f88478b33cd9f10226cfa7cf261caef7b68827b00d03baa434f@@)),
+    TEXTBOX_CLEAR,
+    WALK_RELATIVE(512, 0, 32),
+    ALERT_CUE(3),
+    WALK_RELATIVE(512, 0, 64),
+    { 0x97, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    HALT,
+};
+
+
+static const struct ScriptCommand s_gs12_g11_s0_station_sref_script[] = { /* 0x81e52bc */
+    DEBUGINFO_O(909),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:62a27ff528b07965f44871b60c37f00e5d7c180e2fe4bf4265c686588d7ef882@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0000,  0x00000021,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0x2e, 0x00,  0x0000, -0x00000002,  0x00000000, NULL },
+    { 0x2e, 0x00,  0x0001, -0x00000002,  0x00000000, NULL },
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:32483b0ccaeac0b8ae020d609ab83454b1503c9047fd8451f4ee7c9a90da9b7e@@)),
+    VARIANT(/* == */  1, (@@STRING:8597a7c1dc0c1bee9175391e468ff3e1bf9ddfedc4f206eafb80b76d92ccee40@@)),
+    VARIANT(/* == */  1, (@@STRING:eb58ce61124f543f046fef14625257c817b346d2c81c08d27a18fe0102e67192@@)),
+    VARIANT_DEFAULT((@@STRING:32483b0ccaeac0b8ae020d609ab83454b1503c9047fd8451f4ee7c9a90da9b7e@@)),
+    VARIANT_DEFAULT((@@STRING:8597a7c1dc0c1bee9175391e468ff3e1bf9ddfedc4f206eafb80b76d92ccee40@@)),
+    VARIANT_DEFAULT((@@STRING:62bd652b2d685d23a2db3a7d2b9dcbc20ac36851db83f4a31538a928d83ffb55@@)),
+    TEXTBOX_CLEAR,
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    BGM_FADEOUT(120),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    RET,
+};
+
+static const ScriptRef s_gs12_g11_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g11_s0_station_sref_script }; /* 0x81e551c */
+
+
+static const struct ScriptCommand s_gs12_g11_s0_lives0_dlg0[] = { /* 0x81e5528 */
+    DEBUGINFO_O(944),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:98ed085b6125182d7395a466b1f66054c08bffe8bd74517b8e16af010413685b@@)),
+    VARIANT(/* == */  1, (@@STRING:0deb03791be0abf8aa0ae5a5eb723b7803877da4f65f43434eef624611d3938c@@)),
+    VARIANT(/* == */  1, (@@STRING:dca94079af459397c829fe7f19fc287852d499e3af377d96600770bfe1863fc1@@)),
+    VARIANT_DEFAULT((@@STRING:738f64b466363d5a47d63846a33a73038e15dc85a60c6715bd83c10abbe4cb3c@@)),
+    VARIANT_DEFAULT((@@STRING:8a928ff6362c3153a89c74e65769fd1c57f9997a7fc9c0aef3337061104376ee@@)),
+    VARIANT_DEFAULT((@@STRING:783a1c36098887425ca1d03022ca3aa0a081743cd46e0b59cd772921fcc0bd87@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    ALERT_CUE(3),
+    WALK_RELATIVE(256, 0, 80),
+    HALT,
+};
+
+
+static const struct ScriptCommand s_gs12_g11_s0_lives1_dlg0[] = { /* 0x81e5718 */
+    DEBUGINFO_O(965),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    WALK_RELATIVE(256, 0, 80),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g12_s0_station_sref_script[] = { /* 0x81e5778 */
+    DEBUGINFO_O(974),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    RET,
+};
+
+static const ScriptRef s_gs12_g12_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g12_s0_station_sref_script }; /* 0x81e5878 */
+
+static const struct ScriptCommand s_gs12_g12_s0_lives0_dlg0[] = { /* 0x81e5884 */
+    DEBUGINFO_O(995),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000020,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    WAIT(15),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:cfab38ae61a1ab769ab759d7e154aecc4c8850918184bf4a57a502bf2dfc35bf@@)),
+    VARIANT(/* == */  1, (@@STRING:9bea9a767985da5588e95e0f23f14066b6d43b79cb2ada02df304313329339e5@@)),
+    VARIANT_DEFAULT((@@STRING:0059adca1f5f421e780ae3ba3ec758b61527fcccc70cd95a20790568fba5016a@@)),
+    VARIANT_DEFAULT((@@STRING:9bea9a767985da5588e95e0f23f14066b6d43b79cb2ada02df304313329339e5@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:f77c2ab3ba476163d6c9b20d3ea49d3acc133ed9aba6f49574ae27ca329a18bd@@)),
+    VARIANT(/* == */  1, (@@STRING:2108ce998d9ff0f1edd5882b639addcf3ee3e2991a2338a0eb534b558ba045f5@@)),
+    VARIANT_DEFAULT((@@STRING:f77c2ab3ba476163d6c9b20d3ea49d3acc133ed9aba6f49574ae27ca329a18bd@@)),
+    VARIANT_DEFAULT((@@STRING:2108ce998d9ff0f1edd5882b639addcf3ee3e2991a2338a0eb534b558ba045f5@@)),
+    PORTRAIT_REP(0x0001, 0x00000004),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:e3a790715967fd5cf1597b0d18d116a0ddee14bd3e41cb2c34d94d8c79572d6b@@)),
+    VARIANT_DEFAULT((@@STRING:e3a790715967fd5cf1597b0d18d116a0ddee14bd3e41cb2c34d94d8c79572d6b@@)),
+    PORTRAIT_REP(0x0001, 0x00000009),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:f5810b210581f9b475d7eb51af6c13c564677d5daf4fd470e51344d45fc1d77c@@)),
+    VARIANT_DEFAULT((@@STRING:f5810b210581f9b475d7eb51af6c13c564677d5daf4fd470e51344d45fc1d77c@@)),
+    ASK3_VAR(FALSE, /*default*/ -1, /* speaker */ 1, PARTNER_TALK_KIND),
+    VARIANT(/* == */  1, (@@STRING:2919e4c6aff10dac02700ee6319ced848eb63ca3702429f60b977fb990f6acaa@@)),
+    VARIANT_DEFAULT((@@STRING:2919e4c6aff10dac02700ee6319ced848eb63ca3702429f60b977fb990f6acaa@@)),
+    CHOICE(/* label */  2, (@@STRING:3ef8014022279d9eab210c2a7e6540e35e0592f15ee9491d1f58489152125160@@)),
+    CHOICE(/* label */  3, (@@STRING:bfd0b2bc7f155b17b1aea7aad8053aa09db23339527041996d6dee69aba415d4@@)),
+  LABEL(2), /* = 0x02 */
+    UPDATE_VARINT(CALC_SET, EVENT_LOCAL, 0),
+    FANFARE_PLAY2(455),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:cdf76b3f169ccc4b831fb7ee739f46a329e2dca001c8d789a04c61f72cfafc51@@)),
+    VARIANT_DEFAULT((@@STRING:cdf76b3f169ccc4b831fb7ee739f46a329e2dca001c8d789a04c61f72cfafc51@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    ALERT_CUE(3),
+    HALT,
+  LABEL(3), /* = 0x03 */
+    UPDATE_VARINT(CALC_SET, EVENT_LOCAL, 1),
+    FANFARE_PLAY2(473),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x0000000c),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:3ab1ccef3316b7d95888f4e77da5d902079248b806662334e1a85df9646d9c92@@)),
+    VARIANT_DEFAULT((@@STRING:ec889aab2d9890ff5bf205f172a3f2bae285e020e0c82ad9492c114d47eec683@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:528bafa6156fd52ba10c0ef469a808a6ae18c78efa1a91db9142fe4bb121f57d@@)),
+    VARIANT_DEFAULT((@@STRING:528bafa6156fd52ba10c0ef469a808a6ae18c78efa1a91db9142fe4bb121f57d@@)),
+    TEXTBOX_CLEAR,
+    ASK3_VAR(FALSE, /*default*/ -1, /* speaker */ 1, PARTNER_TALK_KIND),
+    VARIANT(/* == */  1, (@@STRING:2919e4c6aff10dac02700ee6319ced848eb63ca3702429f60b977fb990f6acaa@@)),
+    VARIANT_DEFAULT((@@STRING:2919e4c6aff10dac02700ee6319ced848eb63ca3702429f60b977fb990f6acaa@@)),
+    CHOICE(/* label */  2, (@@STRING:3ef8014022279d9eab210c2a7e6540e35e0592f15ee9491d1f58489152125160@@)),
+    CHOICE(/* label */  5, (@@STRING:bfd0b2bc7f155b17b1aea7aad8053aa09db23339527041996d6dee69aba415d4@@)),
+  LABEL(5), /* = 0x05 */
+    UPDATE_VARINT(CALC_SET, EVENT_LOCAL, 2),
+    PORTRAIT_REP(0x0001, 0x00000005),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:13d72249332c3713a8952f0f469e0c2c2114e1a6ad9b8dc0ea373bd1b6e99fa7@@)),
+    VARIANT_DEFAULT((@@STRING:13d72249332c3713a8952f0f469e0c2c2114e1a6ad9b8dc0ea373bd1b6e99fa7@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:b57f1b7cf530701fdc17c5dfd6d351d3ec4c8dfc423637ff010c6ac6053d0822@@)),
+    VARIANT_DEFAULT((@@STRING:b57f1b7cf530701fdc17c5dfd6d351d3ec4c8dfc423637ff010c6ac6053d0822@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    WAIT(30),
+    { 0x3b, 0x2c,  0x0000,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+
+static const struct ScriptCommand s_gs12_g12_s0_lives1_dlg0[] = { /* 0x81e6294 */
+    DEBUGINFO_O(1085),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    WALK_GRID(256, 1),
+    WAIT(15),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    CJUMP_VAR(EVENT_LOCAL),
+    COND_EQUAL(0, /* to label */ 0),
+    COND_EQUAL(1, /* to label */ 1),
+  LABEL(0), /* = 0x00 */
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    RET,
+  LABEL(1), /* = 0x01 */
+    CALL_SCRIPT(SHOCK_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    CJUMP_VAR(EVENT_LOCAL),
+    COND_EQUAL(0, /* to label */ 0),
+    COND_EQUAL(2, /* to label */ 2),
+  LABEL(2), /* = 0x02 */
+    WALK_RELATIVE(256, 0, 100),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g13_s0_station_sref_script[] = { /* 0x81e6474 */
+    DEBUGINFO_O(1118),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    RET,
+};
+
+static const ScriptRef s_gs12_g13_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g13_s0_station_sref_script }; /* 0x81e6574 */
+
+static const struct ScriptCommand s_gs12_g13_s0_lives0_dlg0[] = { /* 0x81e6580 */
+    DEBUGINFO_O(1139),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    WAIT(15),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:cfab38ae61a1ab769ab759d7e154aecc4c8850918184bf4a57a502bf2dfc35bf@@)),
+    VARIANT(/* == */  1, (@@STRING:68247a15c0926034d0cf824634619833347c294bbc65a0805718d163b48dffb0@@)),
+    VARIANT_DEFAULT((@@STRING:0059adca1f5f421e780ae3ba3ec758b61527fcccc70cd95a20790568fba5016a@@)),
+    VARIANT_DEFAULT((@@STRING:68247a15c0926034d0cf824634619833347c294bbc65a0805718d163b48dffb0@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:a515634ecbb9dd6c33e4be0e49be174c264bf20bef42d8590f2d709f33707b2e@@)),
+    VARIANT(/* == */  1, (@@STRING:7a3822c78adf227de9aafd444a934d38479f2f723f8f196c6b3f4eb1fbcc8b26@@)),
+    VARIANT_DEFAULT((@@STRING:a515634ecbb9dd6c33e4be0e49be174c264bf20bef42d8590f2d709f33707b2e@@)),
+    VARIANT_DEFAULT((@@STRING:7a3822c78adf227de9aafd444a934d38479f2f723f8f196c6b3f4eb1fbcc8b26@@)),
+    PORTRAIT_REP(0x0001, 0x00000004),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:e3a790715967fd5cf1597b0d18d116a0ddee14bd3e41cb2c34d94d8c79572d6b@@)),
+    VARIANT_DEFAULT((@@STRING:e3a790715967fd5cf1597b0d18d116a0ddee14bd3e41cb2c34d94d8c79572d6b@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:03b2768f461560696cedfb4c4daeb549a07e2a46246f8cf19bf830028a31c89a@@)),
+    VARIANT(/* == */  1, (@@STRING:4fc776416db456731f6d6794b854148b03d4bbeaa3826125bcbb786f8932b0d5@@)),
+    VARIANT_DEFAULT((@@STRING:03b2768f461560696cedfb4c4daeb549a07e2a46246f8cf19bf830028a31c89a@@)),
+    VARIANT_DEFAULT((@@STRING:4fc776416db456731f6d6794b854148b03d4bbeaa3826125bcbb786f8932b0d5@@)),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:d653ac99508111b5e30984b9c85f8422372e36593476664b7cb4be6064bffde5@@)),
+    VARIANT(/* == */  1, (@@STRING:14d1230886a9015d8a4b4429bf182bb92e4e7dd7d0400c71ef5c3c09dde7b9dd@@)),
+    VARIANT_DEFAULT((@@STRING:d653ac99508111b5e30984b9c85f8422372e36593476664b7cb4be6064bffde5@@)),
+    VARIANT_DEFAULT((@@STRING:14d1230886a9015d8a4b4429bf182bb92e4e7dd7d0400c71ef5c3c09dde7b9dd@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:8489417be94e6e5dd693f400b3820254255234e450dc73ce63c2cef538fc7cdf@@)),
+    VARIANT_DEFAULT((@@STRING:7ea280efcb7feb2730d727df7d33b9c402e90e383d0453f33dee43d5d8bda3f3@@)),
+    TEXTBOX_CLEAR,
+    WAIT(15),
+    MSG_INSTANT((@@STRING:c5c78289570089c5cb4953f7d3f644ca708c30cd8dfed7e21ce7e8b5cfc60f2e@@)),
+    FANFARE_PLAY(201),
+    WAIT_FANFARE1(201),
+    TEXTBOX_CLEAR2,
+    { 0x3b, 0x2e,  0x0000,  0x00000000,  0x00000000, NULL },
+    COND_EQUAL(0, /* to label */ 2),
+    AWAIT_CUE(0),
+  LABEL(2), /* = 0x02 */
+    TEXTBOX_CLEAR,
+    WAIT(60),
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+static const struct ScriptCommand s_gs12_g13_s0_lives1_dlg0[] = { /* 0x81e6dd0 */
+    DEBUGINFO_O(1200),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    WALK_GRID(256, 1),
+    WAIT(15),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(SMILE_START_FUNC),
+    WAIT(60),
+    CALL_SCRIPT(SMILE_END_FUNC),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g14_s0_station_sref_script[] = { /* 0x81e6ec0 */
+    DEBUGINFO_O(1218),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    RET,
+};
+
+static const ScriptRef s_gs12_g14_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g14_s0_station_sref_script }; /* 0x81e6fc0 */
+
+static const struct ScriptCommand s_gs12_g14_s0_lives0_dlg0[] = { /* 0x81e6fcc */
+    DEBUGINFO_O(1239),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    WAIT(15),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:cfab38ae61a1ab769ab759d7e154aecc4c8850918184bf4a57a502bf2dfc35bf@@)),
+    VARIANT(/* == */  1, (@@STRING:5044aa0ad5aa022ca60c8d32f96005dbee802a09d39c69405eb17c143d5d6235@@)),
+    VARIANT(/* == */  1, (@@STRING:88af1bf083826a4441902473359175926c0797eed3ba0fcd220fa345487da477@@)),
+    VARIANT(/* == */  1, (@@STRING:99b16b9a985638fa00a24b2e81db4fe2243d614eb070f4c7c1fd3ea1ece3dcaf@@)),
+    VARIANT_DEFAULT((@@STRING:0059adca1f5f421e780ae3ba3ec758b61527fcccc70cd95a20790568fba5016a@@)),
+    VARIANT_DEFAULT((@@STRING:5044aa0ad5aa022ca60c8d32f96005dbee802a09d39c69405eb17c143d5d6235@@)),
+    VARIANT_DEFAULT((@@STRING:88af1bf083826a4441902473359175926c0797eed3ba0fcd220fa345487da477@@)),
+    VARIANT_DEFAULT((@@STRING:99b16b9a985638fa00a24b2e81db4fe2243d614eb070f4c7c1fd3ea1ece3dcaf@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:1b9aa1c3402a443b735e39208644148f16da033605c7722e4ce83dcad470fef1@@)),
+    VARIANT_DEFAULT((@@STRING:1b9aa1c3402a443b735e39208644148f16da033605c7722e4ce83dcad470fef1@@)),
+    TEXTBOX_CLEAR,
+    WAIT(15),
+    SPECIAL_TEXT(SPECIAL_TEXT_ITEM_REWARD, 9, 100),
+    TEXTBOX_CLEAR,
+    WAIT(60),
+    ALERT_CUE(3),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g14_s0_lives1_dlg0[] = { /* 0x81e7334 */
+    DEBUGINFO_O(1273),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    WALK_GRID(256, 1),
+    WAIT(15),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    CALL_SCRIPT(JUMP_HAPPY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(SMILE_START_FUNC),
+    WAIT(60),
+    CALL_SCRIPT(SMILE_END_FUNC),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g15_s0_station_sref_script[] = { /* 0x81e7424 - PART 1 0:22:25-0:22:53 - First day cutscene */
+    DEBUGINFO_O(1291),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    WAIT(90),
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    CALL_STATION( 16,  0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g15_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g15_s0_station_sref_script }; /* 0x81e7554 */
+
+
+static const struct ScriptCommand s_gs12_g15_s0_lives0_dlg0[] = { /* 0x81e7560 - PART 1 0:22:30-0:22:53 - Player */
+    DEBUGINFO_O(1316),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_1, 0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:b33fbc58053b76200b97881062026f365dbc76371a00611c30c72e5f7c3efa43@@)),
+    MSG_QUIET(0, (@@STRING:5b03da95fb895909bab027dfcb513c8f66bf37fb3f5b432eda442d6092d8976f@@)),
+    MSG_QUIET(0, (@@STRING:a3e4bf14838cb90a7ab27a03cbe419976395ef298892213a5b95e9e6753877ce@@)),
+    FANFARE_PLAY2(469),
+    CALL_SCRIPT(QUESTION_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_1, 0x0000, 0x00000004),
+    MSG_QUIET(0, (@@STRING:d0c6b2a32c5141c04fd18a780be9ed71a6b73ab5c71277ba086bd094fea77781@@)),
+    MSG_QUIET(0, (@@STRING:8c279b6d53d548819bf5ea68034fba7176a000d9ecc4e64c8c229113892a7dc6@@)),
+    MSG_QUIET(0, (@@STRING:ff4fdcc4a0a871a2a2d46626723a445fcf66760e966b2ab75ac3b9cbb17f5343@@)),
+    MSG_QUIET(0, (@@STRING:33693d5399882429041512420de6781026072e1a5f7986596abf305a9cdd1058@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g16_s0_station_sref_script[] = { /* 0x81e77c4 - PART 1 0:22:53 - First day, setup playable state */
+    DEBUGINFO_O(1342),
+    SELECT_ENTITIES(-1, -1),
+    RET_DIRECT,
+};
+
+static const ScriptRef s_gs12_g16_s0_station_sref = { STATION_CONTROL, SCRIPT_TYPE_08, NULL, s_gs12_g16_s0_station_sref_script }; /* 0x81e77f4 */
+
+static const struct ScriptCommand s_gs12_g16_s0_evt0_sref_script[] = { /* 0x81e7800 - Likely door event/nearby trigger */
+    DEBUGINFO_O(1350),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    MSG_QUIET(0, (@@STRING:7383f9f5e4daff88575b5d292e16d6535ca207e7d450d4f93104d78deaf9ae18@@)),
+    MSG_QUIET(0, (@@STRING:bb6ca73c143f3d18e30fc1a3e572ec7d77e1850cd664f9e64fd032dec06eb89b@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(3),
+    RET,
+};
+
+static const ScriptRef s_gs12_g16_s0_evt0_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs12_g16_s0_evt0_sref_script }; /* 0x81e78b8 */
+
+
+static const struct ScriptCommand s_gs12_g16_s0_evt1_sref_script[] = { /* 0x81e78c4 - PART 1 0:22:53-0:23:04 - Bed, sleep trigger */
+    DEBUGINFO_O(1364),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x3a, 0x00,  0x0000,  0x00000000, -0x00000001, (@@STRING:9209b7abe1abdc9a63567474ff4c3ac9e271c1354553a3688ca3411003c4bf91@@) },
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    TEXTBOX_CLEAR,
+    BGM_STOP,
+    CALL_SCRIPT(SAVE_START_FUNC),
+    SCENARIO_CALC(SCENARIO_MAIN,  3,  3),
+    SPECIAL_TEXT(SPECIAL_TEXT_SAVE_1, 0, 0),
+    CALL_SCRIPT(SAVE_WAIT_FUNC),
+    EXECUTE_FUNCTION(EVENT_M01E02A_L001C),
+    HALT,
+};
+
+static const ScriptRef s_gs12_g16_s0_evt1_sref = { NORMAL_EVENT, SCRIPT_TYPE_07, NULL, s_gs12_g16_s0_evt1_sref_script }; /* 0x81e79a4 */
+
+static const struct ScriptCommand s_gs12_g16_s1_station_sref_script[] = { /* 0x81e79b0 */
+    DEBUGINFO_O(1383),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_ENTITIES(-1, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g16_s1_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g16_s1_station_sref_script }; /* 0x81e7a80 */
+
+static const struct ScriptCommand s_gs12_g16_s1_lives0_dlg0[] = { /* 0x81e7a8c */
+    DEBUGINFO_O(1401),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g17_s0_station_sref_script[] = { /* 0x81e7b0c */
+    DEBUGINFO_O(1412),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g17_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g17_s0_station_sref_script }; /* 0x81e7bdc */
+
+static const struct ScriptCommand s_gs12_g17_s0_lives0_dlg0[] = { /* 0x81e7be8 */
+    DEBUGINFO_O(1430),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_1, 0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:ed3adfbbb2cfd173449309732340e1908f880aef019222c73d84a697ef7d95f8@@)),
+    MSG_QUIET(0, (@@STRING:2c4da2c33d39aa575f477758069065d290a070986c21823750e93e67946c4fb3@@)),
+    MSG_QUIET(0, (@@STRING:5c01c03699dd527df2e27d4cc70f90989022e3f356800b08fb3507f5c6b582b2@@)),
+    MSG_QUIET(0, (@@STRING:ed3adfbbb2cfd173449309732340e1908f880aef019222c73d84a697ef7d95f8@@)),
+    MSG_QUIET(0, (@@STRING:e4694e9f5e30e2510902d710169a2ee21341ea904136be00e62469969b77c4fe@@)),
+    MSG_QUIET(0, (@@STRING:b512902b345642f099e109bab9d42416cdf4d69f26e1d895d3df49167191c202@@)),
+    MSG_QUIET(0, (@@STRING:67e1c4437fb4458db0b4e0f77ba1cac03ec2e573c9be03b8c3d401899582b7d7@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g18_s0_station_sref_script[] = { /* 0x81e7e1c */
+    DEBUGINFO_O(1453),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g18_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g18_s0_station_sref_script }; /* 0x81e7f2c */
+
+static const struct ScriptCommand s_gs12_g18_s0_lives0_dlg0[] = { /* 0x81e7f38 */
+    DEBUGINFO_O(1475),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g19_s0_station_sref_script[] = { /* 0x81e7fb8 */
+    DEBUGINFO_O(1486),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g19_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g19_s0_station_sref_script }; /* 0x81e8088 */
+
+static const struct ScriptCommand s_gs12_g19_s0_lives0_dlg0[] = { /* 0x81e8094 */
+    DEBUGINFO_O(1504),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000052,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    MSG_QUIET(0, (@@STRING:2dd7523ada88b0ba68fbe5828436970d1bc2e41a650518184c33e5c4ccf11b77@@)),
+    MSG_QUIET(0, (@@STRING:952b668a88eb64c262d4969b3d449cdb0b586fac10a9812af0685da1b17bba2b@@)),
+    PORTRAIT_REP(0x0000, 0x00000009),
+    MSG_QUIET(0, (@@STRING:0ad36313f271d5fc3f49aa9c168a2e5c2a303095a95e75d97b124c12653e4cb0@@)),
+    PORTRAIT_REP(0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:9ccb73958ae03534e0192cc48aa20c21d39e211c4508750b8695ffd9af677c70@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g20_s0_station_sref_script[] = { /* 0x81e8268 */
+    DEBUGINFO_O(1525),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g20_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g20_s0_station_sref_script }; /* 0x81e8388 */
+
+static const struct ScriptCommand s_gs12_g20_s0_lives0_dlg0[] = { /* 0x81e8394 */
+    DEBUGINFO_O(1548),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000042,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0003,  0x00000044,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0004,  0x00000045,  0x00000000, NULL },
+    AWAIT_CUE(5),
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    MSG_NPC(-1, (@@STRING:f969d193dc2776711e3a4bfc76de28d4f0a6cd5797859187167be67274a8e414@@)),
+    TEXTBOX_CLEAR,
+    CALL_SCRIPT(WAKEUP_FUNC),
+    WAIT(60),
+    FANFARE_PLAY2(468),
+    CMD_UNK_92(4, 2, DIR_TRANS_SPINLEFT2),
+    WAIT(15),
+    FANFARE_PLAY2(468),
+    CMD_UNK_92(4, 1, DIR_TRANS_FLIP),
+    WAIT(15),
+    CMD_UNK_92(4, 2, DIR_TRANS_SPINLEFT2),
+    WAIT(15),
+    WAIT(30),
+    FANFARE_PLAY2(469),
+    CALL_SCRIPT(QUESTION_FUNC),
+    WAIT(15),
+    MSG_NPC(-1, (@@STRING:949bf0c72576b8810e370fe977c1379777c5b37a128eeb273d41032d3d46721b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    FANFARE_PLAY2(468),
+    CMD_UNK_92(4, 2, DIR_TRANS_FLIP),
+    WAIT(15),
+    FANFARE_PLAY2(468),
+    CMD_UNK_92(4, 2, DIR_TRANS_SPINLEFT2),
+    WAIT(15),
+    FANFARE_PLAY2(468),
+    CMD_UNK_92(4, 1, DIR_TRANS_FLIP),
+    WAIT(15),
+    CMD_UNK_92(4, 1, DIR_TRANS_SPINRIGHT2),
+    WAIT(30),
+    MSG_NPC(-1, (@@STRING:79a770e5fc11e49940fd0f07fd65fa4e806a0681d07bdfe956d05b9efd219989@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    SELECT_ENTITIES(-1, 1),
+    WAIT(20),
+    CALL_SCRIPT(JUMP_SURPRISE_FUNC),
+    AWAIT_CUE(5),
+    WAIT(30),
+    BGM_FADEIN(60, 1),
+    MSG_NPC(-1, (@@STRING:39ae35d168a2512383f3c8a0aa3622057e3c0bf2c275b773de2440536cb5dc08@@)),
+    MSG_NPC(2, (@@STRING:9cfd88c131071d306b4fabc34b39871cb3899e93c437038b73997b75d610b04b@@)),
+    MSG_NPC(2, (@@STRING:e25fd72ebcd484b3dfba3dfa49882639a78ae9d6a09ff25d311b1474082aa81e@@)),
+    MSG_NPC(2, (@@STRING:514ae270a46a5c0f1fea7e7aa728fd5f7bca91ec7e9d8ca62b026350e7face14@@)),
+    MSG_NPC(2, (@@STRING:cc5879f827db9988ebb3e063a481d7f28f238feef93c9fd33c7feead7ff2311c@@)),
+    MSG_NPC(2, (@@STRING:118d05f7b7d8b32dfb1ebd49e38a24a9177a0ab6bb28b53d5c2a442e7f8c584e@@)),
+    MSG_NPC(2, (@@STRING:d4b9cf44e5b943d5fb71b3587092157c8374d8579e4315eb74ceec6d5fb4a8ef@@)),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    MSG_NPC(2, (@@STRING:8a7ee2b30a8bef2f5cef836d40d5c508e282f8dc74df81259890d2d7c0540d03@@)),
+    MSG_NPC(2, (@@STRING:be98bd4d1d5e8b5f7b336a1d7b4efd3ad51adb3de6a4b75cda6e465c2cc47771@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    WAIT(50),
+    FANFARE_PLAY2(470),
+    CALL_SCRIPT(SWEAT_FUNC),
+    WAIT(10),
+    MSG_QUIET(0, (@@STRING:cc71399372d6f2677e0a9bc67448537f8fcdfc6f7f7db752966ee67161e95f5a@@)),
+    MSG_QUIET(0, (@@STRING:3a808ec69f6e1b83b03e9bed789e566137c604e52cf9cf33fe95e01eb3896d29@@)),
+    MSG_QUIET(0, (@@STRING:d1e81a21f488f18966f2b8da2d97f82bb26eee359b4dcf8198da4f8f3858f893@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+
+
+static const struct ScriptCommand s_gs12_g20_s1_lives0_dlg0[] = { /* 0x81e8ac8 */
+    DEBUGINFO_O(1628),
+    { 0x57, 0x00,  0x0002,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x07,  0x0002,  0x00000000,  0x00000000, NULL },
+    FANFARE_PLAY2(454),
+    SELECT_ANIMATION(22),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    SELECT_ANIMATION(2),
+    WAIT(45),
+    ROTATE_TO(10, DIR_TRANS_SPINLEFT1, DIRECTION_NORTH),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    CALL_SCRIPT(ANGRY_START_FUNC),
+    WAIT(30),
+    CALL_SCRIPT(ANGRY_END_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    WAIT(8),
+    FANFARE_PLAY2(486),
+    SELECT_ANIMATION(23),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    ALERT_CUE(5),
+    { 0x57, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    END_DELETE,
+};
+
+static const struct ScriptCommand s_gs12_g21_s0_station_sref_script[] = { /* 0x81e8c38 */
+    DEBUGINFO_O(1654),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g21_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g21_s0_station_sref_script }; /* 0x81e8d48 */
+
+static const struct ScriptCommand s_gs12_g21_s0_lives0_dlg0[] = { /* 0x81e8d54 */
+    DEBUGINFO_O(1676),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g22_s0_station_sref_script[] = { /* 0x81e8de4 */
+    DEBUGINFO_O(1688),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g22_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g22_s0_station_sref_script }; /* 0x81e8f24 */
+
+static const struct ScriptCommand s_gs12_g22_s0_lives0_dlg0[] = { /* 0x81e8f30 */
+    DEBUGINFO_O(1713),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g23_s0_station_sref_script[] = { /* 0x81e8fb0 */
+    DEBUGINFO_O(1724),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g23_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g23_s0_station_sref_script }; /* 0x81e90f0 */
+
+static const struct ScriptCommand s_gs12_g23_s0_lives0_dlg0[] = { /* 0x81e90fc */
+    DEBUGINFO_O(1749),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g24_s0_station_sref_script[] = { /* 0x81e917c */
+    DEBUGINFO_O(1760),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g24_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g24_s0_station_sref_script }; /* 0x81e92bc */
+
+static const struct ScriptCommand s_gs12_g24_s0_lives0_dlg0[] = { /* 0x81e92c8 */
+    DEBUGINFO_O(1785),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g25_s0_station_sref_script[] = { /* 0x81e9348 */
+    DEBUGINFO_O(1796),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g25_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g25_s0_station_sref_script }; /* 0x81e9408 */
+
+static const struct ScriptCommand s_gs12_g25_s0_lives0_dlg0[] = { /* 0x81e9414 */
+    DEBUGINFO_O(1813),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g26_s0_station_sref_script[] = { /* 0x81e9494 */
+    DEBUGINFO_O(1824),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g26_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g26_s0_station_sref_script }; /* 0x81e95d4 */
+
+static const struct ScriptCommand s_gs12_g26_s0_lives0_dlg0[] = { /* 0x81e95e0 */
+    DEBUGINFO_O(1849),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g27_s0_station_sref_script[] = { /* 0x81e9660 */
+    DEBUGINFO_O(1860),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g27_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g27_s0_station_sref_script }; /* 0x81e9720 */
+
+static const struct ScriptCommand s_gs12_g27_s0_lives0_dlg0[] = { /* 0x81e972c */
+    DEBUGINFO_O(1877),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g28_s0_station_sref_script[] = { /* 0x81e97ac */
+    DEBUGINFO_O(1888),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g28_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g28_s0_station_sref_script }; /* 0x81e98ec */
+
+static const struct ScriptCommand s_gs12_g28_s0_lives0_dlg0[] = { /* 0x81e98f8 */
+    DEBUGINFO_O(1913),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g29_s0_station_sref_script[] = { /* 0x81e9978 */
+    DEBUGINFO_O(1924),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g29_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g29_s0_station_sref_script }; /* 0x81e9a38 */
+
+static const struct ScriptCommand s_gs12_g29_s0_lives0_dlg0[] = { /* 0x81e9a44 */
+    DEBUGINFO_O(1941),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g30_s0_station_sref_script[] = { /* 0x81e9ac4 */
+    DEBUGINFO_O(1952),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g30_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g30_s0_station_sref_script }; /* 0x81e9c04 */
+
+static const struct ScriptCommand s_gs12_g30_s0_lives0_dlg0[] = { /* 0x81e9c10 */
+    DEBUGINFO_O(1977),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g31_s0_station_sref_script[] = { /* 0x81e9c90 */
+    DEBUGINFO_O(1988),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g31_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g31_s0_station_sref_script }; /* 0x81e9d50 */
+
+static const struct ScriptCommand s_gs12_g31_s0_lives0_dlg0[] = { /* 0x81e9d5c */
+    DEBUGINFO_O(2005),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g32_s0_station_sref_script[] = { /* 0x81e9ddc */
+    DEBUGINFO_O(2016),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g32_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g32_s0_station_sref_script }; /* 0x81e9f1c */
+
+static const struct ScriptCommand s_gs12_g32_s0_lives0_dlg0[] = { /* 0x81e9f28 */
+    DEBUGINFO_O(2041),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g33_s0_station_sref_script[] = { /* 0x81e9fa8 */
+    DEBUGINFO_O(2052),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g33_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g33_s0_station_sref_script }; /* 0x81ea088 */
+
+static const struct ScriptCommand s_gs12_g33_s0_lives0_dlg0[] = { /* 0x81ea094 */
+    DEBUGINFO_O(2071),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000052,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0003,  0x00000062,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    WAIT(15),
+    CALL_SCRIPT(LOOK_AROUND_DOWN_FUNC),
+    WAIT(45),
+    MSG_QUIET(0, (@@STRING:ba354eb4adc23b1c621ecba91687556b5f585a49caa96eb0d0d5306c6f4f8701@@)),
+    MSG_QUIET(0, (@@STRING:a734228f6b86fbd03f20e651cdf8b93153ebd1e1e88e804178c64e1c4922f843@@)),
+    MSG_QUIET(0, (@@STRING:0dc4d7f132fe87c0c536126ab3162255d79a4927f4985c50a443e4a8d4c31cbc@@)),
+    FANFARE_PLAY2(464),
+    CALL_SCRIPT(NOTICE_FUNC),
+    MSG_QUIET(0, (@@STRING:b15c3ed724c1b9322ff6b36757ac9228093156dc7b5d2ded0ed7f1d9b839c9f8@@)),
+    MSG_QUIET(0, (@@STRING:6bc93a3cea17cd8fe97c168ad9c894357fd0182596e6c21b18adfd1ba74eed6f@@)),
+    MSG_QUIET(0, (@@STRING:eeca2b43219735504a78fac0ea98125be1ccfbd5e0b4a30a037ab14a4680204b@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+static const struct ScriptCommand s_gs12_g34_s0_station_sref_script[] = { /* 0x81ea2d8 */
+    DEBUGINFO_O(2097),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_STOP,
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    RET,
+};
+
+static const ScriptRef s_gs12_g34_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g34_s0_station_sref_script }; /* 0x81ea3b8 */
+
+static const struct ScriptCommand s_gs12_g34_s0_lives0_dlg0[] = { /* 0x81ea3c4 */
+    DEBUGINFO_O(2116),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000052,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    WAIT(30),
+    MSG_QUIET(0, (@@STRING:ed3adfbbb2cfd173449309732340e1908f880aef019222c73d84a697ef7d95f8@@)),
+    MSG_QUIET(0, (@@STRING:25a67008902315ac5aa88dc0d63fa33aa8d8621ce470d6a8e27704fb052d4c9a@@)),
+    MSG_QUIET(0, (@@STRING:bda9a0259dc4aeb945454a8ba69cf720a46260819d5b8971941ed460c7a25825@@)),
+    MSG_QUIET(0, (@@STRING:8a4ccb6aac7f8dd8f9d8311cc417cff99d6c22b4fbcf05dd2896b17c1cb75df8@@)),
+    MSG_QUIET(0, (@@STRING:79ae5303ce3a56357bf5eec78be0c35b89d08a7bbf85ba323d9b08c5f45679ca@@)),
+    TEXTBOX_CLEAR,
+    WAIT(60),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g35_s0_station_sref_script[] = { /* 0x81ea5a4 */
+    DEBUGINFO_O(2138),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g35_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g35_s0_station_sref_script }; /* 0x81ea6e4 */
+
+static const struct ScriptCommand s_gs12_g35_s0_lives0_dlg0[] = { /* 0x81ea6f0 */
+    DEBUGINFO_O(2163),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g36_s0_station_sref_script[] = { /* 0x81ea770 */
+    DEBUGINFO_O(2174),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g36_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g36_s0_station_sref_script }; /* 0x81ea850 */
+
+static const struct ScriptCommand s_gs12_g36_s0_lives0_dlg0[] = { /* 0x81ea85c */
+    DEBUGINFO_O(2193),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    WAIT(30),
+    MSG_QUIET(0, (@@STRING:c9a381c34a217a64307a27c4169474e35335322f530688ffa83a10a858da436f@@)),
+    MSG_QUIET(0, (@@STRING:0f9f8ad75841cbad018f520723d5c064b9ffb5490031644451436c6aa42af2da@@)),
+    MSG_QUIET(0, (@@STRING:2ec5032390149fdf0845fbee632063035ff7a805d6566c4d3af9c104b4ce6fd8@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(464),
+    CALL_SCRIPT(NOTICE_FUNC),
+    WAIT(30),
+    MSG_QUIET(0, (@@STRING:d5649625adc93b38ce72564c34788b58a16bd35112d9cc6374c1f0d9e759c95a@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+static const struct ScriptCommand s_gs12_g37_s0_station_sref_script[] = { /* 0x81eaa5c */
+    DEBUGINFO_O(2216),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, -1),
+    BGM_STOP,
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    RET,
+};
+
+static const ScriptRef s_gs12_g37_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g37_s0_station_sref_script }; /* 0x81eab3c */
+
+static const struct ScriptCommand s_gs12_g37_s0_lives0_dlg0[] = { /* 0x81eab48 */
+    DEBUGINFO_O(2235),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000052,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    FANFARE_PLAY2(466),
+    MSG_QUIET(0, (@@STRING:fe31cf545313168fb6937c0fd3bbd7907992fe90fe2f8c24e1b3eecab9bdcbfb@@)),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x00000004),
+    MSG_QUIET(0, (@@STRING:c6b4123acf428bed6ef583fb9199735343052f8f23c8f864eb101bc4dd554ad3@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g38_s0_station_sref_script[] = { /* 0x81eaca0 */
+    DEBUGINFO_O(2253),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g38_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g38_s0_station_sref_script }; /* 0x81eadd0 */
+
+static const struct ScriptCommand s_gs12_g38_s0_lives0_dlg0[] = { /* 0x81eaddc */
+    DEBUGINFO_O(2277),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    WAIT(10),
+    FANFARE_PLAY2(453),
+    { 0x97, 0x00,  0x0002,  0x00000001,  0x00000003, NULL },
+    WAIT(30),
+    CALL_SCRIPT(SHOCK_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x0000000c),
+    MSG_QUIET(0, (@@STRING:37dd9b916c43f3bc9d09ff0d46e82ec9c93f1865fc50730cc797725f016d073b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(120),
+    FANFARE_FADEOUT2(60, 453),
+    { 0x97, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    PORTRAIT_REP(0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:67ddcc5f8c3ab574969b74d355dd5e12663473cf83ddcb304c467f10d09fae59@@)),
+    MSG_QUIET(0, (@@STRING:bf8ea6a8731387c797dbfea4dd73f1b392ec612bdfd21657379b6fed3268e18a@@)),
+    TEXTBOX_CLEAR,
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+
+static const struct ScriptCommand s_gs12_g39_s0_station_sref_script[] = { /* 0x81eb014 */
+    DEBUGINFO_O(2308),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x23, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g39_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g39_s0_station_sref_script }; /* 0x81eb0f4 */
+
+static const struct ScriptCommand s_gs12_g39_s0_lives0_dlg0[] = { /* 0x81eb100 */
+    DEBUGINFO_O(2327),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    WAIT(10),
+    FANFARE_PLAY2(453),
+    { 0x97, 0x00,  0x0002,  0x00000001,  0x00000003, NULL },
+    WAIT(30),
+    CALL_SCRIPT(SHOCK_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x0000000c),
+    MSG_QUIET(0, (@@STRING:1b4396970c5985951e1656fb2d7a5654f85ea56f6357eab7d618fe3adc5503fd@@)),
+    TEXTBOX_CLEAR,
+    WAIT(120),
+    FANFARE_FADEOUT2(60, 453),
+    { 0x97, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    PORTRAIT_REP(0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:433c9e408abe3a3b2925e1c248fae3bff1f4eea5ea570aedde3067a0b4bd1cdc@@)),
+    MSG_QUIET(0, (@@STRING:099c69daf1d9b7fa4f13a34a5c0addaf7fb7170e84c61ef03e9bdda3484e4b37@@)),
+    TEXTBOX_CLEAR,
+    SELECT_ENTITIES(-1, 1),
+    AWAIT_CUE(5),
+    WAIT(30),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    FANFARE_PLAY2(465),
+    CALL_SCRIPT(NOTICE_FUNC),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0001, 0x0000000c),
+    MSG_NPC(1, (@@STRING:b4526f760f6aca0ab7bd58c1b29645f28214c8031189c9058448ba521eff63b3@@)),
+    MSG_NPC(1, (@@STRING:8674932d2746838df1cb52020cd20180128e410d4876eabda64f8c82e4b8e9c1@@)),
+    MSG_NPC(1, (@@STRING:b61fef51f06c7909333cbbc8de24b5d720de49c17c3bc3117b537a692156ca08@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    WAIT(5),
+    { 0x89, 0x50,  0x0200,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+static const struct ScriptCommand s_gs12_g39_s1_lives0_dlg0[] = { /* 0x81eb468 */
+    DEBUGINFO_O(2371),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x89, 0x30,  0x0200,  0x00000004,  0x00000000, NULL },
+    CALL_SCRIPT(JUMP_ANGRY_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x89, 0x30,  0x0200,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g40_s0_station_sref_script[] = { /* 0x81eb528 */
+    DEBUGINFO_O(2386),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g40_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g40_s0_station_sref_script }; /* 0x81eb668 */
+
+static const struct ScriptCommand s_gs12_g40_s0_lives0_dlg0[] = { /* 0x81eb674 */
+    DEBUGINFO_O(2411),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g41_s0_station_sref_script[] = { /* 0x81eb6f4 */
+    DEBUGINFO_O(2422),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g41_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g41_s0_station_sref_script }; /* 0x81eb824 */
+
+static const struct ScriptCommand s_gs12_g41_s0_lives0_dlg0[] = { /* 0x81eb830 */
+    DEBUGINFO_O(2446),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g42_s0_station_sref_script[] = { /* 0x81eb8b0 */
+    DEBUGINFO_O(2457),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    { 0x3b, 0x48,  0x0002,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    FLASH_FROM(TRUE, PALUTIL_KIND_13, 60, RGB_U32(0x00, 0x00, 0x00)),
+    AWAIT_CUE(3),
+    FANFARE_FADEOUT2(90, 484),
+    FLASH_TO(TRUE, PALUTIL_KIND_13, 60, RGB_U32(0x00, 0x00, 0x00)),
+    { 0x3b, 0x48,  0x0000,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs12_g42_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs12_g42_s0_station_sref_script }; /* 0x81eb950 */
+
+static const struct ScriptCommand s_gs12_g42_s0_lives0_dlg0[] = { /* 0x81eb95c */
+    DEBUGINFO_O(2472),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    MSG_NPC(1, (@@STRING:bb4502767d9de0f595587cbba675e58e79bfcc3e5cac176f998f9b1f0af52c77@@)),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0001, 0x00000044),
+    MSG_NPC(1, (@@STRING:ec10b5ba8418498496d644a43c4a259d3730a3454047b68bc53056e245779a88@@)),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    MSG_NPC(1, (@@STRING:b998d9c40a9ddf042b3ef419b9470723842406ee8fa142923c92ed9da3bb99a9@@)),
+    MSG_NPC(1, (@@STRING:35ddc134bae6cd4bbf62fa48de935e23ca1bb612548dae148511ee8db4e0772f@@)),
+    MSG_NPC(1, (@@STRING:09c7ce31d8b5406547afeadcb5e4ba90a399a58e4b49f622a5c3e488f198c486@@)),
+    TEXTBOX_CLEAR,
+    WAIT(90),
+    FANFARE_PLAY2(464),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000044),
+    MSG_NPC(1, (@@STRING:323cd3662d69bcaa34db54fc0b9ab6181e7564121aea6f2a53b944439997e4fa@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(484),
+    ALERT_CUE(7),
+    AWAIT_CUE(5),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    MSG_NPC(1, (@@STRING:4bd9c31d96b4c111e4cee49acc6413c9eaa24275a4f82cd6754010ce497c2227@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(7),
+    WAIT(90),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    WAIT(60),
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+static const struct ScriptCommand s_gs12_g42_s0_lives1_dlg0[] = { /* 0x81ebd04 */
+    DEBUGINFO_O(2511),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    CALL_SCRIPT(NOTICE_FUNC),
+    ROTATE_TO(6, DIR_TRANS_10, DIRECTION_NORTHWEST),
+    WAIT(15),
+    ROTATE_TO(6, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    WAIT(15),
+    ROTATE_TO(6, DIR_TRANS_10, DIRECTION_NORTHWEST),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    ROTATE_TO(12, DIR_TRANS_10, DIRECTION_NORTH),
+    { 0x62, 0x00,  0x0080,  0x00000000,  0x0000000a, NULL },
+    WAIT(30),
+    { 0x89, 0x40,  0x0200,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(5),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g42_s0_eff1_script[] = { /* 0x81ebe54 */
+    DEBUGINFO_O(2535),
+    AWAIT_CUE(7),
+    { 0x56, 0x00,  0x0000,  0x0000010a,  0x00000000, NULL },
+    { 0x84, 0x00,  0x0066, -0x00000030,  0x00000040, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(7),
+    { 0x84, 0x00,  0x004c, -0x00000048,  0x00000010, NULL },
+    AWAIT_CUE(7),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs12_g43_s0_station_sref_script[] = { /* 0x81ebee4 */
+    DEBUGINFO_O(2547),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    BGM_STOP,
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:073cabd067c43cc736398f1ca77b7fc491cc8a29a46d04c298fbf1233b97c75c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g43_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g43_s0_station_sref_script }; /* 0x81ec024 */
+
+static const struct ScriptCommand s_gs12_g43_s0_lives0_dlg0[] = { /* 0x81ec030 */
+    DEBUGINFO_O(2572),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g44_s0_station_sref_script[] = { /* 0x81ec0b0 */
+    DEBUGINFO_O(2583),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 0),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    SELECT_EVENTS(0, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g44_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g44_s0_station_sref_script }; /* 0x81ec170 */
+
+static const struct ScriptCommand s_gs12_g44_s0_lives0_dlg0[] = { /* 0x81ec17c */
+    DEBUGINFO_O(2600),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g45_s0_station_sref_script[] = { /* 0x81ec1fc */
+    DEBUGINFO_O(2611),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 2),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    { 0x2d, 0x09,  0x0000,  0x00000021,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0001,  0x00000022,  0x00000000, NULL },
+    { 0x2d, 0x09,  0x0002,  0x00000037,  0x00000000, NULL },
+    BGM_STOP,
+    { 0x3b, 0x39,  0x0001,  0x00000000,  0x00000000, NULL },
+    { 0x23, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x26, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    MSG_ON_BG_AUTO(30, (@@STRING:dc7fe14d4c933f8919eca41e72ad9521fd9a99f47995a96c23cc5a82922de9cc@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:3f7829241df5d1671997438dc6f04f922b931598bf0412ab7aa5a2baedd45f23@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:47a0e647a9a3fd322071270a9a8ce06bc64992f48a2e54f3d6642748216420ce@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:9565229f9f18ffe5c5271f98d534bde67ffade2b00af228ccb46ff938a1b45cf@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:e0517d0d14f58575391cb8b5e9ade4e10b124c24adb473c7fa942ffa3d53983f@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:aaf181b6573de7b903f0624f82eece47deb0fa5d5ca50c4d88bcd9372eb913b4@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:795c91a7a99c6f9570fb7176cd2e7390e91b42da287031eb6b7b57e34d723c04@@)),
+    MSG_ON_BG_AUTO(30, (@@STRING:e83e5d241e39e62732ea717b15b7293bdd985900711bda622cfb5bf7eb2c5242@@)),
+    TEXTBOX_CLEAR,
+    WAIT(1),
+    { 0x25, 0x01,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    SELECT_ENTITIES(-1, -1),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    { 0x3b, 0x39,  0x0004,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    { 0x3b, 0x3a,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(46, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g45_s0_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g45_s0_station_sref_script }; /* 0x81ec590 */
+
+static const struct ScriptCommand s_gs12_g45_s0_lives0_dlg0[] = { /* 0x81ec59c */
+    DEBUGINFO_O(2650),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:4fdd8a4f5e9f526a8ec02128fe23223a52ed11414f150dfe5cf4a15faf039a0d@@)),
+    VARIANT(/* == */  1, (@@STRING:486ab0b9a0e9f7f73ad3ec5e961fe1cc9010c8059f7a804962d564e8498e51c5@@)),
+    VARIANT(/* == */  1, (@@STRING:9e6322219ce6e41114e1941e6f82956346bfca35dc7e76cae618415c50607278@@)),
+    VARIANT(/* == */  1, (@@STRING:b1bb522bfa538c9e9220407dc79ee3b93c09d9c1c59663c61e54d9a247f78e1d@@)),
+    VARIANT(/* == */  1, (@@STRING:b61bef6ddb96f75bd8110ec2d89a3df2059d991329b675b8c126c4029291ae9e@@)),
+    VARIANT_DEFAULT((@@STRING:4fdd8a4f5e9f526a8ec02128fe23223a52ed11414f150dfe5cf4a15faf039a0d@@)),
+    VARIANT_DEFAULT((@@STRING:486ab0b9a0e9f7f73ad3ec5e961fe1cc9010c8059f7a804962d564e8498e51c5@@)),
+    VARIANT_DEFAULT((@@STRING:9e6322219ce6e41114e1941e6f82956346bfca35dc7e76cae618415c50607278@@)),
+    VARIANT_DEFAULT((@@STRING:b1bb522bfa538c9e9220407dc79ee3b93c09d9c1c59663c61e54d9a247f78e1d@@)),
+    VARIANT_DEFAULT((@@STRING:b61bef6ddb96f75bd8110ec2d89a3df2059d991329b675b8c126c4029291ae9e@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    { 0x52, 0x00,  0x0000,  0x00001000,  0x00000000, NULL },
+    ALERT_CUE(6),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g45_s0_lives1_dlg0[] = { /* 0x81ec950 */
+    DEBUGINFO_O(2678),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    { 0x89, 0x60,  0x0100,  0x00000004,  0x00000000, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x52, 0x00,  0x0000,  0x00001000,  0x00000000, NULL },
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g46_s0_station_sref_script[] = { /* 0x81ec9e0 */
+    DEBUGINFO_O(2690),
+    SELECT_ENTITIES(-1, -1),
+    RET_DIRECT,
+};
+
+static const ScriptRef s_gs12_g46_s0_station_sref = { STATION_CONTROL, SCRIPT_TYPE_08, NULL, s_gs12_g46_s0_station_sref_script }; /* 0x81eca10 */
+
+static const struct ScriptCommand s_gs12_g46_s0_evt0_sref_script[] = { /* 0x81eca1c */
+    DEBUGINFO_O(2698),
+    { 0x01, 0x00, -0x0001,  0x00000009,  0x00000000, NULL },
+    HALT,
+};
+
+static const ScriptRef s_gs12_g46_s0_evt0_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs12_g46_s0_evt0_sref_script }; /* 0x81eca4c */
+
+static const struct ScriptCommand s_gs12_g46_s0_evt1_sref_script[] = { /* 0x81eca58 */
+    DEBUGINFO_O(2706),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x3a, 0x00,  0x0000,  0x00000000, -0x00000001, (@@STRING:b46ba88a8abe452f9a6e263e884e24bd132ced59edbeabbe4fa8f728964f7ce4@@) },
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    TEXTBOX_CLEAR,
+    CALL_SCRIPT(SAVE_START_FUNC),
+    SPECIAL_TEXT(SPECIAL_TEXT_SAVE_1, 0, 0),
+    CALL_SCRIPT(SAVE_END_FUNC),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const ScriptRef s_gs12_g46_s0_evt1_sref = { NORMAL_EVENT, SCRIPT_TYPE_07, NULL, s_gs12_g46_s0_evt1_sref_script }; /* 0x81ecb2c */
+
+static const struct ScriptCommand s_gs12_g46_s1_station_sref_script[] = { /* 0x81ecb38 */
+    DEBUGINFO_O(2722),
+    SET_DUNGEON_RES(/* result */ 0, /* enter */ -1),
+    UPDATE_VARINT(CALC_SET, GROUND_ENTER, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, GROUND_GETOUT, MAP_TEAM_BASE_INSIDE),
+    UPDATE_VARINT(CALC_SET, PARTNER1_KIND, 2),
+    UPDATE_VARINT(CALC_SET, PARTNER2_KIND, 0),
+    SELECT_MAP(MAP_TEAM_BASE_INSIDE),
+    SELECT_ENTITIES(0, 2),
+    BGM_SWITCH(MUS_RESCUE_TEAM_BASE),
+    { 0x22, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    SELECT_ENTITIES(-1, 0),
+    RET,
+};
+
+static const ScriptRef s_gs12_g46_s1_station_sref = { EVENT_STATION, SCRIPT_TYPE_07, NULL, s_gs12_g46_s1_station_sref_script }; /* 0x81ecbf8 */
+
+static const struct ScriptCommand s_gs12_g46_s1_lives0_dlg0[] = { /* 0x81ecc04 */
+    DEBUGINFO_O(2739),
+    CALL_SCRIPT(INIT_SLEEP_FUNC),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    CALL_SCRIPT(WAKEUP_FUNC),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:7f79040e20662abfbc7f7fc7d381620801f888d5046cb6379d93d331f5dd8529@@)),
+    VARIANT(/* == */  1, (@@STRING:46d9b75b4ddeb24477a034dc193aed9be2bda0257016e99873d77ebe8b267e70@@)),
+    VARIANT_DEFAULT((@@STRING:7f79040e20662abfbc7f7fc7d381620801f888d5046cb6379d93d331f5dd8529@@)),
+    VARIANT_DEFAULT((@@STRING:46d9b75b4ddeb24477a034dc193aed9be2bda0257016e99873d77ebe8b267e70@@)),
+    TEXTBOX_CLEAR,
+    { 0x9b, 0x00,  0x0100,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(3),
+    { 0x52, 0x00,  0x0000,  0x00001000,  0x00000000, NULL },
+    ALERT_CUE(6),
+    RET,
+};
+
+static const struct ScriptCommand s_gs12_g46_s1_lives1_dlg0[] = { /* 0x81ecdd0 */
+    DEBUGINFO_O(2761),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    { 0x89, 0x60,  0x0100,  0x00000004,  0x00000000, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x52, 0x00,  0x0000,  0x00001000,  0x00000000, NULL },
+    RET,
+};
+
+static const struct GroundLivesData s_gs12_g0_s1_lives[] = { /* 0x81ece60 */
+    /*  0 */ {   0,   4,   0,   0, {  30,  44, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g0_s1_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   4,   0,   0, {  30,  46, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g0_s1_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g0_s2_lives[] = { /* 0x81ece90 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g0_s2_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   0,   0,   0, {  30,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g0_s2_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g1_s0_lives[] = { /* 0x81ecec0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g1_s0_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   0,   0,   0, {  30,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g1_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g1_s1_lives[] = { /* 0x81ecef0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g1_s1_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   0,   0,   0, {  30,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g1_s1_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g2_s0_lives[] = { /* 0x81ecf20 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g2_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g3_s0_lives[] = { /* 0x81ecf38 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g3_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g4_s0_lives[] = { /* 0x81ecf50 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g4_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g6_s0_lives[] = { /* 0x81ecf68 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g6_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g7_s0_lives[] = { /* 0x81ecf80 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g7_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g8_s0_lives[] = { /* 0x81ecf98 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g8_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g9_s0_lives[] = { /* 0x81ecfb0 */
+    /*  0 */ {   1,   4,   0,   0, {  28,  34, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g9_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  32,  34, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g9_s0_lives1_dlg0,
+    } },
+    /*  2 */ { 115,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g9_s0_lives2_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g9_s1_lives[] = { /* 0x81ecff8 */
+    /*  0 */ {   0,   4,   0,   0, {  28,  34, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g9_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g10_s0_lives[] = { /* 0x81ed010 */
+    /*  0 */ {   1,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g10_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g11_s0_lives[] = { /* 0x81ed028 */
+    /*  0 */ {   1,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g11_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  30,  34, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g11_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g12_s0_lives[] = { /* 0x81ed058 */
+    /*  0 */ {   1,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g12_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  30,  48, 0, 0 }, {
+        [0] = s_gs12_g12_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g13_s0_lives[] = { /* 0x81ed088 */
+    /*  0 */ {   1,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g13_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  30,  48, 0, 0 }, {
+        [0] = s_gs12_g13_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g14_s0_lives[] = { /* 0x81ed0b8 */
+    /*  0 */ {   1,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g14_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  30,  48, 0, 0 }, {
+        [0] = s_gs12_g14_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g15_s0_lives[] = { /* 0x81ed0e8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g15_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g16_s1_lives[] = { /* 0x81ed100 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g16_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g17_s0_lives[] = { /* 0x81ed118 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g17_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g18_s0_lives[] = { /* 0x81ed130 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g18_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g19_s0_lives[] = { /* 0x81ed148 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g19_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g20_s0_lives[] = { /* 0x81ed160 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g20_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g20_s1_lives[] = { /* 0x81ed178 */
+    /*  0 */ {  66,   0,   0,   0, {  30,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g20_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g21_s0_lives[] = { /* 0x81ed190 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g21_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g22_s0_lives[] = { /* 0x81ed1a8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g22_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g23_s0_lives[] = { /* 0x81ed1c0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g23_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g24_s0_lives[] = { /* 0x81ed1d8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g24_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g25_s0_lives[] = { /* 0x81ed1f0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g25_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g26_s0_lives[] = { /* 0x81ed208 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g26_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g27_s0_lives[] = { /* 0x81ed220 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g27_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g28_s0_lives[] = { /* 0x81ed238 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g28_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g29_s0_lives[] = { /* 0x81ed250 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g29_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g30_s0_lives[] = { /* 0x81ed268 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g30_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g31_s0_lives[] = { /* 0x81ed280 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g31_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g32_s0_lives[] = { /* 0x81ed298 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g32_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g33_s0_lives[] = { /* 0x81ed2b0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g33_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g34_s0_lives[] = { /* 0x81ed2c8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g34_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g35_s0_lives[] = { /* 0x81ed2e0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g35_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g36_s0_lives[] = { /* 0x81ed2f8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g36_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g37_s0_lives[] = { /* 0x81ed310 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g37_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g38_s0_lives[] = { /* 0x81ed328 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g38_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g39_s0_lives[] = { /* 0x81ed340 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g39_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g39_s1_lives[] = { /* 0x81ed358 */
+    /*  0 */ {  34,   4,   0,   0, {  30,  48, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g39_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g40_s0_lives[] = { /* 0x81ed370 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g40_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g41_s0_lives[] = { /* 0x81ed388 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g41_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g42_s0_lives[] = { /* 0x81ed3a0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g42_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  91,   4,   0,   0, {  30,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g42_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g43_s0_lives[] = { /* 0x81ed3d0 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g43_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g44_s0_lives[] = { /* 0x81ed3e8 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g44_s0_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g45_s0_lives[] = { /* 0x81ed400 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g45_s0_lives0_dlg0,
+    } },
+    /*  1 */ {   7,   4,   0,   0, {  30,  47, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g45_s0_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs12_g46_s1_lives[] = { /* 0x81ed430 */
+    /*  0 */ {   0,   0,   0,   0, {  30,  29, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g46_s1_lives0_dlg0,
+    } },
+    /*  1 */ {   7,   4,   0,   0, {  30,  47, 0, CPOS_HALFTILE }, {
+        [0] = s_gs12_g46_s1_lives1_dlg0,
+    } },
+};
+
+static const struct GroundObjectData s_gs12_g0_s0_objs[] = { /* 0x81ed460 */
+    /*  0 */ {  17,   0,   8,   8, {  20,  29, 0, 0 }, {
+        [0] = s_gs12_g0_s0_obj0_dlg0,
+        [2] = s_gs12_g0_s0_obj0_dlg2,
+    } },
+};
+
+static const struct GroundEffectData s_gs12_g2_s0_effs[] = { /* 0x81ed478 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g3_s0_effs[] = { /* 0x81ed484 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g4_s0_effs[] = { /* 0x81ed490 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g6_s0_effs[] = { /* 0x81ed49c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g7_s0_effs[] = { /* 0x81ed4a8 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g8_s0_effs[] = { /* 0x81ed4b4 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g9_s0_effs[] = { /* 0x81ed4c0 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  32, 0, CPOS_HALFTILE }, s_gs12_g9_s0_eff0_script },
+};
+
+static const struct GroundEffectData s_gs12_g9_s1_effs[] = { /* 0x81ed4cc */
+    /*  0 */ {   5,   0,   1,   1, {  30,  30, 0, CPOS_HALFTILE }, s_gs12_g9_s1_eff0_script },
+};
+
+static const struct GroundEffectData s_gs12_g9_s2_effs[] = { /* 0x81ed4d8 */
+    /*  0 */ {   5,   0,   1,   1, {  28,  27, CPOS_HALFTILE, CPOS_HALFTILE }, s_gs12_g9_s2_eff0_script },
+};
+
+static const struct GroundEffectData s_gs12_g10_s0_effs[] = { /* 0x81ed4e4 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g11_s0_effs[] = { /* 0x81ed4f0 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g12_s0_effs[] = { /* 0x81ed4fc */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g13_s0_effs[] = { /* 0x81ed508 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g14_s0_effs[] = { /* 0x81ed514 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g15_s0_effs[] = { /* 0x81ed520 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g16_s1_effs[] = { /* 0x81ed52c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g17_s0_effs[] = { /* 0x81ed538 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g18_s0_effs[] = { /* 0x81ed544 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g19_s0_effs[] = { /* 0x81ed550 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g20_s0_effs[] = { /* 0x81ed55c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g21_s0_effs[] = { /* 0x81ed568 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g22_s0_effs[] = { /* 0x81ed574 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g23_s0_effs[] = { /* 0x81ed580 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g24_s0_effs[] = { /* 0x81ed58c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g25_s0_effs[] = { /* 0x81ed598 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g26_s0_effs[] = { /* 0x81ed5a4 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g27_s0_effs[] = { /* 0x81ed5b0 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g28_s0_effs[] = { /* 0x81ed5bc */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g29_s0_effs[] = { /* 0x81ed5c8 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g30_s0_effs[] = { /* 0x81ed5d4 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g31_s0_effs[] = { /* 0x81ed5e0 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g32_s0_effs[] = { /* 0x81ed5ec */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g33_s0_effs[] = { /* 0x81ed5f8 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g34_s0_effs[] = { /* 0x81ed604 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g35_s0_effs[] = { /* 0x81ed610 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g36_s0_effs[] = { /* 0x81ed61c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g37_s0_effs[] = { /* 0x81ed628 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g38_s0_effs[] = { /* 0x81ed634 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g39_s0_effs[] = { /* 0x81ed640 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g40_s0_effs[] = { /* 0x81ed64c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g41_s0_effs[] = { /* 0x81ed658 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g42_s0_effs[] = { /* 0x81ed664 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+    /*  1 */ {   4,   0,   1,   1, {  45,  17, 0, CPOS_HALFTILE }, s_gs12_g42_s0_eff1_script },
+};
+
+static const struct GroundEffectData s_gs12_g43_s0_effs[] = { /* 0x81ed67c */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g44_s0_effs[] = { /* 0x81ed688 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g45_s0_effs[] = { /* 0x81ed694 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs12_g46_s1_effs[] = { /* 0x81ed6a0 */
+    /*  0 */ {   0,   0,   1,   1, {  30,  34, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEventData s_gs12_g0_s0_evts[] = { /* 0x81ed6ac */
+    /*  0 */ {   6,   3,   0,   0, {  27,  48, 0, 0 }, &s_gs12_g0_s0_evt0_sref },
+    /*  1 */ {   6,   3,   0,   0, {  27,  28, 0, 0 }, &s_gs12_g0_s0_evt1_sref },
+};
+
+static const struct GroundEventData s_gs12_g16_s0_evts[] = { /* 0x81ed6c4 */
+    /*  0 */ {   6,   3,   0,   0, {  27,  48, 0, 0 }, &s_gs12_g16_s0_evt0_sref },
+    /*  1 */ {   6,   3,   0,   0, {  27,  28, 0, 0 }, &s_gs12_g16_s0_evt1_sref },
+};
+
+static const struct GroundEventData s_gs12_g46_s0_evts[] = { /* 0x81ed6dc */
+    /*  0 */ {   6,   3,   0,   0, {  27,  48, 0, 0 }, &s_gs12_g46_s0_evt0_sref },
+    /*  1 */ {   6,   3,   0,   0, {  27,  28, 0, 0 }, &s_gs12_g46_s0_evt1_sref },
+};
+
+static const ScriptRef * const (sStationScripts[]) = { /* 0x81ed6f4 */
+    &s_gs12_g0_s0_station_sref,
+    &s_gs12_g1_s0_station_sref,
+    &s_gs12_g1_s1_station_sref,
+    &s_gs12_g2_s0_station_sref,
+    &s_gs12_g3_s0_station_sref,
+    &s_gs12_g4_s0_station_sref,
+    &s_gs12_g5_s0_station_sref,
+    &s_gs12_g6_s0_station_sref,
+    &s_gs12_g7_s0_station_sref,
+    &s_gs12_g8_s0_station_sref,
+    &s_gs12_g9_s0_station_sref,
+    &s_gs12_g10_s0_station_sref,
+    &s_gs12_g11_s0_station_sref,
+    &s_gs12_g12_s0_station_sref,
+    &s_gs12_g13_s0_station_sref,
+    &s_gs12_g14_s0_station_sref,
+    &s_gs12_g15_s0_station_sref,
+    &s_gs12_g16_s0_station_sref,
+    &s_gs12_g16_s1_station_sref,
+    &s_gs12_g17_s0_station_sref,
+    &s_gs12_g18_s0_station_sref,
+    &s_gs12_g19_s0_station_sref,
+    &s_gs12_g20_s0_station_sref,
+    &s_gs12_g21_s0_station_sref,
+    &s_gs12_g22_s0_station_sref,
+    &s_gs12_g23_s0_station_sref,
+    &s_gs12_g24_s0_station_sref,
+    &s_gs12_g25_s0_station_sref,
+    &s_gs12_g26_s0_station_sref,
+    &s_gs12_g27_s0_station_sref,
+    &s_gs12_g28_s0_station_sref,
+    &s_gs12_g29_s0_station_sref,
+    &s_gs12_g30_s0_station_sref,
+    &s_gs12_g31_s0_station_sref,
+    &s_gs12_g32_s0_station_sref,
+    &s_gs12_g33_s0_station_sref,
+    &s_gs12_g34_s0_station_sref,
+    &s_gs12_g35_s0_station_sref,
+    &s_gs12_g36_s0_station_sref,
+    &s_gs12_g37_s0_station_sref,
+    &s_gs12_g38_s0_station_sref,
+    &s_gs12_g39_s0_station_sref,
+    &s_gs12_g40_s0_station_sref,
+    &s_gs12_g41_s0_station_sref,
+    &s_gs12_g42_s0_station_sref,
+    &s_gs12_g43_s0_station_sref,
+    &s_gs12_g44_s0_station_sref,
+    &s_gs12_g45_s0_station_sref,
+    &s_gs12_g46_s0_station_sref,
+    &s_gs12_g46_s1_station_sref,
+};
+
+static const struct GroundScriptSector s_gs12_g0_sectors[] = { /* 0x81ed7bc */
+    { 0,NULL, LPARRAY(s_gs12_g0_s0_objs), 0,NULL, LPARRAY(s_gs12_g0_s0_evts), 1,&sStationScripts[0], },
+    { LPARRAY(s_gs12_g0_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { LPARRAY(s_gs12_g0_s2_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs12_g1_sectors[] = { /* 0x81ed834 */
+    { LPARRAY(s_gs12_g1_s0_lives), 0,NULL, 0,NULL, 0,NULL, 1,&sStationScripts[1], },
+    { LPARRAY(s_gs12_g1_s1_lives), 0,NULL, 0,NULL, 0,NULL, 1,&sStationScripts[2], },
+};
+
+static const struct GroundScriptSector s_gs12_g2_sectors[] = { /* 0x81ed884 */
+    { LPARRAY(s_gs12_g2_s0_lives), 0,NULL, LPARRAY(s_gs12_g2_s0_effs), 0,NULL, 1,&sStationScripts[3], },
+};
+
+static const struct GroundScriptSector s_gs12_g3_sectors[] = { /* 0x81ed8ac */
+    { LPARRAY(s_gs12_g3_s0_lives), 0,NULL, LPARRAY(s_gs12_g3_s0_effs), 0,NULL, 1,&sStationScripts[4], },
+};
+
+static const struct GroundScriptSector s_gs12_g4_sectors[] = { /* 0x81ed8d4 */
+    { LPARRAY(s_gs12_g4_s0_lives), 0,NULL, LPARRAY(s_gs12_g4_s0_effs), 0,NULL, 1,&sStationScripts[5], },
+};
+
+static const struct GroundScriptSector s_gs12_g5_sectors[] = { /* 0x81ed8fc */
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 1,&sStationScripts[6], },
+};
+
+static const struct GroundScriptSector s_gs12_g6_sectors[] = { /* 0x81ed924 */
+    { LPARRAY(s_gs12_g6_s0_lives), 0,NULL, LPARRAY(s_gs12_g6_s0_effs), 0,NULL, 1,&sStationScripts[7], },
+};
+
+static const struct GroundScriptSector s_gs12_g7_sectors[] = { /* 0x81ed94c */
+    { LPARRAY(s_gs12_g7_s0_lives), 0,NULL, LPARRAY(s_gs12_g7_s0_effs), 0,NULL, 1,&sStationScripts[8], },
+};
+
+static const struct GroundScriptSector s_gs12_g8_sectors[] = { /* 0x81ed974 */
+    { LPARRAY(s_gs12_g8_s0_lives), 0,NULL, LPARRAY(s_gs12_g8_s0_effs), 0,NULL, 1,&sStationScripts[9], },
+};
+
+static const struct GroundScriptSector s_gs12_g9_sectors[] = { /* 0x81ed99c */
+    { LPARRAY(s_gs12_g9_s0_lives), 0,NULL, LPARRAY(s_gs12_g9_s0_effs), 0,NULL, 1,&sStationScripts[10], },
+    { LPARRAY(s_gs12_g9_s1_lives), 0,NULL, LPARRAY(s_gs12_g9_s1_effs), 0,NULL, 0,NULL, },
+    { 0,NULL, 0,NULL, LPARRAY(s_gs12_g9_s2_effs), 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs12_g10_sectors[] = { /* 0x81eda14 */
+    { LPARRAY(s_gs12_g10_s0_lives), 0,NULL, LPARRAY(s_gs12_g10_s0_effs), 0,NULL, 1,&sStationScripts[11], },
+};
+
+static const struct GroundScriptSector s_gs12_g11_sectors[] = { /* 0x81eda3c */
+    { LPARRAY(s_gs12_g11_s0_lives), 0,NULL, LPARRAY(s_gs12_g11_s0_effs), 0,NULL, 1,&sStationScripts[12], },
+};
+
+static const struct GroundScriptSector s_gs12_g12_sectors[] = { /* 0x81eda64 */
+    { LPARRAY(s_gs12_g12_s0_lives), 0,NULL, LPARRAY(s_gs12_g12_s0_effs), 0,NULL, 1,&sStationScripts[13], },
+};
+
+static const struct GroundScriptSector s_gs12_g13_sectors[] = { /* 0x81eda8c */
+    { LPARRAY(s_gs12_g13_s0_lives), 0,NULL, LPARRAY(s_gs12_g13_s0_effs), 0,NULL, 1,&sStationScripts[14], },
+};
+
+static const struct GroundScriptSector s_gs12_g14_sectors[] = { /* 0x81edab4 */
+    { LPARRAY(s_gs12_g14_s0_lives), 0,NULL, LPARRAY(s_gs12_g14_s0_effs), 0,NULL, 1,&sStationScripts[15], },
+};
+
+static const struct GroundScriptSector s_gs12_g15_sectors[] = { /* 0x81edadc */
+    { LPARRAY(s_gs12_g15_s0_lives), 0,NULL, LPARRAY(s_gs12_g15_s0_effs), 0,NULL, 1,&sStationScripts[16], },
+};
+
+static const struct GroundScriptSector s_gs12_g16_sectors[] = { /* 0x81edb04 */
+    { 0,NULL, 0,NULL, 0,NULL, LPARRAY(s_gs12_g16_s0_evts), 1,&sStationScripts[17], },
+    { LPARRAY(s_gs12_g16_s1_lives), 0,NULL, LPARRAY(s_gs12_g16_s1_effs), 0,NULL, 1,&sStationScripts[18], },
+};
+
+static const struct GroundScriptSector s_gs12_g17_sectors[] = { /* 0x81edb54 */
+    { LPARRAY(s_gs12_g17_s0_lives), 0,NULL, LPARRAY(s_gs12_g17_s0_effs), 0,NULL, 1,&sStationScripts[19], },
+};
+
+static const struct GroundScriptSector s_gs12_g18_sectors[] = { /* 0x81edb7c */
+    { LPARRAY(s_gs12_g18_s0_lives), 0,NULL, LPARRAY(s_gs12_g18_s0_effs), 0,NULL, 1,&sStationScripts[20], },
+};
+
+static const struct GroundScriptSector s_gs12_g19_sectors[] = { /* 0x81edba4 */
+    { LPARRAY(s_gs12_g19_s0_lives), 0,NULL, LPARRAY(s_gs12_g19_s0_effs), 0,NULL, 1,&sStationScripts[21], },
+};
+
+static const struct GroundScriptSector s_gs12_g20_sectors[] = { /* 0x81edbcc */
+    { LPARRAY(s_gs12_g20_s0_lives), 0,NULL, LPARRAY(s_gs12_g20_s0_effs), 0,NULL, 1,&sStationScripts[22], },
+    { LPARRAY(s_gs12_g20_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs12_g21_sectors[] = { /* 0x81edc1c */
+    { LPARRAY(s_gs12_g21_s0_lives), 0,NULL, LPARRAY(s_gs12_g21_s0_effs), 0,NULL, 1,&sStationScripts[23], },
+};
+
+static const struct GroundScriptSector s_gs12_g22_sectors[] = { /* 0x81edc44 */
+    { LPARRAY(s_gs12_g22_s0_lives), 0,NULL, LPARRAY(s_gs12_g22_s0_effs), 0,NULL, 1,&sStationScripts[24], },
+};
+
+static const struct GroundScriptSector s_gs12_g23_sectors[] = { /* 0x81edc6c */
+    { LPARRAY(s_gs12_g23_s0_lives), 0,NULL, LPARRAY(s_gs12_g23_s0_effs), 0,NULL, 1,&sStationScripts[25], },
+};
+
+static const struct GroundScriptSector s_gs12_g24_sectors[] = { /* 0x81edc94 */
+    { LPARRAY(s_gs12_g24_s0_lives), 0,NULL, LPARRAY(s_gs12_g24_s0_effs), 0,NULL, 1,&sStationScripts[26], },
+};
+
+static const struct GroundScriptSector s_gs12_g25_sectors[] = { /* 0x81edcbc */
+    { LPARRAY(s_gs12_g25_s0_lives), 0,NULL, LPARRAY(s_gs12_g25_s0_effs), 0,NULL, 1,&sStationScripts[27], },
+};
+
+static const struct GroundScriptSector s_gs12_g26_sectors[] = { /* 0x81edce4 */
+    { LPARRAY(s_gs12_g26_s0_lives), 0,NULL, LPARRAY(s_gs12_g26_s0_effs), 0,NULL, 1,&sStationScripts[28], },
+};
+
+static const struct GroundScriptSector s_gs12_g27_sectors[] = { /* 0x81edd0c */
+    { LPARRAY(s_gs12_g27_s0_lives), 0,NULL, LPARRAY(s_gs12_g27_s0_effs), 0,NULL, 1,&sStationScripts[29], },
+};
+
+static const struct GroundScriptSector s_gs12_g28_sectors[] = { /* 0x81edd34 */
+    { LPARRAY(s_gs12_g28_s0_lives), 0,NULL, LPARRAY(s_gs12_g28_s0_effs), 0,NULL, 1,&sStationScripts[30], },
+};
+
+static const struct GroundScriptSector s_gs12_g29_sectors[] = { /* 0x81edd5c */
+    { LPARRAY(s_gs12_g29_s0_lives), 0,NULL, LPARRAY(s_gs12_g29_s0_effs), 0,NULL, 1,&sStationScripts[31], },
+};
+
+static const struct GroundScriptSector s_gs12_g30_sectors[] = { /* 0x81edd84 */
+    { LPARRAY(s_gs12_g30_s0_lives), 0,NULL, LPARRAY(s_gs12_g30_s0_effs), 0,NULL, 1,&sStationScripts[32], },
+};
+
+static const struct GroundScriptSector s_gs12_g31_sectors[] = { /* 0x81eddac */
+    { LPARRAY(s_gs12_g31_s0_lives), 0,NULL, LPARRAY(s_gs12_g31_s0_effs), 0,NULL, 1,&sStationScripts[33], },
+};
+
+static const struct GroundScriptSector s_gs12_g32_sectors[] = { /* 0x81eddd4 */
+    { LPARRAY(s_gs12_g32_s0_lives), 0,NULL, LPARRAY(s_gs12_g32_s0_effs), 0,NULL, 1,&sStationScripts[34], },
+};
+
+static const struct GroundScriptSector s_gs12_g33_sectors[] = { /* 0x81eddfc */
+    { LPARRAY(s_gs12_g33_s0_lives), 0,NULL, LPARRAY(s_gs12_g33_s0_effs), 0,NULL, 1,&sStationScripts[35], },
+};
+
+static const struct GroundScriptSector s_gs12_g34_sectors[] = { /* 0x81ede24 */
+    { LPARRAY(s_gs12_g34_s0_lives), 0,NULL, LPARRAY(s_gs12_g34_s0_effs), 0,NULL, 1,&sStationScripts[36], },
+};
+
+static const struct GroundScriptSector s_gs12_g35_sectors[] = { /* 0x81ede4c */
+    { LPARRAY(s_gs12_g35_s0_lives), 0,NULL, LPARRAY(s_gs12_g35_s0_effs), 0,NULL, 1,&sStationScripts[37], },
+};
+
+static const struct GroundScriptSector s_gs12_g36_sectors[] = { /* 0x81ede74 */
+    { LPARRAY(s_gs12_g36_s0_lives), 0,NULL, LPARRAY(s_gs12_g36_s0_effs), 0,NULL, 1,&sStationScripts[38], },
+};
+
+static const struct GroundScriptSector s_gs12_g37_sectors[] = { /* 0x81ede9c */
+    { LPARRAY(s_gs12_g37_s0_lives), 0,NULL, LPARRAY(s_gs12_g37_s0_effs), 0,NULL, 1,&sStationScripts[39], },
+};
+
+static const struct GroundScriptSector s_gs12_g38_sectors[] = { /* 0x81edec4 */
+    { LPARRAY(s_gs12_g38_s0_lives), 0,NULL, LPARRAY(s_gs12_g38_s0_effs), 0,NULL, 1,&sStationScripts[40], },
+};
+
+static const struct GroundScriptSector s_gs12_g39_sectors[] = { /* 0x81edeec */
+    { LPARRAY(s_gs12_g39_s0_lives), 0,NULL, LPARRAY(s_gs12_g39_s0_effs), 0,NULL, 1,&sStationScripts[41], },
+    { LPARRAY(s_gs12_g39_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs12_g40_sectors[] = { /* 0x81edf3c */
+    { LPARRAY(s_gs12_g40_s0_lives), 0,NULL, LPARRAY(s_gs12_g40_s0_effs), 0,NULL, 1,&sStationScripts[42], },
+};
+
+static const struct GroundScriptSector s_gs12_g41_sectors[] = { /* 0x81edf64 */
+    { LPARRAY(s_gs12_g41_s0_lives), 0,NULL, LPARRAY(s_gs12_g41_s0_effs), 0,NULL, 1,&sStationScripts[43], },
+};
+
+static const struct GroundScriptSector s_gs12_g42_sectors[] = { /* 0x81edf8c */
+    { LPARRAY(s_gs12_g42_s0_lives), 0,NULL, LPARRAY(s_gs12_g42_s0_effs), 0,NULL, 1,&sStationScripts[44], },
+};
+
+static const struct GroundScriptSector s_gs12_g43_sectors[] = { /* 0x81edfb4 */
+    { LPARRAY(s_gs12_g43_s0_lives), 0,NULL, LPARRAY(s_gs12_g43_s0_effs), 0,NULL, 1,&sStationScripts[45], },
+};
+
+static const struct GroundScriptSector s_gs12_g44_sectors[] = { /* 0x81edfdc */
+    { LPARRAY(s_gs12_g44_s0_lives), 0,NULL, LPARRAY(s_gs12_g44_s0_effs), 0,NULL, 1,&sStationScripts[46], },
+};
+
+static const struct GroundScriptSector s_gs12_g45_sectors[] = { /* 0x81ee004 */
+    { LPARRAY(s_gs12_g45_s0_lives), 0,NULL, LPARRAY(s_gs12_g45_s0_effs), 0,NULL, 1,&sStationScripts[47], },
+};
+
+static const struct GroundScriptSector s_gs12_g46_sectors[] = { /* 0x81ee02c */
+    { 0,NULL, 0,NULL, 0,NULL, LPARRAY(s_gs12_g46_s0_evts), 1,&sStationScripts[48], },
+    { LPARRAY(s_gs12_g46_s1_lives), 0,NULL, LPARRAY(s_gs12_g46_s1_effs), 0,NULL, 1,&sStationScripts[49], },
+};
+
+static const struct GroundScriptGroup s_gs12_groups[] = { /* 0x81ee07c */
+    { LPARRAY(s_gs12_g0_sectors) },
+    { LPARRAY(s_gs12_g1_sectors) },
+    { LPARRAY(s_gs12_g2_sectors) },
+    { LPARRAY(s_gs12_g3_sectors) },
+    { LPARRAY(s_gs12_g4_sectors) },
+    { LPARRAY(s_gs12_g5_sectors) },
+    { LPARRAY(s_gs12_g6_sectors) },
+    { LPARRAY(s_gs12_g7_sectors) },
+    { LPARRAY(s_gs12_g8_sectors) },
+    { LPARRAY(s_gs12_g9_sectors) },
+    { LPARRAY(s_gs12_g10_sectors) },
+    { LPARRAY(s_gs12_g11_sectors) },
+    { LPARRAY(s_gs12_g12_sectors) },
+    { LPARRAY(s_gs12_g13_sectors) },
+    { LPARRAY(s_gs12_g14_sectors) },
+    { LPARRAY(s_gs12_g15_sectors) },
+    { LPARRAY(s_gs12_g16_sectors) },
+    { LPARRAY(s_gs12_g17_sectors) },
+    { LPARRAY(s_gs12_g18_sectors) },
+    { LPARRAY(s_gs12_g19_sectors) },
+    { LPARRAY(s_gs12_g20_sectors) },
+    { LPARRAY(s_gs12_g21_sectors) },
+    { LPARRAY(s_gs12_g22_sectors) },
+    { LPARRAY(s_gs12_g23_sectors) },
+    { LPARRAY(s_gs12_g24_sectors) },
+    { LPARRAY(s_gs12_g25_sectors) },
+    { LPARRAY(s_gs12_g26_sectors) },
+    { LPARRAY(s_gs12_g27_sectors) },
+    { LPARRAY(s_gs12_g28_sectors) },
+    { LPARRAY(s_gs12_g29_sectors) },
+    { LPARRAY(s_gs12_g30_sectors) },
+    { LPARRAY(s_gs12_g31_sectors) },
+    { LPARRAY(s_gs12_g32_sectors) },
+    { LPARRAY(s_gs12_g33_sectors) },
+    { LPARRAY(s_gs12_g34_sectors) },
+    { LPARRAY(s_gs12_g35_sectors) },
+    { LPARRAY(s_gs12_g36_sectors) },
+    { LPARRAY(s_gs12_g37_sectors) },
+    { LPARRAY(s_gs12_g38_sectors) },
+    { LPARRAY(s_gs12_g39_sectors) },
+    { LPARRAY(s_gs12_g40_sectors) },
+    { LPARRAY(s_gs12_g41_sectors) },
+    { LPARRAY(s_gs12_g42_sectors) },
+    { LPARRAY(s_gs12_g43_sectors) },
+    { LPARRAY(s_gs12_g44_sectors) },
+    { LPARRAY(s_gs12_g45_sectors) },
+    { LPARRAY(s_gs12_g46_sectors) },
+};
+
+static const struct GroundLink s_gs12_links[] = { /* 0x81ee1f4 */
+    /* link   0 */ { { /*x*/  17, /*y*/  26, /*flags*/ 0, CPOS_HALFTILE }, /*w*/  1, /*h*/  1, /*ret*/ 1, /*?*/ 3 },
+    /* link   1 */ { { /*x*/  30, /*y*/  35, /*flags*/ 0, CPOS_HALFTILE }, /*w*/  1, /*h*/  1, /*ret*/ 2, /*?*/ 1 },
+    /* link   2 */ { { /*x*/  30, /*y*/  35, /*flags*/ 0, CPOS_HALFTILE }, /*w*/  1, /*h*/  1, /*ret*/ 2, /*?*/ 1 },
+    /* link   3 */ { { /*x*/  30, /*y*/  35, /*flags*/ 0, CPOS_HALFTILE }, /*w*/  1, /*h*/  1, /*ret*/ 2, /*?*/ 1 },
+};
+
+const GroundScriptHeader gGroundScript_gs12 = { LPARRAY(s_gs12_groups), s_gs12_links }; /* 0x81ee214 */

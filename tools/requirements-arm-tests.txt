@@ -1,0 +1,3 @@
+# Build-time instruction tests only; not part of the Vita runtime.
+unicorn==2.1.4
+pyelftools==0.33

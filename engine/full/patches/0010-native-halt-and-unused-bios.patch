@@ -1,0 +1,140 @@
+--- a/src/code_800D090.c
++++ b/src/code_800D090.c
+@@ -3,64 +3,17 @@
+ #include "cpu.h"
+ #include "memory.h"
+ #include "music.h"
++#include <stdio.h>
++#include <stdlib.h>
+ 
+ void Hang(void)
+ {
+-    while (TRUE)
+-    {
+-        asm("swi 0x2");
+-    }
+-}
+-
+-UNUSED static void sub_800D098(void)
+-{
+-    u32 dispcnt_save;
+-    u32 ie_store;
+-
+-    while(REG_VCOUNT < 160)
+-        ;
+-
+-    // Save DISPCNT and set to 0
+-    dispcnt_save = REG_DISPCNT;
+-    REG_DISPCNT = 0;
+-
+-    *(u16 *)BG_PLTT = 0xefff;
+-
+-    while(REG_KEYINPUT != KEYS_MASK)
+-        ;
+-
+-
+-    REG_IME = 0;
+-
+-    // Save IE Register
+-    ie_store = REG_IE;
+-    REG_IE = INTR_FLAG_KEYPAD | INTR_FLAG_GAMEPAK;
+-
+-    REG_KEYCNT = 0xC304; // TODO 1100 0011 0000 0100
+-    // Select:
+-    // * Select button
+-    // * L/R Button
+-    // Enable IRQ
+-    // Logical AND
+-    // So do something when all buttons above are pressed
+-
+-    REG_IME = 1;
+-
+-    SoundBiasReset();
+-    asm("swi 0x3");
+-    SoundBiasSet();
+-
+-    REG_IME = 0;
+-
+-    REG_IE = ie_store; // restore IE
+-    REG_KEYCNT = 0; // reset KEYCNT
+-
+-    REG_IME = 1;
+-
+-    while(REG_VCOUNT < 160){}
+-    REG_DISPCNT = dispcnt_save; // restore DISPCNT
+-    while(REG_KEYINPUT != KEYS_MASK){} // All buttons
+-}
++    /* Fatal errors must never execute a GBA BIOS syscall on Vita. */
++    fputs("PMD native fatal halt\n", stderr);
++    abort();
++}
++
++
+ 
+ // arm9.bin::02007FF8
+ void sprintfStatic(char *buffer, const char *text, ...)
+--- a/src/reg_control.c
++++ b/src/reg_control.c
+@@ -336,43 +336,7 @@
+ {
+ }
+ 
+-UNUSED static void sub_800BB44(void)
+-{
+-    u16 ie_store;
+-    u16 dispcnt_store;
+-    bool8 interrupt_flag;
+-
+-    while (REG_KEYINPUT != KEYS_MASK){}
+-
+-    interrupt_flag = DisableInterrupts();
+-
+-    while (REG_VCOUNT < 160){}
+-
+-    dispcnt_store = REG_DISPCNT;
+-    REG_DISPCNT = DISPCNT_FORCED_BLANK;
+-
+-    *(vu16 *)BG_PLTT = RGB_WHITE;
+-
+-    ie_store = REG_IE;
+-    REG_IE = INTR_FLAG_KEYPAD | INTR_FLAG_GAMEPAK;
+-
+-    REG_KEYCNT = KEY_AND_INTR | R_BUTTON | L_BUTTON | SELECT_BUTTON; // 0x8304
+-    REG_IME = 1;
+-
+-    SoundBiasReset();
+-    asm("swi 0x3");
+-    SoundBiasSet();
+-
+-    REG_IME = 0;
+-    REG_IE = ie_store;
+-    REG_KEYCNT = 0;
+-    REG_DISPCNT = dispcnt_store;
+-    *(vu16 *)BG_PLTT = RGB_BLACK;
+-
+-    if (interrupt_flag)
+-        EnableInterrupts();
+-    while (REG_KEYINPUT != KEYS_MASK){}
+-}
++
+ 
+ void nullsub_17(void)
+ {
+--- a/src/code_80001DC.c
++++ b/src/code_80001DC.c
+@@ -1,13 +1,10 @@
+ #include "global.h"
+ 
+-extern u32 gUnknown_3004000;
++/* Unused cartridge stack-boundary diagnostic omitted on native targets. */
+ 
+ // unused, returns stack pointer
+ u32 sub_80001DC() {
+     return (u32)__builtin_frame_address(0);
+ }
+ 
+-u32 *sub_80001E0(void)
+-{
+-    return &gUnknown_3004000;
+-}
++

@@ -1,0 +1,22 @@
+static const WindowTemplate sUnknown_80DC4BC = {
+    0,
+    3,
+    0, 0,
+    0, 0,
+    0, 0,
+    NULL
+};
+
+static const WindowHeader sUnknown_80DC4D4 = {1, 0, 18, 0};
+static const WindowTemplate sUnknown_80DC4D8 = {
+    0,
+    6,
+    2, 2,
+    26, 17,
+    17, 0,
+    &sUnknown_80DC4D4
+};
+
+ALIGNED(4) static const u8 sUnknown_80DC4F0[] = _("Inhabitants (Friends: {color CYAN}Light blue{reset})");
+ALIGNED(4) static const u8 sInhabitants[] = (@@STRING:c98050a4e127e4b21f60939adea16feb1eb9b888c09de697d89e9e6f5c62c5e5@@);
+ALIGNED(4) static const u8 sFmtCyanString[] = _("{color CYAN}%s{reset}");

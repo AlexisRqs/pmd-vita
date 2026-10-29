@@ -1,0 +1,13 @@
+--- a/src/cpu.c
++++ b/src/cpu.c
+@@ -70,10 +70,6 @@
+     cnt |= DMA_ENABLE;
+     cnt &= ~(DMA_START_HBLANK | DMA_START_VBLANK | DMA_REPEAT);
+     REG_DMA0CNT_H = cnt;
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+     REG_DMA0CNT_H = cnt & ~(DMA_ENABLE);
+ 
+     REG_WININ = WININ_WIN0_ALL | WININ_WIN1_ALL;

@@ -1,0 +1,1487 @@
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs0_g0_s0_station_sref_script[] = { /* 0x81326fc */
+    DEBUGINFO_O(10),
+    SELECT_MAP(0),
+    SELECT_ENTITIES(1, 0),
+    JUMPIF_EQUAL(START_MODE, STARTMODE_CONTINUE_GAME, /* to label */ 2),
+    JUMPIF_EQUAL(START_MODE, STARTMODE_3, /* to label */ 3),
+    JUMPIF_EQUAL(START_MODE, STARTMODE_GROUND, /* to label */ 4),
+    JUMPIF_EQUAL(START_MODE, STARTMODE_DUNGEON_WON, /* to label */ 4),
+    JUMP_LABEL(2),
+  LABEL(4), /* = 0x04 */
+    CJUMP_VAR(GROUND_GETOUT),
+    COND_EQUAL(9, /* to label */ 5),
+    COND_EQUAL(10, /* to label */ 5),
+    COND_EQUAL(11, /* to label */ 5),
+    JUMP_LABEL(6),
+  LABEL(2), /* = 0x02 */
+    SELECT_LIVES(0, 7),
+    JUMP_LABEL(7),
+  LABEL(3), /* = 0x03 */
+    SELECT_LIVES(0, 8),
+    JUMP_LABEL(7),
+  LABEL(5), /* = 0x05 */
+    SELECT_LIVES(0, 1),
+    JUMP_LABEL(7),
+    SELECT_LIVES(0, 2),
+    JUMP_LABEL(7),
+  LABEL(6), /* = 0x06 */
+    SELECT_LIVES(0, 3),
+    JUMP_LABEL(7),
+  LABEL(7), /* = 0x07 */
+    BGM_SWITCH(MUS_POKEMON_SQUARE),
+    JUMP_SCRIPT(COMMON_ENTER),
+};
+
+static const ScriptRef s_gs0_g0_s0_station_sref = { ENTER_CONTROL, SCRIPT_TYPE_01, NULL, s_gs0_g0_s0_station_sref_script }; /* 0x8132918 */
+
+
+
+
+static const struct ScriptCommand s_gs0_g0_s0_evt0_sref_script[] = { /* 0x8132924 */
+    DEBUGINFO_O(49),
+    RET,
+};
+
+static const ScriptRef s_gs0_g0_s0_evt0_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs0_g0_s0_evt0_sref_script }; /* 0x8132944 */
+
+static const struct ScriptCommand s_gs0_g0_s0_evt1_sref_script[] = { /* 0x8132950 */
+    DEBUGINFO_O(56),
+    RET,
+};
+
+static const ScriptRef s_gs0_g0_s0_evt1_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs0_g0_s0_evt1_sref_script }; /* 0x8132970 */
+
+static const struct ScriptCommand s_gs0_g0_s0_evt2_sref_script[] = { /* 0x813297c */
+    DEBUGINFO_O(63),
+    RET,
+};
+
+static const ScriptRef s_gs0_g0_s0_evt2_sref = { GETOUT_NORMAL, SCRIPT_TYPE_02, NULL, s_gs0_g0_s0_evt2_sref_script }; /* 0x813299c */
+
+static const struct ScriptCommand s_gs0_g0_s1_lives0_dlg0[] = { /* 0x81329a8 */
+    DEBUGINFO_O(70),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s1_lives1_dlg0[] = { /* 0x81329e8 */
+    DEBUGINFO_O(77),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s2_lives0_dlg0[] = { /* 0x8132a28 */
+    DEBUGINFO_O(84),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s2_lives1_dlg0[] = { /* 0x8132a68 */
+    DEBUGINFO_O(91),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s3_lives0_dlg0[] = { /* 0x8132aa8 */
+    DEBUGINFO_O(98),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s3_lives1_dlg0[] = { /* 0x8132ae8 */
+    DEBUGINFO_O(105),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s7_lives0_dlg0[] = { /* 0x8132b28 */
+    DEBUGINFO_O(112),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s7_lives1_dlg0[] = { /* 0x8132b68 */
+    DEBUGINFO_O(119),
+    SELECT_ANIMATION(2),
+    CALL_SCRIPT(WAIT_START_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s8_lives0_dlg0[] = { /* 0x8132ba8 */
+    DEBUGINFO_O(126),
+    CALL_SCRIPT(LIVES_WARP_ARRIVE_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g0_s8_lives1_dlg0[] = { /* 0x8132bd8 */
+    DEBUGINFO_O(132),
+    CALL_SCRIPT(LIVES_WARP_ARRIVE2_FUNC),
+    RET,
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives0_dlg2[] = { /* 0x8132c08 */
+    DEBUGINFO_O(138),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_BANK, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives1_dlg2[] = { /* 0x8132c68 */
+    DEBUGINFO_O(147),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_STORAGE_WITH_DIALOG, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives2_dlg2[] = { /* 0x8132cc8 */
+    DEBUGINFO_O(156),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_GREEN_KECLEON_SHOP, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives3_dlg2[] = { /* 0x8132d28 */
+    DEBUGINFO_O(165),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_PURPLE_KECLEON_SHOP, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives4_dlg2[] = { /* 0x8132d88 */
+    DEBUGINFO_O(174),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_LINK_SHOP, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives5_dlg2[] = { /* 0x8132de8 */
+    DEBUGINFO_O(183),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_LUMINOUS_CAVE, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives6_dlg2[] = { /* 0x8132e48 */
+    DEBUGINFO_O(192),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_FRIEND_RESCUE, 0, 0),
+    COND_EQUAL(1, /* to label */ 0),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    { 0x05, 0x00,  0x001e,  0x00000000,  0x00000000, NULL },
+    HALT,
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives7_dlg2[] = { /* 0x8132ee8 */
+    DEBUGINFO_O(205),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_THANK_YOU_MAIL, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives8_dlg2[] = { /* 0x8132f48 */
+    DEBUGINFO_O(214),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_UNK_1D, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_obj0_dlg2[] = { /* 0x8132fa8 */
+    DEBUGINFO_O(223),
+    SPECIAL_TEXT(SPECIAL_TEXT_BULLETIN_BOARD_JOBS, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_obj1_dlg2[] = { /* 0x8132fd8 */
+    DEBUGINFO_O(229),
+    SPECIAL_TEXT(SPECIAL_TEXT_BULLETIN_BOARD, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives9_dlg2[] = { /* 0x8133008 */
+    DEBUGINFO_O(235),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    SPECIAL_TEXT(SPECIAL_TEXT_FRIEND_SHOP, 0, 0),
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives10_dlg2[] = { /* 0x8133068 */
+    DEBUGINFO_O(244),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    { 0x23, 0x01,  0x0004,  0x00000000,  0x00000000, NULL },
+  LABEL(0), /* = 0x00 */
+    ASK3(FALSE, /*default*/ 0, /* speaker */ -1, (@@STRING:74c61eb5c77c7df622b9abdb9a8199d3ab8aa399bfc28609cb7d62e725d82c0e@@)),
+    CHOICE(/* label */  1, (@@STRING:825232e42c97b7781ecd89207872d70db32e7ef6931c67b1c7593cf8004f313a@@)),
+    CHOICE(/* label */  2, (@@STRING:cd8b6f77ac270df64e8602e91a7318a605c680b403b53dd78a668d7acb727f2a@@)),
+    CHOICE(/* label */  3, (@@STRING:611f9d816440bb306cba1b3bcde65416544d2eee2783b2e8be26bca339223b36@@)),
+    MSG_NPC(-1, (@@STRING:cb3918018e7be3e92fdf786080a356ec0165da8346dad2d0a12a7216dfcb4c21@@)),
+    { 0x22, 0x01,  0x0004,  0x00000000,  0x00000000, NULL },
+    JUMP_SCRIPT(END_TALK),
+  LABEL(1), /* = 0x01 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */  4, (@@STRING:a92121eeab5c78a9d6df7ae03ef03cd807250ed328bdc20383fe6686837a5671@@)),
+    CHOICE(/* label */  5, (@@STRING:7e568ae116050dfdbd5431d02e802772dc2c2080b277f7ecb1ab85f373ec2167@@)),
+    CHOICE(/* label */  6, (@@STRING:af89fb0188543365dbf107929075f6f733c1ba13ecd19277498ea6a8cb73390b@@)),
+    CHOICE(/* label */  7, (@@STRING:fd904060616e737f8854704f1b79aeac3916ecbd632199cb4852c4137d151478@@)),
+    CHOICE(/* label */  8, (@@STRING:ff9632f2e6c1b3a2fb05bbe59f6055bf635c0b1ffd0f820f0ebd2dcf51781ab3@@)),
+    CHOICE(/* label */  9, (@@STRING:f957270aca9faff8c59f0cd69ed4fa3ed6f42b0f06740a180678dacb8c3b55d2@@)),
+    CHOICE(/* label */ 10, (@@STRING:78e89316de9fc2ca42622e1b7a8980a77d36a2310f2491c575ccc7c156fa5620@@)),
+    JUMP_LABEL(0),
+  LABEL(2), /* = 0x02 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 11, (@@STRING:abd6f44b9448dfebbc6e5bb6b87a54cc2130c98faca33821964beb789745c33f@@)),
+    CHOICE(/* label */ 12, (@@STRING:c1282023b1f1457ce379c72ac17b66dade4033772f8f453b1482cc93623ca239@@)),
+    CHOICE(/* label */ 13, (@@STRING:97829090507478cb8248120ab798d7ce189e5f096bcdaa8c99cac7803a443381@@)),
+    CHOICE(/* label */ 14, (@@STRING:42b24b58e2d60cc6ea9afe9537ff158bf36f162a212fc66ae86472591dfbdef0@@)),
+    CHOICE(/* label */ 15, (@@STRING:b3d32c26ef5092dc7bf188c01c482f6de6a57292bc4585432352c1e288ad3ee7@@)),
+    JUMP_LABEL(0),
+  LABEL(3), /* = 0x03 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 16, (@@STRING:1e16c8214c943e19b84de64d255ba1f7361429da4144d86165be95c20b6a4fa0@@)),
+    CHOICE(/* label */ 17, (@@STRING:6901f3d4543e7ec2c1c324c5c8ff7903ff98cf3f64fe1f8653dc11064d7993b8@@)),
+    CHOICE(/* label */ 18, (@@STRING:b2d14b725741d22eaa8ff38e8cc5df3a12d8afab192c0d6c9ccffe47876e7612@@)),
+    CHOICE(/* label */ 19, (@@STRING:b922ed9e0cbbd846ee65ce66f3115ad051909b9f90cffd788d63526f95441d08@@)),
+    CHOICE(/* label */ 20, (@@STRING:a6f511d8b00958287348f3084f5e4a3dbf8d1b40414650dc3daabab5abc09550@@)),
+    CHOICE(/* label */ 21, (@@STRING:a17bfde3804f38f8991f8acebd0e560b1dcbdde52fa040bc1e6a040712cdf319@@)),
+    JUMP_LABEL(0),
+  LABEL(4), /* = 0x04 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 22, (@@STRING:5684d6ba28d0f292b76c7d8834bbb0da27cd83e9ee041ceb5201e3474d3e46c7@@)),
+    CHOICE(/* label */ 23, (@@STRING:64f0a1672849523d40a95b8ee206e959ff00f013a0ab52257c626a7ff838517b@@)),
+    CHOICE(/* label */ 24, (@@STRING:5ac97e2fbb475e458c8f9b1b86fcbb067cd56d06aaeabafe1962ebc40ec641f7@@)),
+    CHOICE(/* label */ 25, (@@STRING:6835f999c3d081bdbc755dd4c9f7c4ddabb379cee7ff389c65f1f40efb466afb@@)),
+    CHOICE(/* label */ 26, (@@STRING:e51a698b11720cb7c82022570539fdc490a317cacd17339accce4aa365943dec@@)),
+    CHOICE(/* label */ 27, (@@STRING:ce57b37857cbb9066a7289b09df89d350ce4869b9ef9fc8550f40cd4b26ed8b3@@)),
+    CHOICE(/* label */ 28, (@@STRING:7ad600b9d390a8224064a6b4da6ad7e30eb74f74aeb4faaba0e3dfd5cc040abd@@)),
+    JUMP_LABEL(1),
+  LABEL(22), /* = 0x16 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(DEMO_01),
+    HALT,
+  LABEL(23), /* = 0x17 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(DEMO_02),
+    HALT,
+  LABEL(24), /* = 0x18 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(DEMO_03),
+    HALT,
+  LABEL(25), /* = 0x19 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M00E01A_L001),
+    HALT,
+  LABEL(26), /* = 0x1a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E01A_L001),
+    HALT,
+  LABEL(27), /* = 0x1b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E01A_L002),
+    HALT,
+  LABEL(28), /* = 0x1c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E01A_L003),
+    HALT,
+  LABEL(5), /* = 0x05 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 29, (@@STRING:181edb9949cb91a9ab9bbeb4a221f7f60f264446e8032cb224ecf14b20e7f9df@@)),
+    CHOICE(/* label */ 30, (@@STRING:7a6357bd7149a7d9e70c429492d3f1232a8bad02d5378195051909270d25dbe2@@)),
+    CHOICE(/* label */ 31, (@@STRING:5dbeb5fef2d25dffc6071ccf0e602d93ca7bb5d898d7e8e1cf28881564042513@@)),
+    CHOICE(/* label */ 32, (@@STRING:274cb19724a8bfe9994523dcbe962a4a1fe21c0a3db4700be1609ba79ecd3a2f@@)),
+    CHOICE(/* label */ 33, (@@STRING:ced1a981f1f720faea09c3201d05b5786ba271480cc66188db3a7319167167bf@@)),
+    CHOICE(/* label */ 34, (@@STRING:3cea0cb0a1c9ac605b0d2eeb2591aee3aff3328ec9b36a6e04085005b2601160@@)),
+    JUMP_LABEL(1),
+  LABEL(29), /* = 0x1d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L001),
+    HALT,
+  LABEL(30), /* = 0x1e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L002),
+    HALT,
+  LABEL(31), /* = 0x1f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L003),
+    HALT,
+  LABEL(32), /* = 0x20 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L004),
+    HALT,
+  LABEL(33), /* = 0x21 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L005),
+    HALT,
+  LABEL(34), /* = 0x22 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02A_L006),
+    HALT,
+  LABEL(6), /* = 0x06 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 35, (@@STRING:b37fd766e23f687873d518bee68466ce4e87b108d5116d9ac0f0bdb715c28630@@)),
+    CHOICE(/* label */ 36, (@@STRING:a71ec8eabc7945c61911990a744cad73826c7bbd9429485d70b8ed0248b79bd5@@)),
+    CHOICE(/* label */ 37, (@@STRING:379c87ce79680e0c3ff134982f1281745cd1a9794ac4f2e2a2779c9f5e95ed34@@)),
+    CHOICE(/* label */ 38, (@@STRING:d75f1336844adf3675380f4dcc49be724eb483e99d54e2aa73539ad20ef8a6a6@@)),
+    CHOICE(/* label */ 39, (@@STRING:8d8b649d3818599192d8ecb3e629781d7407b1232287f0263dea47c3fdfd2952@@)),
+    CHOICE(/* label */ 40, (@@STRING:13cbef96e191c09dc3f6277c06d84e6fc8422b4c1f0d7ad3a7e9267bb318dcd1@@)),
+    CHOICE(/* label */ 41, (@@STRING:3961c765b845500898336cd46bab4795817f0aaaae96fad89596f5d5767b16bc@@)),
+    CHOICE(/* label */ 42, (@@STRING:957bd27ae6a1c6c0cf02836097bb8ef94245aa27e033092ae88d5200d7153a7e@@)),
+    JUMP_LABEL(1),
+  LABEL(35), /* = 0x23 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L001),
+    HALT,
+  LABEL(36), /* = 0x24 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L002),
+    HALT,
+  LABEL(37), /* = 0x25 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L003),
+    HALT,
+  LABEL(38), /* = 0x26 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L004),
+    HALT,
+  LABEL(39), /* = 0x27 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L005),
+    HALT,
+  LABEL(40), /* = 0x28 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L006),
+    HALT,
+  LABEL(41), /* = 0x29 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L007),
+    HALT,
+  LABEL(42), /* = 0x2a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E02B_L008),
+    HALT,
+  LABEL(7), /* = 0x07 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 43, (@@STRING:852829cb6b57481222b3eb2b1a38dd3495456f25a7f84dac4b75b75608ab44bd@@)),
+    CHOICE(/* label */ 44, (@@STRING:8468144e1f21a40fd5224b5ea64672872c3cc5df6028533a8eb06f90f5d1f7b9@@)),
+    CHOICE(/* label */ 45, (@@STRING:ba01b2028ffd3ea53f92d541448af0350b63528dd34a1a35479e2867a7a96e8c@@)),
+    CHOICE(/* label */ 46, (@@STRING:1f405f911032d909dee0a77b0a42ac3742554928bda8379dfdc2e9fd831bb9e1@@)),
+    CHOICE(/* label */ 47, (@@STRING:a5d05ff0debba8660eb4f7f220a9551f988caea1f1980707e3a9e9790e0417cc@@)),
+    CHOICE(/* label */ 48, (@@STRING:d1b7711fa5d8f9050c9c746fdd29096dbec6ae96f018e4996711693aff8c20e6@@)),
+    CHOICE(/* label */ 49, (@@STRING:42e0e1785e399add57fabc7a87ab9d261486e9286bab87c69ffa44b91d5eb89e@@)),
+    CHOICE(/* label */ 50, (@@STRING:f8b1bd077cafe6ced8fb5f2df42f19f92c8eeb95f4ab89bc98642bad7e36f647@@)),
+    JUMP_LABEL(1),
+  LABEL(43), /* = 0x2b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L000),
+    HALT,
+  LABEL(44), /* = 0x2c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L001),
+    HALT,
+  LABEL(45), /* = 0x2d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L002),
+    HALT,
+  LABEL(46), /* = 0x2e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L003),
+    HALT,
+  LABEL(47), /* = 0x2f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L004),
+    HALT,
+  LABEL(48), /* = 0x30 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L005),
+    HALT,
+  LABEL(49), /* = 0x31 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L006),
+    HALT,
+  LABEL(50), /* = 0x32 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L007),
+    HALT,
+  LABEL(8), /* = 0x08 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 51, (@@STRING:8cf78ef62d3dce974b55ec9a577433c4790576fe17309f9a7d963633ef2ceeb8@@)),
+    CHOICE(/* label */ 52, (@@STRING:0a9fa2fc5ac95923acd312c793d2c7e0b4173331b340483d8dbd7aa7c1fc9554@@)),
+    CHOICE(/* label */ 53, (@@STRING:d583b4f5924de61fd189aad7677db6f57e12ee4a39abf18e00e17b35b8ad9656@@)),
+    CHOICE(/* label */ 54, (@@STRING:ae14b5341bf43c7d18efd6d3cf02097ce3dc750d3e5d4b9bfbff8bb92fd4e801@@)),
+    JUMP_LABEL(1),
+  LABEL(51), /* = 0x33 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L008),
+    HALT,
+  LABEL(52), /* = 0x34 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L009),
+    HALT,
+  LABEL(53), /* = 0x35 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L010),
+    HALT,
+  LABEL(54), /* = 0x36 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E03A_L011),
+    HALT,
+  LABEL(9), /* = 0x09 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 55, (@@STRING:d45a05d01ee7c7069942701ae52fd2464426ebfeb333a607d84a92a8fc214b1a@@)),
+    CHOICE(/* label */ 56, (@@STRING:6c1612ed49dfa19dd523b452475d8ed738dceaae4078da049e8a24785433a804@@)),
+    CHOICE(/* label */ 57, (@@STRING:f28a42cd40d635e4797e9de0526beeb6931e1434d4bb731bd5540f6895fdb550@@)),
+    CHOICE(/* label */ 58, (@@STRING:c4b81dc18552590764ffc68fc3a46d213dc137df6c25381b39a692158e9720c0@@)),
+    CHOICE(/* label */ 59, (@@STRING:6890729c18e1f3a42b01d5dc364eb67535c4d08613060ab5aaefecb878dede37@@)),
+    CHOICE(/* label */ 60, (@@STRING:ccd14760b803581fb73cec02ad91a39d142a8a66e6f06043eca87f4c789bfb27@@)),
+    CHOICE(/* label */ 61, (@@STRING:ef2db2ad238eb8de3262e3be1e6114a9faf9aa16ea6953fc656d189ab6236a39@@)),
+    JUMP_LABEL(1),
+  LABEL(55), /* = 0x37 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L000),
+    HALT,
+  LABEL(56), /* = 0x38 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L001),
+    HALT,
+  LABEL(57), /* = 0x39 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L002),
+    HALT,
+  LABEL(58), /* = 0x3a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L003),
+    HALT,
+  LABEL(59), /* = 0x3b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L004),
+    HALT,
+  LABEL(60), /* = 0x3c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L005),
+    HALT,
+  LABEL(61), /* = 0x3d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04A_L006),
+    HALT,
+  LABEL(10), /* = 0x0a */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 62, (@@STRING:e9c49328eeb65e4ebfd9e6fbba5bf3dd6bd9a64811a8bbc22039b619419d3836@@)),
+    CHOICE(/* label */ 63, (@@STRING:23511545c97d77baf026afda3b0ffd0b6a17903f129e1148d912f2f0f10d19f5@@)),
+    CHOICE(/* label */ 64, (@@STRING:aa86e39ff322dc0b8679265ffca38fb839c25cf06119c777f6ed064a106a75e2@@)),
+    CHOICE(/* label */ 65, (@@STRING:29e500c96617d5e0695be85125feb41286b0b2ce7874da16dfd240497dcae233@@)),
+    CHOICE(/* label */ 66, (@@STRING:bdf07cf22638e2c07822eddf19e146a7ec21bb696e4a4c294f152dc619a3d5d1@@)),
+    CHOICE(/* label */ 67, (@@STRING:d652b38c26c02a2d74d1777bc8cbb09cd7fe4c735fc9dbbf6f0f35a7a633a56e@@)),
+    CHOICE(/* label */ 68, (@@STRING:f1084ca5e4b86b3451e3180d09b78dfedffb82247ef12f3b6928bc2276d5cf7f@@)),
+    CHOICE(/* label */ 69, (@@STRING:b74917359097b4b594cfa1547e1c81d2177e181f84a003cb1f46bf03e694a22e@@)),
+    JUMP_LABEL(1),
+  LABEL(62), /* = 0x3e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L000),
+    HALT,
+  LABEL(63), /* = 0x3f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L001),
+    HALT,
+  LABEL(64), /* = 0x40 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L002),
+    HALT,
+  LABEL(65), /* = 0x41 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L003),
+    HALT,
+  LABEL(66), /* = 0x42 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L004),
+    HALT,
+  LABEL(67), /* = 0x43 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L005),
+    HALT,
+  LABEL(68), /* = 0x44 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L006),
+    HALT,
+  LABEL(69), /* = 0x45 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E04B_L007),
+    HALT,
+  LABEL(11), /* = 0x0b */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 70, (@@STRING:fcbcece3923e55c9036721ba674839f2eb52a77d8aeaabd27c12df093e8af4bd@@)),
+    CHOICE(/* label */ 71, (@@STRING:0e09fed66befdd515c2f8defebb66d0db77c7e8fc75043a81f47be72741edd21@@)),
+    CHOICE(/* label */ 72, (@@STRING:f93edd5109b97343ad0904371c4cbfa2da2cbf83609ffa09fc0afde2e379b08b@@)),
+    CHOICE(/* label */ 73, (@@STRING:7407fe7db2320c301661b93a6cae300a62c3166a310ffd1e1ca6c6493961dabe@@)),
+    CHOICE(/* label */ 74, (@@STRING:551f344cd87a8cd8c4ba6b830b4aa8ec66137c3385e2180b8467b566d46e8ba1@@)),
+    CHOICE(/* label */ 75, (@@STRING:0e96f458dbd6f40709b244577ab749fb2e3549d31e573f493a7785e57aaa0fd6@@)),
+    CHOICE(/* label */ 76, (@@STRING:a9e2e8e7e9c219fe93d5d144e5bad0785e9f8bfccc565bece71702d46b8b30e6@@)),
+    JUMP_LABEL(2),
+  LABEL(70), /* = 0x46 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L000),
+    HALT,
+  LABEL(71), /* = 0x47 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L001),
+    HALT,
+  LABEL(72), /* = 0x48 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L002),
+    HALT,
+  LABEL(73), /* = 0x49 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L003),
+    HALT,
+  LABEL(74), /* = 0x4a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L004),
+    HALT,
+  LABEL(75), /* = 0x4b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L005),
+    HALT,
+  LABEL(76), /* = 0x4c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05A_L006),
+    HALT,
+  LABEL(12), /* = 0x0c */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 77, (@@STRING:7cc26d9145990fa302c3f0acfec6323c5d989efc8a32fe082f5d676d922d0726@@)),
+    CHOICE(/* label */ 78, (@@STRING:81356789cac709bbf89f82c2d1479d54ef6fb09bf1078101f82bd4dbccfc9a18@@)),
+    CHOICE(/* label */ 79, (@@STRING:d118ece04e0b25a7d6fd58c1f4b58cf3fae38118697eb975d46d36737eac6eee@@)),
+    CHOICE(/* label */ 80, (@@STRING:e352b8e3af1ef82b0da624e17ef40b34ef59cdbbdc80f8551017c72121054188@@)),
+    CHOICE(/* label */ 81, (@@STRING:ef0987b38c832d24de2e51a478330cff42670959317af08ed21b8dfeba0956b4@@)),
+    CHOICE(/* label */ 82, (@@STRING:5375b8f3fe92754ebaf3662c9ec5da8867ab8a9f2b1fc13be9eaed7054f8a519@@)),
+    JUMP_LABEL(2),
+  LABEL(77), /* = 0x4d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L000),
+    HALT,
+  LABEL(78), /* = 0x4e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L001),
+    HALT,
+  LABEL(79), /* = 0x4f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L002),
+    HALT,
+  LABEL(80), /* = 0x50 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L003),
+    HALT,
+  LABEL(81), /* = 0x51 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L004),
+    HALT,
+  LABEL(82), /* = 0x52 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E05B_L005),
+    HALT,
+  LABEL(13), /* = 0x0d */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 83, (@@STRING:22c6417c2f900a7f3feac099587d62d113bcfbdadf4ae12b3d828623d325ee39@@)),
+    CHOICE(/* label */ 84, (@@STRING:09d2e656d91a62d1b0cbbf4f8f8bc0f46c1557e870c7a35fca7261370b1833d9@@)),
+    CHOICE(/* label */ 85, (@@STRING:09d2e656d91a62d1b0cbbf4f8f8bc0f46c1557e870c7a35fca7261370b1833d9@@)),
+    JUMP_LABEL(2),
+  LABEL(83), /* = 0x53 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E06A_L001),
+    HALT,
+  LABEL(84), /* = 0x54 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E06A_L002),
+    HALT,
+  LABEL(85), /* = 0x55 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E06A_L003),
+    HALT,
+  LABEL(14), /* = 0x0e */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 86, (@@STRING:b01104b5eb02ce7b150c99a746193829c2f62fa1057f77757b1c26f1f148647e@@)),
+    CHOICE(/* label */ 87, (@@STRING:cd033fa1157efe3c8e431b39be7437d645374861dc3d2ef353f04171b20b32b4@@)),
+    CHOICE(/* label */ 88, (@@STRING:f5f50418ef2078db87127a1bd57411a4effdcfdfe50b34c6c4c2898306a57a87@@)),
+    CHOICE(/* label */ 89, (@@STRING:54dd5f7d9bb1df1e8a5385c9633e7782202f55cbc5c205425934c1a8b12210cb@@)),
+    CHOICE(/* label */ 90, (@@STRING:c2f4ae0f2955681a07e12a8a1f6afe6ee2d3dc6fe281a0f632e2ff1ed9ee60bc@@)),
+    JUMP_LABEL(2),
+  LABEL(86), /* = 0x56 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07A_L001),
+    HALT,
+  LABEL(87), /* = 0x57 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07A_L002),
+    HALT,
+  LABEL(88), /* = 0x58 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07A_L003),
+    HALT,
+  LABEL(89), /* = 0x59 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07A_L004),
+    HALT,
+  LABEL(90), /* = 0x5a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07A_L005),
+    HALT,
+  LABEL(15), /* = 0x0f */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 91, (@@STRING:7a9ae2918fb738945df5021cff451986c50f4432ec74db76cca190287e1c8d95@@)),
+    CHOICE(/* label */ 92, (@@STRING:f277d00f72a23357a6776267137516108369fd3f97c078f23672586741341c95@@)),
+    CHOICE(/* label */ 93, (@@STRING:3cdd3782963ddcd13236201bbb91efd8d1d783cd47e12fdc62320eeedb3d702d@@)),
+    CHOICE(/* label */ 94, (@@STRING:d3ebdf941691367c96a19d26bae3ae5f14489d55451ef00e3a332bb0c239ddf9@@)),
+    CHOICE(/* label */ 95, (@@STRING:a3a9ffcc6a84e5777403480794a67159d92c97dd1596416ccab8a596e36d52d8@@)),
+    JUMP_LABEL(2),
+  LABEL(91), /* = 0x5b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07B_L001),
+    HALT,
+  LABEL(92), /* = 0x5c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07B_L002),
+    HALT,
+  LABEL(93), /* = 0x5d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07B_L003),
+    HALT,
+  LABEL(94), /* = 0x5e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07B_L004),
+    HALT,
+  LABEL(95), /* = 0x5f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E07B_L005),
+    HALT,
+  LABEL(16), /* = 0x10 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 96, (@@STRING:ba87b46024a2a63c2eafdb6d03d8a9997e9038891073cad2e82182afaa1302ff@@)),
+    CHOICE(/* label */ 97, (@@STRING:a82f68c5e8b27786d8669067c3072f10cfd3202ed71da15df020bfd66ad90c28@@)),
+    CHOICE(/* label */ 98, (@@STRING:a81403d06b7c6dcf21718aeb7383f4fe829f69e5db2013f92dfabbdc8931cd2d@@)),
+    CHOICE(/* label */ 99, (@@STRING:92c07fae7d5229f961136a4ebb8d22cc3e6e164d9551d15fc4865ecf6a13f22d@@)),
+    CHOICE(/* label */100, (@@STRING:a27998a76eb053d0519aafa937240d7b5a1d97706446cd6dbb5b90f56d49d400@@)),
+    JUMP_LABEL(3),
+  LABEL(96), /* = 0x60 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08A_L001),
+    HALT,
+  LABEL(97), /* = 0x61 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08A_L002),
+    HALT,
+  LABEL(98), /* = 0x62 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08A_L003),
+    HALT,
+  LABEL(99), /* = 0x63 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08A_L004),
+    HALT,
+  LABEL(100), /* = 0x64 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08A_L005),
+    HALT,
+  LABEL(17), /* = 0x11 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */101, (@@STRING:a91796c9237e212fa0f96a24a38ee9bca5d62f5d17793529acfb20565146b113@@)),
+    CHOICE(/* label */102, (@@STRING:ecd179eeb0e452eaba16cdab7e5c416c37339bb11f240160a456c046ec133176@@)),
+    CHOICE(/* label */103, (@@STRING:57b349c494bb33fdbee047425b3955fe2fcad296c001ec7a0d70ce78e645ac03@@)),
+    CHOICE(/* label */104, (@@STRING:a4a8c524498c082372a6bfa35ee8e3a9d63729056c2e71e6b536b7cbd23cf980@@)),
+    CHOICE(/* label */105, (@@STRING:12a02d966b7bf34437a619ab47ced2402d644804eaeb571d75855d7525a6df7b@@)),
+    CHOICE(/* label */106, (@@STRING:9849b08b3366f13763915e31665c23f49b1bbaaf3aae914ffe5c0d77665c05f6@@)),
+    JUMP_LABEL(3),
+  LABEL(101), /* = 0x65 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L001),
+    HALT,
+  LABEL(102), /* = 0x66 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L002),
+    HALT,
+  LABEL(103), /* = 0x67 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L003),
+    HALT,
+  LABEL(104), /* = 0x68 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L004),
+    HALT,
+  LABEL(105), /* = 0x69 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L005),
+    HALT,
+  LABEL(106), /* = 0x6a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E08B_L006),
+    HALT,
+  LABEL(18), /* = 0x12 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */107, (@@STRING:226cf91d1a8f0e40f437692b899ad549c785a9543af4da4d5f7922996003f99b@@)),
+    CHOICE(/* label */108, (@@STRING:be2ed91d543b893e38ad5803da3d7686ad2c6d8b6aaabf422914e429a054aec7@@)),
+    CHOICE(/* label */109, (@@STRING:036b8e85b10fe907b2e6f409542c43d2f22c75220bf170df1dca0157ef87e9cc@@)),
+    CHOICE(/* label */110, (@@STRING:e7b5119bf0497e7551dd950b8a4a33cb6b212002101f3a92169a652941ad0295@@)),
+    CHOICE(/* label */111, (@@STRING:0c865c99e747dbaae7c61d2ad3e46cb695c09797e7ca2921ba16275f3bd4900f@@)),
+    CHOICE(/* label */112, (@@STRING:8fbbfc7086a7d562b2f29251faba9dea7f85698061397b4cc7c7ef09a0cfbdb2@@)),
+    CHOICE(/* label */113, (@@STRING:75083f9700169d1370ffc920ae9df0510a54613b079fccc53bc4870a498ea5eb@@)),
+    CHOICE(/* label */114, (@@STRING:5095117d8cafa74b3f8559ef3a482aaa16004d1afe62df1aee581033b049f006@@)),
+    JUMP_LABEL(3),
+  LABEL(107), /* = 0x6b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L001),
+    HALT,
+  LABEL(108), /* = 0x6c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L002),
+    HALT,
+  LABEL(109), /* = 0x6d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L003),
+    HALT,
+  LABEL(110), /* = 0x6e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L004),
+    HALT,
+  LABEL(111), /* = 0x6f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L005),
+    HALT,
+  LABEL(112), /* = 0x70 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L006),
+    HALT,
+  LABEL(113), /* = 0x71 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L007),
+    HALT,
+  LABEL(114), /* = 0x72 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L008),
+    HALT,
+  LABEL(19), /* = 0x13 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */115, (@@STRING:1d6a60d1b2bbd3239d44ecacda2d499213e3d5654d19a82ebe7c7422f793054e@@)),
+    CHOICE(/* label */116, (@@STRING:9ba49f87bd0137cebddc84bb2a24f9f743faf78cc06e3cbd1d57741088dcb840@@)),
+    CHOICE(/* label */117, (@@STRING:c33f71d247fbafef8d069e479ee0ad7eed6d1439ebe0aa79a1f3e6930ed91ded@@)),
+    CHOICE(/* label */118, (@@STRING:ab7f105fd7b37b85e35dcfd6717337c36b0f6cfb740ee8cf8f4d62d8f9d670cd@@)),
+    CHOICE(/* label */119, (@@STRING:9821d0012d4c1c491b7843c98c9850a301872464db72e4b092fdda233fd69fad@@)),
+    CHOICE(/* label */120, (@@STRING:e15123b3f995c82392534720c79f7b776d3089f83d241c3ffef871a161c15a03@@)),
+    CHOICE(/* label */121, (@@STRING:6f74548b1fccd417df9f7b392ef65d89c08a46ab6c375dfa742a696c086e7df2@@)),
+    JUMP_LABEL(3),
+  LABEL(115), /* = 0x73 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L009),
+    HALT,
+  LABEL(116), /* = 0x74 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L010),
+    HALT,
+  LABEL(117), /* = 0x75 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L011),
+    HALT,
+  LABEL(118), /* = 0x76 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L012),
+    HALT,
+  LABEL(119), /* = 0x77 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L013),
+    HALT,
+  LABEL(120), /* = 0x78 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L014),
+    HALT,
+  LABEL(121), /* = 0x79 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E09A_L015),
+    HALT,
+  LABEL(20), /* = 0x14 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */122, (@@STRING:952f669f8d728b63bc2960e7df86cfed7e5fe7fe25441c27a706d2b3efc82acc@@)),
+    CHOICE(/* label */123, (@@STRING:5a9e6eb9eacee7fb24223c56f9462fe0b869ccc834b642dd8c8a4c574bbba2f4@@)),
+    CHOICE(/* label */124, (@@STRING:940f91d8d4aadc827b39f121e99cbfa569fb4b714afcb68b1f803bd78e7414e0@@)),
+    CHOICE(/* label */125, (@@STRING:22f077c1fb144e93d189f11115c40e030692ac342d74d35181081bd3511c942b@@)),
+    CHOICE(/* label */126, (@@STRING:002f810c529963846d1238c1f71fb2f993bd502a74a633fcbac919c2fe1af7a0@@)),
+    CHOICE(/* label */127, (@@STRING:ee322b1c444ddcf8eaf01e38e27af354f8dad31d73c01bdaf6c9d3230e4224be@@)),
+    CHOICE(/* label */128, (@@STRING:73c961d722258ecca27adea9e3bd168cb9b89764b798f077ba295fd456edd0fa@@)),
+    CHOICE(/* label */129, (@@STRING:12f1bf32751fa989589dac0e227205a8432459b381a905839533f19f1104e558@@)),
+    JUMP_LABEL(3),
+  LABEL(122), /* = 0x7a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L001),
+    HALT,
+  LABEL(123), /* = 0x7b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L002),
+    HALT,
+  LABEL(124), /* = 0x7c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L003),
+    HALT,
+  LABEL(125), /* = 0x7d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L004),
+    HALT,
+  LABEL(126), /* = 0x7e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L005),
+    HALT,
+  LABEL(127), /* = 0x7f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L006),
+    HALT,
+  LABEL(128), /* = 0x80 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L007),
+    HALT,
+  LABEL(129), /* = 0x81 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01E10A_L008),
+    HALT,
+  LABEL(21), /* = 0x15 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */130, (@@STRING:b6918282f670031a10b52d06a6f796980ffda3cc5a7ed03a174b16ac3c02582f@@)),
+    CHOICE(/* label */131, (@@STRING:4dcf2cfc4ae6397b6db9ea3bd194871817dacb78c83be7c3873fbdf349bdc76e@@)),
+    CHOICE(/* label */132, (@@STRING:16898298dbb8db9472cd10b713565d5e8f1be8fa5c8e3c996fc8acd93c571ac5@@)),
+    CHOICE(/* label */133, (@@STRING:5a316794c0cb7b333a2db74b970e9490f02df7531776e64ca1341ab255544a8c@@)),
+    CHOICE(/* label */134, (@@STRING:b0602c31e55d504397c07b364ae1fb601b358a5f2465cc67cbac7db90be2f01f@@)),
+    CHOICE(/* label */135, (@@STRING:bc870528d877057c8567924d4f5828c85433c62828ed137584876087cb64b886@@)),
+    JUMP_LABEL(3),
+  LABEL(130), /* = 0x82 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M01END_L001),
+    HALT,
+  LABEL(131), /* = 0x83 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M02E01A_L001),
+    HALT,
+  LABEL(132), /* = 0x84 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M02E01A_L002),
+    HALT,
+  LABEL(133), /* = 0x85 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M02E01A_L003),
+    HALT,
+  LABEL(134), /* = 0x86 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M02E02A_L001),
+    HALT,
+  LABEL(135), /* = 0x87 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_M02END_L001),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives11_dlg2[] = { /* 0x8136060 */
+    DEBUGINFO_O(911),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    { 0x23, 0x01,  0x0004,  0x00000000,  0x00000000, NULL },
+  LABEL(0), /* = 0x00 */
+    ASK3(FALSE, /*default*/ 0, /* speaker */ -1, (@@STRING:74c61eb5c77c7df622b9abdb9a8199d3ab8aa399bfc28609cb7d62e725d82c0e@@)),
+    CHOICE(/* label */  1, (@@STRING:8d2ea93020084634bcd3a1380ca5b322a1c5cddc0962c02de69e92027d45fa04@@)),
+    CHOICE(/* label */  2, (@@STRING:803288bdd86959ec561ec710500e8e72f8a73a1bb8768ce79b2b315183068b61@@)),
+    MSG_NPC(-1, (@@STRING:cffd919fb91ff6a7d031e99426f5d6c9c0a25ef25c748a8cdf6b04f3551bb2c2@@)),
+    { 0x22, 0x01,  0x0004,  0x00000000,  0x00000000, NULL },
+    JUMP_SCRIPT(END_TALK),
+  LABEL(1), /* = 0x01 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */  3, (@@STRING:6078bd23aeaa61eb6d7a33fd426a4d604bdd5f39d5edfe0f9e5df8a067d4707a@@)),
+    CHOICE(/* label */  4, (@@STRING:6f1fc6e6d08c7343048655dfe3875aeea811746ee14914d2b48eca2132f0d9d4@@)),
+    CHOICE(/* label */  5, (@@STRING:e002649bca3b1e19802edfee97fa1129c36dc482cc4a39f201d8eb30892d4781@@)),
+    CHOICE(/* label */  6, (@@STRING:7077ed07ce09956a7a9d858ee43faf32e3010c8ffb1d49d35c9957f72bc3b128@@)),
+    CHOICE(/* label */  7, (@@STRING:19d7d49fdc812a62de212c82dc592ad73da910cd7885a33eda7fc52cfcbf9197@@)),
+    JUMP_LABEL(0),
+  LABEL(2), /* = 0x02 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */  8, (@@STRING:d0dced79fbbe8bf91010d450561c824de9e0c237fb6d7348d02f1c0983b91d62@@)),
+    CHOICE(/* label */  9, (@@STRING:8caab3c1cd31b984fcaead2665db6d2f12dba5f1f9dfe9304ed241dafe9f9576@@)),
+    CHOICE(/* label */ 10, (@@STRING:feeec83c094c1f1edb93cbc972a340fe800b2d970e9085f8c45eeaf0e875499d@@)),
+    CHOICE(/* label */ 11, (@@STRING:a95ae8948491fe4e841f93f8847a0adcc32b5fb214c495843166cbefad465a0d@@)),
+    CHOICE(/* label */ 12, (@@STRING:90b9ed58574c34f41a3f009dfa2839bc9d44a143ca352d300e21f7e8d242d91c@@)),
+    JUMP_LABEL(0),
+  LABEL(3), /* = 0x03 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 13, (@@STRING:a326bdbad0319f1b8149a223483209466a64b12761e04002e516e0e3e3d82068@@)),
+    CHOICE(/* label */ 14, (@@STRING:73b954df56c2829e0a298ad1daeedee88a346ca7f016412c1b4dfb92b082a3fc@@)),
+    CHOICE(/* label */ 15, (@@STRING:be3c2fa2c53006252c6ab871ad23f7ac010a7f7e649947f75ed4dcef21d6e813@@)),
+    JUMP_LABEL(1),
+  LABEL(13), /* = 0x0d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S00E01A_L001),
+    HALT,
+  LABEL(14), /* = 0x0e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S00E01A_L002),
+    HALT,
+  LABEL(15), /* = 0x0f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S00E01A_L003),
+    HALT,
+  LABEL(4), /* = 0x04 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 16, (@@STRING:f4f53c1b476258bc65332f87d9296f81c21ca10d84f3299c864f2834f42bbfe7@@)),
+    CHOICE(/* label */ 17, (@@STRING:9367f3cf3dad38148fb3c7635e6a8816a7b183f1f65509c5fc74c8fff09f15a4@@)),
+    CHOICE(/* label */ 18, (@@STRING:c54a622aa4af929370de5d3eb1b6a7f67fe270bc66d993eeaf976acea00bda82@@)),
+    CHOICE(/* label */ 19, (@@STRING:d9f686efe71c7447065f6e9977a965bd512518021734a2a4b3bc0c61be32c62e@@)),
+    CHOICE(/* label */ 20, (@@STRING:003bc226c0591262ead03e9c041c200785a4710e504cba960d4d2f94e435aefb@@)),
+    CHOICE(/* label */ 21, (@@STRING:59844db79940df9d4d3620a5bcfd7e9d8e99d54c3d8e7ad20b7b64bf5e881254@@)),
+    CHOICE(/* label */ 22, (@@STRING:42c0ee54469f12e3cf770c096d58b5d88e0b214dbdca0ac553be37ff3b3c2ad4@@)),
+    JUMP_LABEL(1),
+  LABEL(16), /* = 0x10 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E01A_L001),
+    HALT,
+  LABEL(17), /* = 0x11 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E01A_L002),
+    HALT,
+  LABEL(18), /* = 0x12 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E01A_L003),
+    HALT,
+  LABEL(19), /* = 0x13 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E01B_L001),
+    HALT,
+  LABEL(20), /* = 0x14 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E01C_L001),
+    HALT,
+  LABEL(21), /* = 0x15 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E02A_L001),
+    HALT,
+  LABEL(22), /* = 0x16 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S01E02A_L002),
+    HALT,
+  LABEL(5), /* = 0x05 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 23, (@@STRING:9451e418a346d2ed9b90fda60e1b760fbf7cfe11cb38f1f13614dfe0c87dd117@@)),
+    CHOICE(/* label */ 24, (@@STRING:210a02ef29d14ff3d75cf787f6bee7178d813eb37422c20f12aef502b7a45bda@@)),
+    CHOICE(/* label */ 25, (@@STRING:08d9e145685e02f582a2867a26ded5939539e01d4276efae3a59a7d3ffa643db@@)),
+    CHOICE(/* label */ 26, (@@STRING:e581d4b349c092da0dcbe89d8ffe8493e7f40e57bc9fea29b42ef5424d97f75e@@)),
+    CHOICE(/* label */ 27, (@@STRING:22e394c188436cf64c9661d1555998a59ce974fdd92bc26c3437e2b4db7a6673@@)),
+    CHOICE(/* label */ 28, (@@STRING:4d97d85e6e7f8e4dde4c86a99d75f965501feb5a10dff5b19d83aadf50612230@@)),
+    CHOICE(/* label */ 29, (@@STRING:981c300d71d6f455a113092df35eaead5f0b7e2969bdfe07850d1cfb5eb14e65@@)),
+    JUMP_LABEL(1),
+  LABEL(23), /* = 0x17 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E01A_L001),
+    HALT,
+  LABEL(24), /* = 0x18 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E01A_L002),
+    HALT,
+  LABEL(25), /* = 0x19 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E01A_L003),
+    HALT,
+  LABEL(26), /* = 0x1a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E01A_L004),
+    HALT,
+  LABEL(27), /* = 0x1b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E02A_L001),
+    HALT,
+  LABEL(28), /* = 0x1c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E02A_L002),
+    HALT,
+  LABEL(29), /* = 0x1d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S02E02A_L003),
+    HALT,
+  LABEL(6), /* = 0x06 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 30, (@@STRING:8d778816877248e616c05ac3d228013c65d91ac31c4ed93c5b3eb40b4225277a@@)),
+    CHOICE(/* label */ 31, (@@STRING:d0b8fdcaca5d3389df2309f2c4300d2f7aefef754c8b860281d0cad6d82d03bd@@)),
+    JUMP_LABEL(1),
+  LABEL(30), /* = 0x1e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S03E01A_L001),
+    HALT,
+  LABEL(31), /* = 0x1f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S03E01A_L002),
+    HALT,
+  LABEL(7), /* = 0x07 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 32, (@@STRING:802fcc5e690fa379df771a7d1d2e2b8d9caeda2ae9af01292b9c2f86ae34ce05@@)),
+    CHOICE(/* label */ 33, (@@STRING:f0fe93155f75fa34317bccd335f0dd63e72f4c4052e928fdd244e3b5a706b5d5@@)),
+    CHOICE(/* label */ 34, (@@STRING:3913e6a82b6f5241def52c0321b111e07f05d9f69053242284577023d366deb6@@)),
+    CHOICE(/* label */ 35, (@@STRING:17fa60fe4eedb42b43828274b88fd86b0735df0a4a35571b845742c982b1aa90@@)),
+    CHOICE(/* label */ 36, (@@STRING:8f5bc9e19d4cdc872f3fd49de26d018f198d395333868faec46874f7f0dbe0bf@@)),
+    CHOICE(/* label */ 37, (@@STRING:88af029d3cc82655ce4316ac6641ed8caf243a29ad174d7075bb491a8e0fd9d7@@)),
+    CHOICE(/* label */ 38, (@@STRING:6e51f7aa9169138aef9463bc48ee92e360d4ada238763a9509fdbd7334967f24@@)),
+    JUMP_LABEL(1),
+  LABEL(32), /* = 0x20 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01A_L001),
+    HALT,
+  LABEL(33), /* = 0x21 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01A_L002),
+    HALT,
+  LABEL(34), /* = 0x22 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01B_L001),
+    HALT,
+  LABEL(35), /* = 0x23 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01C_L001),
+    HALT,
+  LABEL(36), /* = 0x24 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01D_L001),
+    HALT,
+  LABEL(37), /* = 0x25 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01E_L001),
+    HALT,
+  LABEL(38), /* = 0x26 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S04E01F_L001),
+    HALT,
+  LABEL(8), /* = 0x08 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 39, (@@STRING:ce7d0bf3aad6457db3fb1c57e14805bc8ea4e22837d0f339e0a6a8c4edd03d3a@@)),
+    CHOICE(/* label */ 40, (@@STRING:4eb8a800e93c2b0f2f21d73b1be97e8fd2ba0397c3bda1c3a7b33262ae6d74fc@@)),
+    JUMP_LABEL(2),
+  LABEL(39), /* = 0x27 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S05E01A_L001),
+    HALT,
+  LABEL(40), /* = 0x28 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S05E01A_L002),
+    HALT,
+  LABEL(9), /* = 0x09 */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 41, (@@STRING:e96f8445d5ec0c76f2e95639278f8df8c15753b619afa5ac78b99c4536738c8c@@)),
+    CHOICE(/* label */ 42, (@@STRING:ae5ea885c1a302e004a81c788a5620558e45157b427864f77f35b97cfc3431d7@@)),
+    CHOICE(/* label */ 43, (@@STRING:a36281d5cf37116526485d6c8dc5dd8762c773d88fbb863cd3b4e01ecee7b738@@)),
+    CHOICE(/* label */ 44, (@@STRING:6925640a231bcfde18775881ecba39ef59227c81782766aa3d916da3dd820ee1@@)),
+    JUMP_LABEL(2),
+  LABEL(41), /* = 0x29 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S06E01A_L001),
+    HALT,
+  LABEL(42), /* = 0x2a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S06E01A_L002),
+    HALT,
+  LABEL(43), /* = 0x2b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S06E01B_L001),
+    HALT,
+  LABEL(44), /* = 0x2c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S06E01B_L002),
+    HALT,
+  LABEL(10), /* = 0x0a */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 45, (@@STRING:8ec0662ad314d9c53f4875319eb8e34896fe502320062d518337d0a6006d796d@@)),
+    CHOICE(/* label */ 46, (@@STRING:5967b226fcfecb5145cb1acc18c7b76459c6d744061732614ac6aa45cc247be1@@)),
+    CHOICE(/* label */ 47, (@@STRING:11a4d32b046147d6095b87f82d1ebeb4f323351b10840a077da24ad4475146f7@@)),
+    JUMP_LABEL(2),
+  LABEL(45), /* = 0x2d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S07E01A_L001),
+    HALT,
+  LABEL(46), /* = 0x2e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S07E01A_L002),
+    HALT,
+  LABEL(47), /* = 0x2f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S07E01A_L003),
+    HALT,
+  LABEL(11), /* = 0x0b */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 48, (@@STRING:b587b9bd6a2eb6a377a1cf757becc51b994bca85ecb7b51e7a5ff85e8205f760@@)),
+    CHOICE(/* label */ 49, (@@STRING:12103b83389d4a9535097563ad520407e414bcd0e679900d209a26bf88002301@@)),
+    CHOICE(/* label */ 50, (@@STRING:7bff1ecc619b3ab95b6bf015b028bcecbcb2fe9cc750ed50c387a2860328d00f@@)),
+    CHOICE(/* label */ 51, (@@STRING:d0f04369eec61667177e24902313241a87b5353a8db296a2cba1b28e09229275@@)),
+    CHOICE(/* label */ 52, (@@STRING:951c0612e8c778cdf7311f07c2442f8ed9d748eeff98c5bdb733658107bcf706@@)),
+    CHOICE(/* label */ 53, (@@STRING:77f0ed9cb7b5969232baca9a4bcd1041390890ea4609c40983def56bb94402d6@@)),
+    CHOICE(/* label */ 54, (@@STRING:f6fd697258d62a8389dd14449c6e9323773f36532fc9dd0c9bd47749a22226bf@@)),
+    CHOICE(/* label */ 55, (@@STRING:6a0fb51cab652a99dea1a9b521d595775fa7570cda341f61df420e1f4e2cfc42@@)),
+    JUMP_LABEL(2),
+  LABEL(48), /* = 0x30 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L001),
+    HALT,
+  LABEL(49), /* = 0x31 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L002),
+    HALT,
+  LABEL(50), /* = 0x32 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L003),
+    HALT,
+  LABEL(51), /* = 0x33 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L004),
+    HALT,
+  LABEL(52), /* = 0x34 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L005),
+    HALT,
+  LABEL(53), /* = 0x35 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L006),
+    HALT,
+  LABEL(54), /* = 0x36 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L007),
+    HALT,
+  LABEL(55), /* = 0x37 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S08E01A_L008),
+    HALT,
+  LABEL(12), /* = 0x0c */
+    ASK_DEBUG(FALSE, /*default*/ 0, /* speaker */ -1, NULL),
+    CHOICE(/* label */ 56, (@@STRING:fdf249afd62689617572f9b3b7a3bf24c5b652f4c0bd0e6ba399cedb4ab26537@@)),
+    CHOICE(/* label */ 57, (@@STRING:f0c0c4b9f411f58ba109b35603ac63b7e0b03e2a1995fbb8b0e8439d2668b968@@)),
+    CHOICE(/* label */ 58, (@@STRING:c69537989550e008de670ec7e890fb7f7fde645526368dc7b1a54f539ab92ac8@@)),
+    CHOICE(/* label */ 59, (@@STRING:345e1268302a6372a0cc634c1d2a784d8963d587b1ab6918ea154190bd33e6b5@@)),
+    CHOICE(/* label */ 60, (@@STRING:9e7117a265d208dc84b6f0213e850f37648bd1d904bf919ba3e4106071074b1a@@)),
+    CHOICE(/* label */ 61, (@@STRING:ad830b68228bf5408049ab7d7782ba8081eb9848bdec99176453c567105eee44@@)),
+    CHOICE(/* label */ 62, (@@STRING:53127979777fcaa8b1c686f70c92089a7d886efd7c696dacc7eadb663cd9c3a4@@)),
+    CHOICE(/* label */ 63, (@@STRING:91e5708b524d6ec5c7aaa23a2420f75e43f70254f7ad008446bb34231bef7027@@)),
+    JUMP_LABEL(2),
+  LABEL(56), /* = 0x38 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01A_L001),
+    HALT,
+  LABEL(57), /* = 0x39 */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01A_L002),
+    HALT,
+  LABEL(58), /* = 0x3a */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01A_L003),
+    HALT,
+  LABEL(59), /* = 0x3b */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01A_L004),
+    HALT,
+  LABEL(60), /* = 0x3c */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01A_L005),
+    HALT,
+  LABEL(61), /* = 0x3d */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01B_L001),
+    HALT,
+  LABEL(62), /* = 0x3e */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01B_L002),
+    HALT,
+  LABEL(63), /* = 0x3f */
+    TEXTBOX_CLEAR,
+    EXECUTE_FUNCTION(EVENT_S09E01C_L001),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives13_dlg0[] = { /* 0x81376c8 */
+    DEBUGINFO_O(1227),
+    { 0x55, 0x00,  0x0004,  0x00000000,  0x00000000, NULL },
+    JUMP_SCRIPT(MOVE_STAY),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_lives13_dlg2[] = { /* 0x81376f8 */
+    DEBUGINFO_O(1233),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    ASK3(FALSE, /*default*/ 0, /* speaker */ 1, (@@STRING:a810d9c44a42b687274d66a406ae3d42bf013d1db99b3769d07db2287d6a540e@@)),
+    CHOICE(/* label */  0, (@@STRING:23673897b5b84270f679daf6c67594edf0a8d1271917491dc7a9dc3c15bec170@@)),
+    CHOICE(/* label */  1, (@@STRING:b146ce48137331536a8535c9568c488c86c37be48601dc219f24a03d29803a57@@)),
+    CHOICE(/* label */  2, (@@STRING:286dd22c35a780267eea47b290471a3d9f715c98f61e026bfc52e30a8db92ae9@@)),
+    CHOICE(/* label */  3, (@@STRING:dfdc94f19d80ce236ab02ee7dbc372c9181ee03c66b58c3433c40cef009cfa36@@)),
+    MSG_NPC(1, (@@STRING:cffd919fb91ff6a7d031e99426f5d6c9c0a25ef25c748a8cdf6b04f3551bb2c2@@)),
+    JUMP_SCRIPT(END_TALK),
+  LABEL(0), /* = 0x00 */
+    TEXTBOX_CLEAR,
+    SPAWN_EFFECT(/*kind*/7, /*script*/EFFECT_TEST1, /*group/sector*/ 1, 0),
+    JUMP_LABEL(4),
+  LABEL(1), /* = 0x01 */
+    TEXTBOX_CLEAR,
+    SPAWN_EFFECT(/*kind*/7, /*script*/EFFECT_TEST2, /*group/sector*/ 1, 0),
+    JUMP_LABEL(4),
+  LABEL(2), /* = 0x02 */
+    TEXTBOX_CLEAR,
+    { 0x56, 0x00,  0x0000,  0x00000047,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x56, 0x00,  0x0000,  0x00000008,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x56, 0x00,  0x0000,  0x00000009,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x56, 0x00,  0x0000,  0x0000000a,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x56, 0x00,  0x0000,  0x0000000b,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    JUMP_LABEL(4),
+  LABEL(3), /* = 0x03 */
+    TEXTBOX_CLEAR,
+    { 0x97, 0x00,  0x0002,  0x00000001,  0x00000002, NULL },
+    WAIT(30),
+    { 0x97, 0x00,  0x0002,  0x00000002,  0x00000003, NULL },
+    WAIT(30),
+    { 0x97, 0x00,  0x0002,  0x00000004,  0x00000004, NULL },
+    WAIT(60),
+    { 0x97, 0x00,  0x0002,  0x00000008,  0x00000004, NULL },
+    WAIT(60),
+    { 0x97, 0x00,  0x0002,  0x00000004,  0x00000004, NULL },
+    WAIT(60),
+    { 0x97, 0x00,  0x0002,  0x00000002,  0x00000003, NULL },
+    WAIT(30),
+    { 0x97, 0x00,  0x0002,  0x00000001,  0x00000002, NULL },
+    WAIT(30),
+    { 0x97, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+  LABEL(4), /* = 0x04 */
+    JUMP_SCRIPT(END_TALK),
+};
+
+static const struct ScriptCommand s_gs0_g1_s0_eff0_script[] = { /* 0x8137a74 */
+    DEBUGINFO_O(1287),
+  LABEL(0), /* = 0x00 */
+    { 0x56, 0x00,  0x0000,  0x00000065,  0x00000000, NULL },
+    { 0xde, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x52, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    { 0x56, 0x00,  0x0000,  0x00000066,  0x00000000, NULL },
+    { 0x53, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    WAIT(120),
+    { 0x56, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    JUMP_LABEL(0),
+};
+
+static const struct ScriptCommand s_gs0_g1_s1_eff0_script[] = { /* 0x8137b24 */
+    DEBUGINFO_O(1301),
+    { 0x59, 0x00, -0x0008,  0x00000000,  0x00000000, NULL },
+  LABEL(0), /* = 0x00 */
+    { 0x56, 0x00,  0x0000,  0x000000a9,  0x00000000, NULL },
+    WAIT(120),
+    { 0x56, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    { 0x56, 0x00,  0x0000,  0x000000a8,  0x00000000, NULL },
+    WAIT(60),
+    { 0x56, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    { 0x56, 0x00,  0x0000,  0x00000070,  0x00000000, NULL },
+    WAIT(180),
+    { 0x52, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x52, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00020000,  0x00000000, NULL },
+    WAIT(180),
+    { 0x52, 0x00,  0x0000,  0x00040000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00040000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x52, 0x00,  0x0000,  0x00040000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00040000,  0x00000000, NULL },
+    WAIT(180),
+    { 0x52, 0x00,  0x0000,  0x00010000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00010000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x52, 0x00,  0x0000,  0x00010000,  0x00000000, NULL },
+    WAIT(60),
+    { 0x53, 0x00,  0x0000,  0x00010000,  0x00000000, NULL },
+    WAIT(180),
+    { 0x56, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(1),
+    JUMP_LABEL(0),
+};
+
+static const struct GroundLivesData s_gs0_g0_s1_lives[] = { /* 0x8137da4 */
+    /*  0 */ {   0,   2,   0,   0, {  11,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s1_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   2,   0,   0, {   8,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s1_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs0_g0_s2_lives[] = { /* 0x8137dd4 */
+    /*  0 */ {   0,   4,   0,   0, {  28,  33, 0, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s2_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   4,   0,   0, {  28,  35, 0, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s2_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs0_g0_s3_lives[] = { /* 0x8137e04 */
+    /*  0 */ {   0,   6,   0,   0, {  37,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s3_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   6,   0,   0, {  41,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s3_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs0_g0_s7_lives[] = { /* 0x8137e34 */
+    /*  0 */ {   0,   4,   0,   0, {  28,  27, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s7_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   4,   0,   0, {  28,  29, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s7_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs0_g0_s8_lives[] = { /* 0x8137e64 */
+    /*  0 */ {   0,   0,   0,   0, {  11,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s8_lives0_dlg0,
+    } },
+    /*  1 */ {   4,   0,   0,   0, {   8,  31, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g0_s8_lives1_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs0_g1_s0_lives[] = { /* 0x8137e94 */
+    /*  0 */ {  72,   0,   0,   0, {  12,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives0_dlg2,
+    } },
+    /*  1 */ {  75,   0,   0,   0, {  16,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives1_dlg2,
+    } },
+    /*  2 */ {  70,   0,   0,   0, {  20,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives2_dlg2,
+    } },
+    /*  3 */ {  71,   0,   0,   0, {  24,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives3_dlg2,
+    } },
+    /*  4 */ {  76,   0,   0,   0, {  36,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives4_dlg2,
+    } },
+    /*  5 */ {  45,   0,   0,   0, {  40,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives5_dlg2,
+    } },
+    /*  6 */ {  47,   0,   0,   0, {  17,  21, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives6_dlg2,
+    } },
+    /*  7 */ {  48,   0,   0,   0, {  20,  21, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives7_dlg2,
+    } },
+    /*  8 */ {  49,   0,   0,   0, {  23,  21, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives8_dlg2,
+    } },
+    /*  9 */ {  73,   0,   0,   0, {  32,  28, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives9_dlg2,
+    } },
+    /* 10 */ {  51,   0,   0,   0, {  26,  25, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives10_dlg2,
+    } },
+    /* 11 */ {  37,   0,   0,   0, {  30,  25, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_lives11_dlg2,
+    } },
+    /* 12 */ {  38,   0,   0,   0, {  34,  24, CPOS_HALFTILE, CPOS_HALFTILE }, {} },
+    /* 13 */ { 104,   0,   0,   0, {  55,  24, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs0_g1_s0_lives13_dlg0,
+        [2] = s_gs0_g1_s0_lives13_dlg2,
+    } },
+    /* 14 */ { 105,   0,   0,   0, {  84,  24, CPOS_HALFTILE, CPOS_HALFTILE }, {} },
+    /* 15 */ { 106,   0,   0,   0, {  60,  24, CPOS_HALFTILE, CPOS_HALFTILE }, {} },
+};
+
+static const struct GroundObjectData s_gs0_g1_s0_objs[] = { /* 0x8138014 */
+    /*  0 */ {  14,   0,   3,   1, {  13,  23, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_obj0_dlg2,
+    } },
+    /*  1 */ {  13,   0,   3,   1, {  10,  23, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [2] = s_gs0_g1_s0_obj1_dlg2,
+    } },
+};
+
+static const struct GroundEffectData s_gs0_g1_s0_effs[] = { /* 0x8138044 */
+    /*  0 */ {   5,   0,   1,   1, {  85,  24, 0, CPOS_HALFTILE }, s_gs0_g1_s0_eff0_script },
+};
+
+static const struct GroundEffectData s_gs0_g1_s1_effs[] = { /* 0x8138050 */
+    /*  0 */ {   5,   0,   2,   1, {  85,  24, CPOS_HALFTILE, CPOS_HALFTILE }, s_gs0_g1_s1_eff0_script },
+};
+
+static const struct GroundEventData s_gs0_g0_s0_evts[] = { /* 0x813805c */
+    /*  0 */ {   6,  12,   0,   0, {   0,  24, 0, 0 }, &s_gs0_g0_s0_evt0_sref },
+    /*  1 */ {  12,   6,   0,   0, {  54, 105, 0, 0 }, &s_gs0_g0_s0_evt1_sref },
+    /*  2 */ {   6,  12,   0,   0, { 138,  30, 0, 0 }, &s_gs0_g0_s0_evt2_sref },
+};
+
+static const ScriptRef * const (sStationScripts[]) = { /* 0x8138080 */
+    &s_gs0_g0_s0_station_sref,
+};
+
+static const struct GroundScriptSector s_gs0_g0_sectors[] = { /* 0x8138084 */
+    { 0,NULL, 0,NULL, 0,NULL, LPARRAY(s_gs0_g0_s0_evts), 1,&sStationScripts[0], },
+    { LPARRAY(s_gs0_g0_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { LPARRAY(s_gs0_g0_s2_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { LPARRAY(s_gs0_g0_s3_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { LPARRAY(s_gs0_g0_s7_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+    { LPARRAY(s_gs0_g0_s8_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs0_g1_sectors[] = { /* 0x81381ec */
+    { LPARRAY(s_gs0_g1_s0_lives), LPARRAY(s_gs0_g1_s0_objs), LPARRAY(s_gs0_g1_s0_effs), 0,NULL, 0,NULL, },
+    { 0,NULL, 0,NULL, LPARRAY(s_gs0_g1_s1_effs), 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptGroup s_gs0_groups[] = { /* 0x813823c */
+    { LPARRAY(s_gs0_g0_sectors) },
+    { LPARRAY(s_gs0_g1_sectors) },
+};
+
+static const struct GroundLink s_gs0_links[] = { /* 0x813824c */
+    {},
+};
+
+const GroundScriptHeader gGroundScript_gs0 = { LPARRAY(s_gs0_groups), s_gs0_links }; /* 0x8138254 */

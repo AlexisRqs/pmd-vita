@@ -1,0 +1,874 @@
+diff --git a/src/arm_funcs.s b/src/arm_funcs.s
+index 2dbdc27e..87601d82 100644
+--- a/src/arm_funcs.s
++++ b/src/arm_funcs.s
+@@ -8,7 +8,7 @@
+     arm_func_start sub_80001E8
+ sub_80001E8:
+ 	stmdb sp!, {r4-r11}
+-	mov r12, 0x4000000 @ REG_BASE
++	ldr r12, =pmd_io_words @ native register storage
+ 	ldr r11, _08000224
+ 	add r10, r11, 0x40
+ 	mov r9, 0x1
+@@ -28,7 +28,7 @@ _08000224: .4byte gUnknown_202DCF8
+ 
+ 	arm_func_start sub_8000228
+ sub_8000228:
+-	mov r12, 0x4000000
++	ldr r12, =pmd_io_words
+ 	add r12, r12, 0x120 @ REG_SIODATA32
+ 	ldmia r12, {r0,r1}
+ 	stmdb sp!, {r7-r11}
+@@ -106,7 +106,7 @@ _08000334:
+ 	bx lr
+ 	.align 2, 0
+ _08000340: .4byte gUnknown_202DCF8
+-_08000344: .4byte 0x0400010e
++_08000344: .4byte pmd_io_words + 0x10e
+ 	arm_func_end sub_8000228
+ 
+         .align 2,0
+diff --git a/src/code_80001DC.c b/src/code_80001DC.c
+index 6bcdcc9b..fc77d6f8 100644
+--- a/src/code_80001DC.c
++++ b/src/code_80001DC.c
+@@ -1,13 +1,10 @@
+ #include "global.h"
+ 
+-extern u32 gUnknown_3004000;
++/* Unused cartridge stack-boundary diagnostic omitted on native targets. */
+ 
+ // unused, returns stack pointer
+ u32 sub_80001DC() {
+     return (u32)__builtin_frame_address(0);
+ }
+ 
+-u32 *sub_80001E0(void)
+-{
+-    return &gUnknown_3004000;
+-}
++
+diff --git a/src/code_800D090.c b/src/code_800D090.c
+index 002fa3c7..4b810b30 100644
+--- a/src/code_800D090.c
++++ b/src/code_800D090.c
+@@ -3,64 +3,17 @@
+ #include "cpu.h"
+ #include "memory.h"
+ #include "music.h"
++#include <stdio.h>
++#include <stdlib.h>
+ 
+ void Hang(void)
+ {
+-    while (TRUE)
+-    {
+-        asm("swi 0x2");
+-    }
++    /* Fatal errors must never execute a GBA BIOS syscall on Vita. */
++    fputs("PMD native fatal halt\n", stderr);
++    abort();
+ }
+ 
+-UNUSED static void sub_800D098(void)
+-{
+-    u32 dispcnt_save;
+-    u32 ie_store;
+-
+-    while(REG_VCOUNT < 160)
+-        ;
+-
+-    // Save DISPCNT and set to 0
+-    dispcnt_save = REG_DISPCNT;
+-    REG_DISPCNT = 0;
+-
+-    *(u16 *)BG_PLTT = 0xefff;
+-
+-    while(REG_KEYINPUT != KEYS_MASK)
+-        ;
+-
+-
+-    REG_IME = 0;
+-
+-    // Save IE Register
+-    ie_store = REG_IE;
+-    REG_IE = INTR_FLAG_KEYPAD | INTR_FLAG_GAMEPAK;
+ 
+-    REG_KEYCNT = 0xC304; // TODO 1100 0011 0000 0100
+-    // Select:
+-    // * Select button
+-    // * L/R Button
+-    // Enable IRQ
+-    // Logical AND
+-    // So do something when all buttons above are pressed
+-
+-    REG_IME = 1;
+-
+-    SoundBiasReset();
+-    asm("swi 0x3");
+-    SoundBiasSet();
+-
+-    REG_IME = 0;
+-
+-    REG_IE = ie_store; // restore IE
+-    REG_KEYCNT = 0; // reset KEYCNT
+-
+-    REG_IME = 1;
+-
+-    while(REG_VCOUNT < 160){}
+-    REG_DISPCNT = dispcnt_save; // restore DISPCNT
+-    while(REG_KEYINPUT != KEYS_MASK){} // All buttons
+-}
+ 
+ // arm9.bin::02007FF8
+ void sprintfStatic(char *buffer, const char *text, ...)
+@@ -154,8 +107,8 @@ EWRAM_DATA static s32 gUnknown_202DB6C = 0;
+ EWRAM_DATA static u8 gUnknown_202DB70 = 0;
+ EWRAM_DATA static u32 gUnknown_202DB74 = 0;
+ // These should not be in EWRAM, but in IWRAM...
+-EWRAM_DATA u32 gUnknown_202DB78[16] = {0};
+-EWRAM_DATA u32 gUnknown_202DBB8[80] = {0};
++/* Native executable functions replace the two copied code buffers. */
++
+ 
+ EWRAM_DATA struct UnkStruct_202DCF8 gUnknown_202DCF8 = {0};
+ 
+@@ -400,8 +353,6 @@ void sub_800D6AC(void)
+     (*(vu32 *)REG_ADDR_SIOCNT) = 0x2000;
+     REG_SIOCNT |= 0x4003;
+     CpuFill32(0, &gUnknown_202DCF8, 0x120);
+-    CpuCopy32(sub_80001E8, gUnknown_202DB78, sizeof(gUnknown_202DB78));
+-    CpuCopy32(sub_8000228, gUnknown_202DBB8, sizeof(gUnknown_202DBB8));
+     gUnknown_202DCF8.unk14 = -1;
+     gUnknown_202DCF8.unk28.asU16 = gUnknown_202DCF8.unk60;
+     gUnknown_202DCF8.unk2C = gUnknown_202DCF8.unk78;
+@@ -529,7 +480,7 @@ static u32 sub_800D9B8(u16 dst[2][8])
+ {
+     s32 i;
+     u8 sp0[4];
+-    u32 (*func)(void) = (void *)gUnknown_202DB78;
++    u32 (*func)(void) = sub_80001E8;
+     u32 *spAsU32 = (u32 *)sp0;
+ 
+     *spAsU32 = func();
+diff --git a/src/cpu.c b/src/cpu.c
+index 000bd33a..6d1159ba 100644
+--- a/src/cpu.c
++++ b/src/cpu.c
+@@ -70,10 +70,6 @@ void VBlank_CB(void)
+     cnt |= DMA_ENABLE;
+     cnt &= ~(DMA_START_HBLANK | DMA_START_VBLANK | DMA_REPEAT);
+     REG_DMA0CNT_H = cnt;
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+-    asm("mov \tr8, r8");
+     REG_DMA0CNT_H = cnt & ~(DMA_ENABLE);
+ 
+     REG_WININ = WININ_WIN0_ALL | WININ_WIN1_ALL;
+diff --git a/src/dungeon_map.c b/src/dungeon_map.c
+index 7e6792c7..edb8a95f 100644
+--- a/src/dungeon_map.c
++++ b/src/dungeon_map.c
+@@ -572,7 +572,7 @@ void TryResetDungeonMapTilesScheduledForCopy(void)
+     s32 x, y;
+     Dungeon *dungeon = gDungeon;
+     if (dungeon->dungeonMap.resetTilesScheduledForCopy) {
+-        #ifdef UBFIX
++        #if 1 /* Native port: use the bounded upstream fix before optimizing. */
+         for (y = 0; y < DUNGEON_MAP_MAX_Y; y++) {
+             for (x = 0; x < DUNGEON_MAP_MAX_X; x++) {
+                 dungeon->dungeonMap.tileScheduledForCopy[y][x] = FALSE;
+diff --git a/src/dungeon_map_access.c b/src/dungeon_map_access.c
+index 4a9a72ad..81f95910 100644
+--- a/src/dungeon_map_access.c
++++ b/src/dungeon_map_access.c
+@@ -83,7 +83,7 @@ void LoadDungeonTilesetAssets(void)
+ 
+   sprintf(fileName,"b%02dfon",gUnknown_8108EC0[gDungeon->tileset]);
+   file = OpenFileAndGetFileDataPtr(fileName,&gDungeonFileArchive);
+-  DecompressATGlobalFile((u32 *)0x06008000,0,file);
++  DecompressATGlobalFile((u32 *)BG_CHAR_ADDR(2),0,file);
+   CloseFile(file);
+ 
+   sprintf(fileName,"b%02dpal",gDungeon->tileset);
+diff --git a/src/flash.c b/src/flash.c
+index 172f2be9..6718b7ea 100644
+--- a/src/flash.c
++++ b/src/flash.c
+@@ -11,6 +11,7 @@ static u8 TryProgramSector(s32, u8 *);
+ 
+ void InitFlash(void)
+ {
++    gFlashEnabled = FALSE;
+     if (!IdentifyFlash() && !SetFlashTimerIntr(2, GetInterruptHandler(3)))
+         gFlashEnabled = TRUE;
+ }
+@@ -23,6 +24,8 @@ void ClearFlashData(void)
+ 
+ s32 ReadFlashData(s32 sector, u8 *dest, s32 size)
+ {
++    if (!pmd_flash_range_valid(sector, size) || (size && dest == NULL))
++        return 3;
+     if (gFlashEnabled)
+     {
+         u8 *_dest = dest;
+@@ -47,6 +50,9 @@ s32 WriteFlashData(s32 sector, u8 *src, s32 size)
+ {
+     u8 buffer[0x1000];
+ 
++    if (!pmd_flash_range_valid(sector, size) || (size && src == NULL))
++        return 3;
++
+     if (gFlashEnabled)
+     {
+         u8 flag = TRUE;
+diff --git a/src/m4a.c b/src/m4a.c
+index 2bcf6f8a..73be5afa 100644
+--- a/src/m4a.c
++++ b/src/m4a.c
+@@ -1,10 +1,15 @@
+ #include "global.h"
+ #include "m4a.h"
+ #include "gba/m4a_internal.h"
++#include "platform_psg.h"
+ 
+ extern const u8 gCgb3Vol[];
+ 
+-IWRAM_DATA ALIGNED(4) char SoundMainRAM_Buffer[0x400] = {0};
++/* Native linker constants: original ld_script_modern.ld sets these to 8/0. */
++#undef NUM_MUSIC_PLAYERS
++#undef MAX_LINES
++#define NUM_MUSIC_PLAYERS 8u
++#define MAX_LINES 0u
+ 
+ EWRAM_DATA struct MusicPlayerInfo gMPlayInfo_SE4 = {0};
+ EWRAM_DATA struct MusicPlayerInfo gMPlayInfo_SE5 = {0};
+@@ -71,7 +76,7 @@ void m4aSoundInit(void)
+ {
+     s32 i;
+ 
+-    CpuCopy32((void *)((s32)SoundMainRAM & ~1), SoundMainRAM_Buffer, sizeof(SoundMainRAM_Buffer));
++    /* SoundMain jumps directly to native executable mixer code. */
+ 
+     SoundInit(&gSoundInfo);
+     MPlayExtender(gCgbChans);
+@@ -243,20 +248,20 @@ void MPlayExtender(struct CgbChannel *cgbChans)
+     struct SoundInfo *soundInfo;
+     u32 ident;
+ 
+-    REG_SOUNDCNT_X = SOUND_MASTER_ENABLE
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_X - REG_BASE), SOUND_MASTER_ENABLE
+                    | SOUND_4_ON
+                    | SOUND_3_ON
+                    | SOUND_2_ON
+-                   | SOUND_1_ON;
+-    REG_SOUNDCNT_L = 0; // set master volume to zero
+-    REG_NR12 = 0x8;
+-    REG_NR22 = 0x8;
+-    REG_NR42 = 0x8;
+-    REG_NR14 = 0x80;
+-    REG_NR24 = 0x80;
+-    REG_NR44 = 0x80;
+-    REG_NR30 = 0;
+-    REG_NR50 = 0x77;
++                   | SOUND_1_ON);
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_L - REG_BASE), 0); // set master volume to zero
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR12 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR22 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR42 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR14 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR24 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR44 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR30 - REG_BASE), 0);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR50 - REG_BASE), 0x77);
+ 
+     soundInfo = SOUND_INFO_PTR;
+ 
+@@ -311,7 +316,7 @@ void MPlayExtender(struct CgbChannel *cgbChans)
+ 
+ void MusicPlayerJumpTableCopy(void)
+ {
+-    asm("swi 0x2A");
++    MPlayJumpTableCopy(gMPlayJumpTable);
+ }
+ 
+ void ClearChain(void *x)
+@@ -346,14 +351,14 @@ void SoundInit(struct SoundInfo *soundInfo)
+ 
+     REG_DMA1CNT_H = DMA_32BIT;
+     REG_DMA2CNT_H = DMA_32BIT;
+-    REG_SOUNDCNT_X = SOUND_MASTER_ENABLE
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_X - REG_BASE), SOUND_MASTER_ENABLE
+                    | SOUND_4_ON
+                    | SOUND_3_ON
+                    | SOUND_2_ON
+-                   | SOUND_1_ON;
+-    REG_SOUNDCNT_H = SOUND_B_FIFO_RESET | SOUND_B_TIMER_0 | SOUND_B_LEFT_OUTPUT
++                   | SOUND_1_ON);
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_H - REG_BASE), SOUND_B_FIFO_RESET | SOUND_B_TIMER_0 | SOUND_B_LEFT_OUTPUT
+                    | SOUND_A_FIFO_RESET | SOUND_A_TIMER_0 | SOUND_A_RIGHT_OUTPUT
+-                   | SOUND_ALL_MIX_FULL;
++                   | SOUND_ALL_MIX_FULL);
+     REG_SOUNDBIAS_H = (REG_SOUNDBIAS_H & 0x3F) | 0x40;
+ 
+     REG_DMA1SAD = (s32)soundInfo->pcmBuffer;
+@@ -404,11 +409,7 @@ void SampleFreqSet(u32 freq)
+ 
+     m4aSoundVSyncOn();
+ 
+-    while (*(vu8 *)REG_ADDR_VCOUNT == 159)
+-        ;
+-
+-    while (*(vu8 *)REG_ADDR_VCOUNT != 159)
+-        ;
++    /* Native audio consumes the PCM ring at frame boundaries, without LCD polling. */
+ 
+     REG_TM0CNT_H = TIMER_ENABLE | TIMER_1CLK;
+ }
+@@ -844,19 +845,19 @@ void CgbOscOff(u8 chanNum)
+     switch (chanNum)
+     {
+     case 1:
+-        REG_NR12 = 8;
+-        REG_NR14 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR12 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR14 - REG_BASE), 0x80);
+         break;
+     case 2:
+-        REG_NR22 = 8;
+-        REG_NR24 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR22 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR24 - REG_BASE), 0x80);
+         break;
+     case 3:
+-        REG_NR30 = 0;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR30 - REG_BASE), 0);
+         break;
+     default:
+-        REG_NR42 = 8;
+-        REG_NR44 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR42 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR44 - REG_BASE), 0x80);
+     }
+ }
+ 
+@@ -978,31 +979,31 @@ void CgbSound(void)
+                 switch (ch)
+                 {
+                 case 1:
+-                    *nrx0ptr = channels->sweep;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), channels->sweep);
+                     // fallthrough
+                 case 2:
+-                    *nrx1ptr = ((u32)channels->wavePointer << 6) + channels->length;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), ((u32)channels->wavePointer << 6) + channels->length);
+                     goto init_env_step_time_dir;
+                 case 3:
+                     if (channels->wavePointer != channels->currentPointer)
+                     {
+-                        *nrx0ptr = 0x40;
+-                        REG_WAVE_RAM0 = channels->wavePointer[0];
+-                        REG_WAVE_RAM1 = channels->wavePointer[1];
+-                        REG_WAVE_RAM2 = channels->wavePointer[2];
+-                        REG_WAVE_RAM3 = channels->wavePointer[3];
++                        pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0x40);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM0 - REG_BASE), channels->wavePointer[0]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM1 - REG_BASE), channels->wavePointer[1]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM2 - REG_BASE), channels->wavePointer[2]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM3 - REG_BASE), channels->wavePointer[3]);
+                         channels->currentPointer = channels->wavePointer;
+                     }
+-                    *nrx0ptr = 0;
+-                    *nrx1ptr = channels->length;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), channels->length);
+                     if (channels->length)
+                         channels->n4 = 0xC0;
+                     else
+                         channels->n4 = 0x80;
+                     break;
+                 default:
+-                    *nrx1ptr = channels->length;
+-                    *nrx3ptr = (u32)channels->wavePointer << 3;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), channels->length);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), (u32)channels->wavePointer << 3);
+                 init_env_step_time_dir:
+                     envelopeStepTimeAndDir = channels->attack + CGB_NRx2_ENV_DIR_INC;
+                     if (channels->length)
+@@ -1178,34 +1179,34 @@ void CgbSound(void)
+             }
+ 
+             if (ch != 4)
+-                *nrx3ptr = channels->frequency;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), channels->frequency);
+             else
+-                *nrx3ptr = (*nrx3ptr & 0x08) | channels->frequency;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), (*nrx3ptr & 0x08) | channels->frequency);
+             channels->n4 = (channels->n4 & 0xC0) + (*((u8 *)(&channels->frequency) + 1));
+-            *nrx4ptr = (s8)(channels->n4 & mask);
++            pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), (s8)(channels->n4 & mask));
+         }
+ 
+         /* 4. apply envelope & volume to HW registers */
+         if (channels->modify & CGB_CHANNEL_MO_VOL)
+         {
+-            REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
++            pmd_psg_write8((unsigned)((uintptr_t)&REG_NR51 - REG_BASE), (REG_NR51 & ~channels->panMask) | channels->pan);
+             if (ch == 3)
+             {
+-                *nrx2ptr = gCgb3Vol[channels->envelopeVolume];
++                pmd_psg_write8((unsigned)((uintptr_t)nrx2ptr - REG_BASE), gCgb3Vol[channels->envelopeVolume]);
+                 if (channels->n4 & 0x80)
+                 {
+-                    *nrx0ptr = 0x80;
+-                    *nrx4ptr = channels->n4;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0x80);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4);
+                     channels->n4 &= 0x7f;
+                 }
+             }
+             else
+             {
+                 u32 envMask = 0xF;
+-                *nrx2ptr = (envelopeStepTimeAndDir & envMask) + (channels->envelopeVolume << 4);
+-                *nrx4ptr = channels->n4 | 0x80;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx2ptr - REG_BASE), (envelopeStepTimeAndDir & envMask) + (channels->envelopeVolume << 4));
++                pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4 | 0x80);
+                 if (ch == 1 && !(*nrx0ptr & 0x08))
+-                    *nrx4ptr = channels->n4 | 0x80;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4 | 0x80);
+             }
+         }
+ 
+@@ -1520,19 +1521,15 @@ void ply_xxx(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
+ {                                    \
+     u32 byte = track->cmdPtr[(n)]; \
+     byte <<= n * 8;                  \
+-    (var) &= ~(0xFF << (n * 8));     \
++    (var) &= ~(0xFFu << (n * 8));     \
+     (var) |= byte;                   \
+ }
+ 
+ void ply_xwave(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
+ {
+-    u32 wav;
+-
+-#ifdef UBFIX
+-    wav = 0;
+-#endif
++    u32 wav = 0;
+ 
+-    READ_XCMD_BYTE(wav, 0) // UB: uninitialized variable
++    READ_XCMD_BYTE(wav, 0)
+     READ_XCMD_BYTE(wav, 1)
+     READ_XCMD_BYTE(wav, 2)
+     READ_XCMD_BYTE(wav, 3)
+diff --git a/src/m4a_1.s b/src/m4a_1.s
+index 8a40a25c..146ed55c 100644
+--- a/src/m4a_1.s
++++ b/src/m4a_1.s
+@@ -2,6 +2,18 @@
+ 	#include "asm/constants/gba_constants.inc"
+ 	#include "asm/constants/m4a_constants.inc"
+ 
++	@ Native Vita addresses replace the GBA I/O literals.
++	.set SOUND_INFO_PTR, pmd_sound_info
++	.set REG_VCOUNT, pmd_io_words + 6
++	.set REG_SOUND1CNT_L, pmd_io_words + 0x60
++	.set REG_DMA1, pmd_io_words + 0xBC
++
++	.bss
++	.align 2
++pmd_pcm_address_high:
++	.space 4
++	.text
++
+ 	.syntax unified
+ 
+ 	.text
+@@ -79,7 +91,7 @@ SoundMain_5:
+ 	.align 2, 0
+ lt_SOUND_INFO_PTR:        .word SOUND_INFO_PTR
+ lt_ID_NUMBER:             .word ID_NUMBER
+-lt_SoundMainRAM_Buffer:   .word SoundMainRAM_Buffer + 1
++lt_SoundMainRAM_Buffer:   .word SoundMainRAM
+ lt_REG_VCOUNT:            .word REG_VCOUNT
+ lt_o_SoundInfo_pcmBuffer: .word o_SoundInfo_pcmBuffer
+ lt_PCM_DMA_BUF_SIZE:      .word PCM_DMA_BUF_SIZE
+@@ -291,6 +303,12 @@ _080AE484:
+ 	bx r0
+ 	.arm
+ _080AE490:
++	@ Original mixer packs a two-bit sample counter into pointer bits30/31.
++	@ Vita pointers use those bits: preserve them separately, restore at access.
++	ldr r0, =pmd_pcm_address_high
++	and r1, r5, 0xC0000000
++	str r1, [r0]
++	bic r5, r5, 0xC0000000
+ 	str r8, [sp]
+ 	ldrb r10, [r4, o_SoundChannel_envelopeVolumeRight]
+ 	ldrb r11, [r4, o_SoundChannel_envelopeVolumeLeft]
+@@ -312,8 +330,11 @@ _080AE4B0:
+ 	ands r2, r2, 0x3
+ 	moveq r2, 0x4
+ _080AE4DC:
+-	ldr r6, [r5]
+-	ldr r7, [r5, PCM_DMA_BUF_SIZE]
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	ldr r6, [r9]
++	ldr r7, [r9, PCM_DMA_BUF_SIZE]
+ _080AE4E4:
+ 	ldrsb r0, [r3], 0x1
+ 	mul r1, r10, r0
+@@ -324,15 +345,22 @@ _080AE4E4:
+ 	add r7, r1, r7, ror 8
+ 	adds r5, r5, 0x40000000
+ 	bcc _080AE4E4
+-	str r7, [r5, PCM_DMA_BUF_SIZE]
+-	str r6, [r5], 0x4
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	str r7, [r9, PCM_DMA_BUF_SIZE]
++	str r6, [r9]
++	add r5, r5, 0x4
+ 	subs r8, r8, 0x4
+ 	bgt _080AE4DC
+ 	adds r8, r8, lr
+ 	beq _080AE664
+ _080AE520:
+-	ldr r6, [r5]
+-	ldr r7, [r5, PCM_DMA_BUF_SIZE]
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	ldr r6, [r9]
++	ldr r7, [r9, PCM_DMA_BUF_SIZE]
+ _080AE528:
+ 	ldrsb r0, [r3], 0x1
+ 	mul r1, r10, r0
+@@ -346,8 +374,12 @@ _080AE528:
+ _080AE54C:
+ 	adds r5, r5, 0x40000000
+ 	bcc _080AE528
+-	str r7, [r5, PCM_DMA_BUF_SIZE]
+-	str r6, [r5], 0x4
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	str r7, [r9, PCM_DMA_BUF_SIZE]
++	str r6, [r9]
++	add r5, r5, 0x4
+ 	subs r8, r8, 0x4
+ 	bgt _080AE4B0
+ 	b _080AE664
+@@ -379,8 +411,12 @@ _080AE5A8:
+ 	mov r0, r0, lsl 3
+ 	mov r6, r6, ror r0
+ 	mov r7, r7, ror r0
+-	str r7, [r5, PCM_DMA_BUF_SIZE]
+-	str r6, [r5], 0x4
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	str r7, [r9, PCM_DMA_BUF_SIZE]
++	str r6, [r9]
++	add r5, r5, 0x4
+ 	b _080AE66C
+ _080AE5D0:
+ 	stmdb sp!, {r4,r12}
+@@ -391,8 +427,11 @@ _080AE5D0:
+ 	ldrsb r1, [r3, 0x1]!
+ 	sub r1, r1, r0
+ _080AE5EC:
+-	ldr r6, [r5]
+-	ldr r7, [r5, PCM_DMA_BUF_SIZE]
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	ldr r6, [r9]
++	ldr r7, [r9, PCM_DMA_BUF_SIZE]
+ _080AE5F4:
+ 	mul r9, lr, r1
+ 	add r9, r0, r9, asr 23
+@@ -417,8 +456,12 @@ _080AE634:
+ _080AE640:
+ 	adds r5, r5, 0x40000000
+ 	bcc _080AE5F4
+-	str r7, [r5, PCM_DMA_BUF_SIZE]
+-	str r6, [r5], 0x4
++	ldr r9, =pmd_pcm_address_high
++	ldr r9, [r9]
++	orr r9, r9, r5
++	str r7, [r9, PCM_DMA_BUF_SIZE]
++	str r6, [r9]
++	add r5, r5, 0x4
+ 	subs r8, r8, 0x4
+ 	bgt _080AE5EC
+ 	sub r3, r3, 0x1
+@@ -802,16 +845,16 @@ ply_tune:
+ 
+ 	thumb_func_start ply_port
+ ply_port:
+-	mov r12, lr
++	push {r4, lr} @ preserve return and eight-byte stack alignment for native C
+ 	ldr r2, [r1, o_MusicPlayerTrack_cmdPtr]
+ 	ldrb r3, [r2]
+ 	adds r2, 1
+-	ldr r0, =REG_SOUND1CNT_L @ sound register base address
++	movs r0, 0x60 @ native service accepts an IO offset
+ 	adds r0, r3
+ 	bl _080AE73A
+-	strb r3, [r0]
+-	bx r12
+-	.pool
++	adds r1, r3, 0
++	bl pmd_psg_write8
++	pop {r4, pc}
+ 	thumb_func_end ply_port
+ 
+ 	thumb_func_start m4aSoundVSync
+diff --git a/src/main.c b/src/main.c
+index b4eaf72e..262d81c3 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -18,18 +18,6 @@
+ #include "sprite.h"
+ #include "text_1.h"
+ 
+-extern u8 ewram_start[];
+-extern u8 ewram_end[]; // Force a second storage in the asm
+-extern u8 ewram_init_start[];
+-extern u8 ewram_init_end[];
+-extern u8 iwram_start[];
+-extern u8 iwram_end[];
+-extern u8 iwram_init_start[];
+-extern u8 iwram_init_end[];
+-
+-extern const u8 EWRAM_INIT_ROM_START[];
+-extern const u8 IWRAM_INIT_ROM_START[];
+-
+ UNUSED static const char sStringRomUserData[] = "PKD ROM USER DATA 000000";
+ 
+ extern void Hang(void);
+@@ -37,7 +25,8 @@ extern void Hang(void);
+ // arm9.bin::02000B88
+ void AgbMain(void)
+ {
+-    ALIGNED(4) u8 value[4];
++    /* Native CRT has already initialized game .data and .bss. */
++    pmd_memory_reset();
+ 
+     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
+ 
+@@ -46,22 +35,6 @@ void AgbMain(void)
+     DmaStop(2);
+     DmaStop(3);
+ 
+-    if (ewram_init_end - ewram_init_start > 0)
+-        CpuCopy32(EWRAM_INIT_ROM_START, ewram_init_start, ewram_init_end - ewram_init_start);
+-
+-    if (ewram_end - ewram_start > 0) {
+-        memset(value, 0, sizeof(value));
+-        CpuSet(&value, ewram_start, CPU_SET_SRC_FIXED | CPU_SET_32BIT | (((ewram_end - ewram_start) / 4) & 0x1FFFFF));
+-    }
+-
+-    if (iwram_init_end - iwram_init_start > 0)
+-        CpuCopy32(IWRAM_INIT_ROM_START, iwram_init_start, iwram_init_end - iwram_init_start);
+-
+-    if (iwram_end - iwram_start > 0) {
+-        memset(value, 0, sizeof(value));
+-        CpuSet(&value, iwram_start, CPU_SET_SRC_FIXED | CPU_SET_32BIT | (((iwram_end - iwram_start) / 4) & 0x1FFFFF));
+-    }
+-
+     REG_WIN0H = 0;
+     REG_WIN1H = 0;
+     REG_WIN0V = 0;
+diff --git a/src/main_loops.c b/src/main_loops.c
+index 372641a7..88b0a1dd 100644
+--- a/src/main_loops.c
++++ b/src/main_loops.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++extern int pmd_fast_boot_enabled(void);
+ #include "globaldata.h"
+ #include "constants/bg_music.h"
+ #include "constants/friend_area.h"
+@@ -149,13 +150,18 @@ void GameLoop_Async(void)
+     if (ReadSaveFromPak(&tmp))
+         ThoroughlyResetScriptVars();
+ 
+-    xxx_script_related_8001334_Async(STARTMODE_14);
+-    xxx_script_related_8001334_Async(STARTMODE_15);
+-    ClearScriptVarArray(NULL, EVENT_LOCAL);
+-    xxx_script_related_8001334_Async(STARTMODE_16);
+-
+-    if (GetScriptVarValue(NULL, EVENT_LOCAL) == 0)
+-        xxx_script_related_8001334_Async(STARTMODE_17);
++    /* Only skip boot presentations. Save loading and menu initialization above
++     * and below remain original, including the new-game story/quiz path. */
++    if (!pmd_fast_boot_enabled()) {
++        xxx_script_related_8001334_Async(STARTMODE_14);
++        xxx_script_related_8001334_Async(STARTMODE_15);
++        ClearScriptVarArray(NULL, EVENT_LOCAL);
++        xxx_script_related_8001334_Async(STARTMODE_16);
++        if (GetScriptVarValue(NULL, EVENT_LOCAL) == 0)
++            xxx_script_related_8001334_Async(STARTMODE_17);
++    } else {
++        ClearScriptVarArray(NULL, EVENT_LOCAL);
++    }
+ 
+     while (TRUE) {
+         sMainLoopsUnk = MAINLOOPS_UNK_0;
+diff --git a/src/music.c b/src/music.c
+index a5a58dec..eacea389 100644
+--- a/src/music.c
++++ b/src/music.c
+@@ -3,6 +3,7 @@
+ #include "m4a.h"
+ #include "reg_control.h"
+ #include "music.h"
++#include "platform_audio_game.h"
+ 
+ static EWRAM_DATA u16 sBGMusicPlayerstate = {0};
+ static EWRAM_DATA u16 sCurrentBGSong = {0};
+@@ -517,6 +518,7 @@ void UpdateSound(void)
+     s32 musicPlayerIndex;
+ 
+     m4aSoundMain();
++    pmd_audio_game_update();
+ 
+     if (sFanfareMusicPlayerState != 0) {
+         switch (sFanfareMusicPlayerState) {
+diff --git a/src/reg_control.c b/src/reg_control.c
+index e6872a26..692cdcdf 100644
+--- a/src/reg_control.c
++++ b/src/reg_control.c
+@@ -9,7 +9,7 @@
+ #include "reg_control.h"
+ #include "sprite.h"
+ 
+-extern void (gUnknown_202DBB8)(void);
++extern void sub_8000228(void);
+ 
+ EWRAM_DATA u8 IntrMain_Buffer[0x120] = {0};
+ EWRAM_DATA IntrCallback gIntrTable[6] = {0};
+@@ -39,7 +39,7 @@ static void Timer3Intr(void);
+ 
+ static const IntrCallback sInitialIntrTable[6] =
+ {
+-    &gUnknown_202DBB8,
++    &sub_8000228,
+     VBlankIntr,
+     VCountIntr,
+     UnusedIntrFunc,
+@@ -57,7 +57,7 @@ void sub_800B540(void)
+     nullsub_17();
+     InitMusic(); // initialize music and stop DMAs
+ 
+-    while (REG_VCOUNT < 160){}
++    /* Native scheduler advances the LCD only at frame boundaries. */
+ 
+     REG_IE ^= INTR_FLAG_TIMER3 | INTR_FLAG_VBLANK | INTR_FLAG_VCOUNT; // 0x45
+ 
+@@ -76,7 +76,7 @@ void sub_800B540(void)
+     gInterruptsEnabled = 1;
+     EnableInterrupts();
+ 
+-    while(REG_VCOUNT < 160){}
++    /* No hardware scanline polling on the native backend. */
+ }
+ 
+ bool8 EnableInterrupts(void)
+@@ -127,8 +127,8 @@ static void AckInterrupt(u16 flag)
+ void InitIntrTable(const IntrCallback *interrupt_table)
+ {
+     CpuCopy32(interrupt_table, gIntrTable, sizeof(gIntrTable)); // 0x18 = 0x6 * 4 (0x4F00 is 32 bits)
+-    CpuCopy32(IntrMain, IntrMain_Buffer, sizeof(IntrMain_Buffer)); // 0x120 = 0x48 * 4 (0x4F00 is 32 bits)
+-    INTR_VECTOR = IntrMain_Buffer;
++    /* Native C dispatch replaces copying executable GBA IRQ code into RAM. */
++    INTR_VECTOR = NULL;
+ }
+ 
+ IntrCallback *GetInterruptHandler(u32 index)
+@@ -294,7 +294,7 @@ void sub_800BA5C(void)
+     gUnknown_203B09C = 0;
+     nullsub_25();
+ 
+-    while (REG_VCOUNT >= 160){}
++    /* VBlankIntrWait advances the complete native frame. */
+ 
+     gUnknown_203B099 = TRUE;
+     VBlankIntrWait();
+@@ -336,43 +336,7 @@ UNUSED static void nullsub_178(void)
+ {
+ }
+ 
+-UNUSED static void sub_800BB44(void)
+-{
+-    u16 ie_store;
+-    u16 dispcnt_store;
+-    bool8 interrupt_flag;
+-
+-    while (REG_KEYINPUT != KEYS_MASK){}
+-
+-    interrupt_flag = DisableInterrupts();
+-
+-    while (REG_VCOUNT < 160){}
+-
+-    dispcnt_store = REG_DISPCNT;
+-    REG_DISPCNT = DISPCNT_FORCED_BLANK;
+-
+-    *(vu16 *)BG_PLTT = RGB_WHITE;
+-
+-    ie_store = REG_IE;
+-    REG_IE = INTR_FLAG_KEYPAD | INTR_FLAG_GAMEPAK;
+-
+-    REG_KEYCNT = KEY_AND_INTR | R_BUTTON | L_BUTTON | SELECT_BUTTON; // 0x8304
+-    REG_IME = 1;
+ 
+-    SoundBiasReset();
+-    asm("swi 0x3");
+-    SoundBiasSet();
+-
+-    REG_IME = 0;
+-    REG_IE = ie_store;
+-    REG_KEYCNT = 0;
+-    REG_DISPCNT = dispcnt_store;
+-    *(vu16 *)BG_PLTT = RGB_BLACK;
+-
+-    if (interrupt_flag)
+-        EnableInterrupts();
+-    while (REG_KEYINPUT != KEYS_MASK){}
+-}
+ 
+ void nullsub_17(void)
+ {
+@@ -413,3 +377,10 @@ static void UpdateBGControlRegisters(void)
+     REG_BG3CNT = BGCNT_Priority[BG3] | BGCNT_SCREENBASE(15) | BGCNT_CHARBASE(2) | BGCNT_WRAP;
+     REG_BLDCNT = gBldCnt;
+ }
++
++/* Called only by the native frame scheduler, after IE/IME gating. */
++void pmd_native_interrupt(unsigned index)
++{
++    if (index < 6 && gIntrTable[index] != NULL)
++        gIntrTable[index]();
++}
+diff --git a/src/text_2.c b/src/text_2.c
+index 463ed0b6..f67c3b21 100644
+--- a/src/text_2.c
++++ b/src/text_2.c
+@@ -1184,7 +1184,7 @@ void DrawWindowBg(const WindowTemplate *window, DungeonPos *pos)
+ 
+         // BUG: The background array is 161 entries long, but this function will potentially write
+         // up to index 160 + 12 = 172, overflowing the array.
+-#ifdef UBFIX
++#if 1 /* Native port: keep animated window headers inside gWindowBg. */
+         if (yStart > Y_MAX - 12) {
+             yStart = Y_MAX - 12;
+         }

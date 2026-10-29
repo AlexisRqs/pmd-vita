@@ -1,0 +1,46 @@
+--- a/src/m4a.c
++++ b/src/m4a.c
+@@ -4,7 +4,11 @@
+ 
+ extern const u8 gCgb3Vol[];
+ 
+-IWRAM_DATA ALIGNED(4) char SoundMainRAM_Buffer[0x400] = {0};
++/* Native linker constants: original ld_script_modern.ld sets these to 8/0. */
++#undef NUM_MUSIC_PLAYERS
++#undef MAX_LINES
++#define NUM_MUSIC_PLAYERS 8u
++#define MAX_LINES 0u
+ 
+ EWRAM_DATA struct MusicPlayerInfo gMPlayInfo_SE4 = {0};
+ EWRAM_DATA struct MusicPlayerInfo gMPlayInfo_SE5 = {0};
+@@ -71,7 +75,7 @@
+ {
+     s32 i;
+ 
+-    CpuCopy32((void *)((s32)SoundMainRAM & ~1), SoundMainRAM_Buffer, sizeof(SoundMainRAM_Buffer));
++    /* SoundMain jumps directly to native executable mixer code. */
+ 
+     SoundInit(&gSoundInfo);
+     MPlayExtender(gCgbChans);
+@@ -311,7 +315,7 @@
+ 
+ void MusicPlayerJumpTableCopy(void)
+ {
+-    asm("swi 0x2A");
++    MPlayJumpTableCopy(gMPlayJumpTable);
+ }
+ 
+ void ClearChain(void *x)
+@@ -404,11 +408,7 @@
+ 
+     m4aSoundVSyncOn();
+ 
+-    while (*(vu8 *)REG_ADDR_VCOUNT == 159)
+-        ;
+-
+-    while (*(vu8 *)REG_ADDR_VCOUNT != 159)
+-        ;
++    /* Native audio consumes the PCM ring at frame boundaries, without LCD polling. */
+ 
+     REG_TM0CNT_H = TIMER_ENABLE | TIMER_1CLK;
+ }

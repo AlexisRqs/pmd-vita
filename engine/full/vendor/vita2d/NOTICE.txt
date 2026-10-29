@@ -1,0 +1,5 @@
+libvita2d — MIT license
+https://github.com/xerpi/libvita2d
+Pinned commit a8f15ab09d5233f0a4e4ad0e8f6ade0da888cbed
+Used for GPU texture scaling and synchronized display buffers.
+The LGPL relink archive includes the exact static library used by this build.

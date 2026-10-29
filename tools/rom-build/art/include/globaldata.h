@@ -1,0 +1,1 @@
+/* ROM section metadata intentionally omitted for native compilation. */

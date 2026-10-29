@@ -1,0 +1,51 @@
+--- a/src/reg_control.c
++++ b/src/reg_control.c
+@@ -57,7 +57,7 @@
+     nullsub_17();
+     InitMusic(); // initialize music and stop DMAs
+ 
+-    while (REG_VCOUNT < 160){}
++    /* Native scheduler advances the LCD only at frame boundaries. */
+ 
+     REG_IE ^= INTR_FLAG_TIMER3 | INTR_FLAG_VBLANK | INTR_FLAG_VCOUNT; // 0x45
+ 
+@@ -76,7 +76,7 @@
+     gInterruptsEnabled = 1;
+     EnableInterrupts();
+ 
+-    while(REG_VCOUNT < 160){}
++    /* No hardware scanline polling on the native backend. */
+ }
+ 
+ bool8 EnableInterrupts(void)
+@@ -127,8 +127,8 @@
+ void InitIntrTable(const IntrCallback *interrupt_table)
+ {
+     CpuCopy32(interrupt_table, gIntrTable, sizeof(gIntrTable)); // 0x18 = 0x6 * 4 (0x4F00 is 32 bits)
+-    CpuCopy32(IntrMain, IntrMain_Buffer, sizeof(IntrMain_Buffer)); // 0x120 = 0x48 * 4 (0x4F00 is 32 bits)
+-    INTR_VECTOR = IntrMain_Buffer;
++    /* Native C dispatch replaces copying executable GBA IRQ code into RAM. */
++    INTR_VECTOR = NULL;
+ }
+ 
+ IntrCallback *GetInterruptHandler(u32 index)
+@@ -294,7 +294,7 @@
+     gUnknown_203B09C = 0;
+     nullsub_25();
+ 
+-    while (REG_VCOUNT >= 160){}
++    /* VBlankIntrWait advances the complete native frame. */
+ 
+     gUnknown_203B099 = TRUE;
+     VBlankIntrWait();
+@@ -413,3 +413,10 @@
+     REG_BG3CNT = BGCNT_Priority[BG3] | BGCNT_SCREENBASE(15) | BGCNT_CHARBASE(2) | BGCNT_WRAP;
+     REG_BLDCNT = gBldCnt;
+ }
++
++/* Called only by the native frame scheduler, after IE/IME gating. */
++void pmd_native_interrupt(unsigned index)
++{
++    if (index < 6 && gIntrTable[index] != NULL)
++        gIntrTable[index]();
++}

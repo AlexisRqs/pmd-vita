@@ -1,0 +1,379 @@
+
+#define NPC_PARTNER 1
+#define NPC_JUMPLUFF 2
+#define NPC_SHIFTRY 3
+#define NPC_ZAPDOS 6
+
+
+
+
+static const struct ScriptCommand s_gs187_g0_s0_station_sref_script[] = { /* 0x8237b78 */
+    DEBUGINFO_O(10),
+    SELECT_MAP(187),
+    BGM_STOP,
+    JUMP_SCRIPT(COMMON_ENTER),
+};
+
+static const ScriptRef s_gs187_g0_s0_station_sref = { ENTER_CONTROL, SCRIPT_TYPE_01, NULL, s_gs187_g0_s0_station_sref_script }; /* 0x8237be4 */
+
+static const struct ScriptCommand s_gs187_g1_s0_station_sref_script[] = { /* 0x8237bf0 */
+    DEBUGINFO_O(19),
+    SELECT_MAP(187),
+    SELECT_ENTITIES(-1, 0),
+    BGM_SWITCH(MUS_IN_THE_DEPTHS_OF_THE_PIT),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    BGM_FADEOUT(60),
+    { 0x23, 0x01,  0x003c,  0x00000000,  0x00000000, NULL },
+    WAIT(60),
+    RET,
+};
+
+static const ScriptRef s_gs187_g1_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs187_g1_s0_station_sref_script }; /* 0x8237c90 */
+
+static const struct ScriptCommand s_gs187_g1_s0_eff0_script[] = { /* 0x8237c9c */
+    DEBUGINFO_O(34),
+    CAMERA_END_PAN,
+    WAIT(1),
+    AWAIT_CUE(4),
+    CAMERA_INIT_PAN,
+    { 0x89, 0x44,  0x01cc,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(4),
+    END_DELETE,
+};
+
+static const struct ScriptCommand s_gs187_g1_s0_lives0_dlg0[] = { /* 0x8237d1c */
+    DEBUGINFO_O(45),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    ALERT_CUE(6),
+    ALERT_CUE(12),
+    { 0x89, 0x50,  0x0100,  0x00000004,  0x00000000, NULL },
+    WAIT(32),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, NPC_PARTNER, 0),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:0e9a57c13cd2c77e616da5c3b6335b228ed6581bee167ff1dd55477777587dbd@@)),
+    VARIANT_DEFAULT((@@STRING:c85d3b62d66290fa653309106a4554cac0f120c2f640e257b000f395a6c9f2d2@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(7),
+    WAIT(60),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(NPC_PARTNER, 12),
+    MSG_NPC(NPC_PARTNER, (@@STRING:e529041df34956d79b890bf102317c24671ac3c3c2272c05d260c442eb1bceb1@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    ALERT_CUE(12),
+    { 0x89, 0x20,  0x0100,  0x00000004,  0x00000000, NULL },
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTHEAST),
+    PORTRAIT_REP(NPC_PARTNER, 0),
+    MSG_NPC(NPC_PARTNER, (@@STRING:635ff040ada7aebdc42f1858ea8d4d5444efc8c0ca81613d54d27802ed495b7c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT(PLACEMENT_MIDLEFT_TOP, NPC_JUMPLUFF, 65),
+    MSG_NPC(NPC_JUMPLUFF, (@@STRING:6f15731615b403a592fc35040e03b457e63b3ad8541f8d4bf184993c9eb0fd07@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT_REP(NPC_PARTNER, 1),
+    MSG_NPC(NPC_PARTNER, (@@STRING:d2e13b0aa6b37d807d3646cc497d6a3840bc7f3fdcff70e7a74fc8456884aac0@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(NPC_JUMPLUFF, (@@STRING:cd2bde0068faef79f863a68e195dbb898b7f9af0083ffd97b7ba2ffbe85cc544@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT_REP(NPC_PARTNER, 0),
+    MSG_NPC(NPC_PARTNER, (@@STRING:da26397f74f8e47b01511d47d2721cc31e47e8375172ff2aecce93d522e07183@@)),
+    TEXTBOX_CLEAR,
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTH),
+    WAIT(5),
+    ALERT_CUE(6),
+    ALERT_CUE(12),
+    WAIT(40),
+    ROTATE_TO(2, DIR_TRANS_SPINRIGHT1, DIRECTION_EAST),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, NPC_PARTNER, 0),
+    MSG_NPC(NPC_PARTNER, (@@STRING:ea4a5538c5e5d6d21cf693229eaba7567318889ebad66db07b0b7243806c0332@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(6),
+    ALERT_CUE(7),
+    ALERT_CUE(12),
+    ALERT_CUE(4),
+    { 0x89, 0x3c,  0x01cc,  0x00000004,  0x00000000, NULL },
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTHEAST),
+    WAIT(30),
+    PORTRAIT_REP(NPC_PARTNER, 12),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:543616e68ec8a2243fe4ca997f11f2e6e033b8fb9ef538ba85a71958e6175e6e@@)),
+    VARIANT_DEFAULT((@@STRING:5f4215848341577b745f3f0691669a6f043dc4fd065e2f38fd7e0e8abd454bad@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    PORTRAIT(PLACEMENT_MIDLEFT_TOP, NPC_SHIFTRY, 65),
+    MSG_NPC(NPC_SHIFTRY, (@@STRING:876b0fef7b3107da7ec73b7cd7a478923ed44255dece0ebac7106af6be707f63@@)),
+    MSG_NPC(NPC_SHIFTRY, (@@STRING:cf12f563a4a60ebf2626e9ed326df51c907ec7e5adfda0802dca0bf893af9abc@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(NPC_PARTNER, (@@STRING:2a43f2d46afdb7897dd2ceefb1e3a76e21588b5c41eb3dcb3abef1b183180f39@@)),
+    TEXTBOX_CLEAR,
+    BGM_STOP,
+    FANFARE_PLAY2(502),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 3, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 3, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 4, RGB_U32(0x00, 0x00, 0x00)),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:578c863d178ad8d56c9e766ef5891a7490ccdb264ac42cbd09f426225997e3d4@@)),
+    VARIANT_DEFAULT((@@STRING:bc04974794244c2258e0a75813feda3aa5b2e1f4beb6f5f5dc4149b4fb623443@@)),
+    TEXTBOX_CLEAR,
+    SELECT_ENTITIES(-1, 1),
+    FANFARE_PLAY2(474),
+    MSG_OVERHEARD((@@STRING:90fa718264896eee7637f208b182309e587b6559eedc59bbd07de7163ab1fcec@@)),
+    WAIT(90),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(NPC_SHIFTRY, (@@STRING:028874ee5c18cae2e94efb126424a909821c7fc12ffd11f4f8532fe3881d6fb1@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(502),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x00, 0x00, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(FALSE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x00, 0x00, 0x00)),
+    MSG_NPC(-1, (@@STRING:fc32e51b464d9ccf7e418952f1626dc55a3c670022c129957d6703a75f9729d9@@)),
+    MSG_NPC(-1, (@@STRING:32bdc873490fe5a083f2fedbf80a5c84f7343822d945e598b16f4f9429dee27c@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(502),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x00, 0x00, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(FALSE, PALUTIL_KIND_05, 2, RGB_U32(0x77, 0x77, 0x00)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 2, RGB_U32(0x00, 0x00, 0x00)),
+    MSG_NPC(-1, (@@STRING:cb13e5274aabe2ebc990a7fb811e92594a879b00f1650952ab461807e112b7c8@@)),
+    TEXTBOX_CLEAR,
+    FLASH_FROM(FALSE, PALUTIL_KIND_05, 32, RGB_U32(0x00, 0x00, 0x00)),
+    WAIT(32),
+    FANFARE_PLAY2(517),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 16, RGB_U32(0xFF, 0xFF, 0xFF)),
+    WAIT(32),
+    MSG_OVERHEARD((@@STRING:26c5855ccbd20b741d6c17eab4b53587ead5c17a5974e336c1aee6b17de4873b@@)),
+    WAIT(90),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(8),
+    FLASH_FROM(FALSE, PALUTIL_KIND_05, 16, RGB_U32(0xFF, 0xFF, 0xFF)),
+    WAIT(64),
+    ALERT_CUE(6),
+    ALERT_CUE(12),
+    WAIT(8),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    WAIT(30),
+    MSG_NPC(NPC_PARTNER, (@@STRING:e8b81f412b2da8f0e0327bceec91fb44a97cb508ebb57ba1c8b5daaa9427a8bd@@)),
+    TEXTBOX_CLEAR,
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTH),
+    ALERT_CUE(6),
+    ALERT_CUE(12),
+    WAIT(15),
+    BGM_SWITCH(MUS_RISING_FEAR),
+    MSG_NPC(-1, (@@STRING:d87facb0efb784852c87b5f4b6cd3c0f72cd6e22b6b23b9d2480235540ec5532@@)),
+    PORTRAIT(PLACEMENT_MIDLEFT_TOP, NPC_ZAPDOS, 0),
+    MSG_NPC(NPC_ZAPDOS, (@@STRING:49b812737fcbcb000829d02354e9b5da20dbe86e0438d1c8089453e26adf0943@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(11),
+    AWAIT_CUE(5),
+    WAIT(30),
+    PORTRAIT_REP(NPC_PARTNER, 12),
+    MSG_NPC(NPC_PARTNER, (@@STRING:f4007133dfc2b4b91786ae64179af482cf01eb28c9f2fe287771bae0782dca42@@)),
+    MSG_NPC(NPC_PARTNER, (@@STRING:3eaa4dcc3cbfc33ddb1fe339237f860de5bfd4b2b3d6000ed07b3ff2655e2d80@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs187_g1_s0_lives1_dlg0[] = { /* 0x82389a8 */
+    DEBUGINFO_O(205),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    { 0x89, 0x50,  0x0100,  0x00000004,  0x00000000, NULL },
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(JUMP_SURPRISE_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x89, 0x20,  0x0100,  0x00000004,  0x00000000, NULL },
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTH),
+    AWAIT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_WEST),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x89, 0x3c,  0x01cc,  0x00000004,  0x00000000, NULL },
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    FANFARE_PLAY2(466),
+    CALL_SCRIPT(NOTICE_FUNC),
+    AWAIT_CUE(6),
+    ROTATE_TO(8, DIR_TRANS_SPINRIGHT1, DIRECTION_NORTH),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs187_g1_s0_lives2_dlg0[] = { /* 0x8238b68 */
+    DEBUGINFO_O(236),
+    SELECT_ANIMATION(2),
+    { 0x53, 0x00,  0x0000,  0x0000001f,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    { 0x89, 0x58,  0x0100,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    { 0x89, 0x20,  0x0100,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTH),
+    AWAIT_CUE(12),
+    { 0x89, 0x3c,  0x01cc,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_WEST),
+    WAIT(15),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_EAST),
+    WAIT(15),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHWEST),
+    AWAIT_CUE(12),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTH),
+    AWAIT_CUE(12),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs187_g1_s0_lives3_dlg0[] = { /* 0x8238cb8 */
+    DEBUGINFO_O(260),
+    SELECT_ANIMATION(2),
+    { 0x53, 0x00,  0x0000,  0x0000001f,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    { 0x89, 0x58,  0x0100,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    { 0x89, 0x20,  0x0100,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTH),
+    AWAIT_CUE(12),
+    { 0x89, 0x3c,  0x01cc,  0x00000004,  0x00000000, NULL },
+    AWAIT_CUE(12),
+    WAIT(7),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_EAST),
+    WAIT(15),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_WEST),
+    WAIT(15),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    AWAIT_CUE(12),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTH),
+    AWAIT_CUE(12),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs187_g1_s0_lives4_dlg0[] = { /* 0x8238e18 */
+    DEBUGINFO_O(285),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0002,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(7),
+    { 0x89, 0x60,  0x0100,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(9),
+    AWAIT_CUE(7),
+    WAIT(20),
+    SELECT_ANIMATION(5),
+    { 0x89, 0x46,  0x0100,  0x00000004,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    AWAIT_CUE(7),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs187_g1_s0_lives5_dlg0[] = { /* 0x8238ee8 */
+    DEBUGINFO_O(301),
+    SELECT_ANIMATION(22),
+    { 0x2d, 0x07,  0x0003,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(8),
+    END_DELETE,
+};
+
+static const struct ScriptCommand s_gs187_g1_s1_lives0_dlg0[] = { /* 0x8238f38 */
+    DEBUGINFO_O(309),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0006,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(11),
+    { 0x70, 0x00,  0x0100,  0x00000008,  0x00000000, NULL },
+    WAIT(16),
+    MSG_OVERHEARD((@@STRING:69767e376b1796869c033305f6a09b31e18492110a114d3a0599ad81fe01185b@@)),
+    FANFARE_PLAY2(459),
+    { 0x70, 0x00,  0x0400,  0x00000080,  0x00000000, NULL },
+    WAIT(90),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(5),
+    END_DELETE,
+};
+
+static const struct GroundLivesData s_gs187_g1_s0_lives[] = { /* 0x8239018 */
+    /*  0 */ {   0,   4,   0,   0, {  20,  41, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   4,   0,   0, {  24,  41, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives1_dlg0,
+    } },
+    /*  2 */ {  10,   4,   0,   0, {  19,  47, 0, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives2_dlg0,
+    } },
+    /*  3 */ {  11,   4,   0,   0, {  25,  47, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives3_dlg0,
+    } },
+    /*  4 */ {  95,   0,   0,   0, {  22,  13, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives4_dlg0,
+    } },
+    /*  5 */ {  85,   2,   0,   0, {  22,  11, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s0_lives5_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs187_g1_s1_lives[] = { /* 0x82390a8 */
+    /*  0 */ {  96,   0,   0,   0, {  22,   9, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs187_g1_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundEffectData s_gs187_g1_s0_effs[] = { /* 0x82390c0 */
+    /*  0 */ {   0,   0,   1,   1, {  22,  29, CPOS_HALFTILE, CPOS_HALFTILE }, s_gs187_g1_s0_eff0_script },
+};
+
+static const ScriptRef * const (sStationScripts[]) = { /* 0x82390cc */
+    &s_gs187_g0_s0_station_sref,
+    &s_gs187_g1_s0_station_sref,
+};
+
+static const struct GroundScriptSector s_gs187_g0_sectors[] = { /* 0x82390d4 */
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 1,&sStationScripts[0], },
+};
+
+static const struct GroundScriptSector s_gs187_g1_sectors[] = { /* 0x82390fc */
+    { LPARRAY(s_gs187_g1_s0_lives), 0,NULL, LPARRAY(s_gs187_g1_s0_effs), 0,NULL, 1,&sStationScripts[1], },
+    { LPARRAY(s_gs187_g1_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptGroup s_gs187_groups[] = { /* 0x823914c */
+    { LPARRAY(s_gs187_g0_sectors) },
+    { LPARRAY(s_gs187_g1_sectors) },
+};
+
+static const struct GroundLink s_gs187_links[] = { /* 0x823915c */
+    {},
+};
+
+const GroundScriptHeader gGroundScript_gs187 = { LPARRAY(s_gs187_groups), s_gs187_links }; /* 0x8239164 */

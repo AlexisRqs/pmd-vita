@@ -1,0 +1,6 @@
+Gb_Snd_Emu 0.2.0 and Blip_Buffer 0.4.1, copyright Shay Green.
+Imported without source changes from VBA-M commit3924aab43a646b6291ae29a26cb3bd7f67a0d297, src/core/apu.
+Per-file notices specify LGPL-2.1-or-later; preserved with COPYING.LESSER.
+VBA-M repository license retained separately as COPYING.VBA-M.
+Keep these sources, notices and relinkable build instructions with distributions.
+This component synthesizes PSG audio; it does not execute game/CPU instructions.

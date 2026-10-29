@@ -1,0 +1,25 @@
+--- a/src/dungeon_main.c
++++ b/src/dungeon_main.c
+@@ -1,3 +1,4 @@
++#include "platform_settings.h"
+ #include "global.h"
+ #include "globaldata.h"
+ #include "constants/dungeon.h"
+@@ -164,6 +165,17 @@
+                 sub_8075680(FALSE);
+             }
+ 
++            /* Vita aiming is separate from GBA movement input: no action/turn. */
++            { int aim=pmd_right_direction();
++              if(aim>=0 && !(gRealInputs.held & DPAD_ANY)) {
++                if(leaderInfo->action.direction!=aim) {
++                  leaderInfo->action.direction=aim;
++                  sub_806CDD4(leader,sub_806CEBC(leader),aim);
++                }
++                if(sInRotateMode)unkPtr->rotateModeDirection=aim;
++                frames=0;
++              }
++            }
+             TryCreateModeArrows(leader);
+             unkBool = FALSE;
+             {

@@ -1,0 +1,34 @@
+--- a/src/main_loops.c
++++ b/src/main_loops.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++extern int pmd_fast_boot_enabled(void);
+ #include "globaldata.h"
+ #include "constants/bg_music.h"
+ #include "constants/friend_area.h"
+@@ -149,13 +150,18 @@
+     if (ReadSaveFromPak(&tmp))
+         ThoroughlyResetScriptVars();
+ 
+-    xxx_script_related_8001334_Async(STARTMODE_14);
+-    xxx_script_related_8001334_Async(STARTMODE_15);
+-    ClearScriptVarArray(NULL, EVENT_LOCAL);
+-    xxx_script_related_8001334_Async(STARTMODE_16);
+-
+-    if (GetScriptVarValue(NULL, EVENT_LOCAL) == 0)
+-        xxx_script_related_8001334_Async(STARTMODE_17);
++    /* Only skip boot presentations. Save loading and menu initialization above
++     * and below remain original, including the new-game story/quiz path. */
++    if (!pmd_fast_boot_enabled()) {
++        xxx_script_related_8001334_Async(STARTMODE_14);
++        xxx_script_related_8001334_Async(STARTMODE_15);
++        ClearScriptVarArray(NULL, EVENT_LOCAL);
++        xxx_script_related_8001334_Async(STARTMODE_16);
++        if (GetScriptVarValue(NULL, EVENT_LOCAL) == 0)
++            xxx_script_related_8001334_Async(STARTMODE_17);
++    } else {
++        ClearScriptVarArray(NULL, EVENT_LOCAL);
++    }
+ 
+     while (TRUE) {
+         sMainLoopsUnk = MAINLOOPS_UNK_0;

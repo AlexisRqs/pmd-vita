@@ -1,0 +1,200 @@
+--- a/src/m4a.c
++++ b/src/m4a.c
+@@ -1,6 +1,7 @@
+ #include "global.h"
+ #include "m4a.h"
+ #include "gba/m4a_internal.h"
++#include "platform_psg.h"
+ 
+ extern const u8 gCgb3Vol[];
+ 
+@@ -247,20 +248,20 @@
+     struct SoundInfo *soundInfo;
+     u32 ident;
+ 
+-    REG_SOUNDCNT_X = SOUND_MASTER_ENABLE
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_X - REG_BASE), SOUND_MASTER_ENABLE
+                    | SOUND_4_ON
+                    | SOUND_3_ON
+                    | SOUND_2_ON
+-                   | SOUND_1_ON;
+-    REG_SOUNDCNT_L = 0; // set master volume to zero
+-    REG_NR12 = 0x8;
+-    REG_NR22 = 0x8;
+-    REG_NR42 = 0x8;
+-    REG_NR14 = 0x80;
+-    REG_NR24 = 0x80;
+-    REG_NR44 = 0x80;
+-    REG_NR30 = 0;
+-    REG_NR50 = 0x77;
++                   | SOUND_1_ON);
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_L - REG_BASE), 0); // set master volume to zero
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR12 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR22 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR42 - REG_BASE), 0x8);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR14 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR24 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR44 - REG_BASE), 0x80);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR30 - REG_BASE), 0);
++    pmd_psg_write8((unsigned)((uintptr_t)&REG_NR50 - REG_BASE), 0x77);
+ 
+     soundInfo = SOUND_INFO_PTR;
+ 
+@@ -350,14 +351,14 @@
+ 
+     REG_DMA1CNT_H = DMA_32BIT;
+     REG_DMA2CNT_H = DMA_32BIT;
+-    REG_SOUNDCNT_X = SOUND_MASTER_ENABLE
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_X - REG_BASE), SOUND_MASTER_ENABLE
+                    | SOUND_4_ON
+                    | SOUND_3_ON
+                    | SOUND_2_ON
+-                   | SOUND_1_ON;
+-    REG_SOUNDCNT_H = SOUND_B_FIFO_RESET | SOUND_B_TIMER_0 | SOUND_B_LEFT_OUTPUT
++                   | SOUND_1_ON);
++    pmd_psg_write16((unsigned)((uintptr_t)&REG_SOUNDCNT_H - REG_BASE), SOUND_B_FIFO_RESET | SOUND_B_TIMER_0 | SOUND_B_LEFT_OUTPUT
+                    | SOUND_A_FIFO_RESET | SOUND_A_TIMER_0 | SOUND_A_RIGHT_OUTPUT
+-                   | SOUND_ALL_MIX_FULL;
++                   | SOUND_ALL_MIX_FULL);
+     REG_SOUNDBIAS_H = (REG_SOUNDBIAS_H & 0x3F) | 0x40;
+ 
+     REG_DMA1SAD = (s32)soundInfo->pcmBuffer;
+@@ -844,19 +845,19 @@
+     switch (chanNum)
+     {
+     case 1:
+-        REG_NR12 = 8;
+-        REG_NR14 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR12 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR14 - REG_BASE), 0x80);
+         break;
+     case 2:
+-        REG_NR22 = 8;
+-        REG_NR24 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR22 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR24 - REG_BASE), 0x80);
+         break;
+     case 3:
+-        REG_NR30 = 0;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR30 - REG_BASE), 0);
+         break;
+     default:
+-        REG_NR42 = 8;
+-        REG_NR44 = 0x80;
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR42 - REG_BASE), 8);
++        pmd_psg_write8((unsigned)((uintptr_t)&REG_NR44 - REG_BASE), 0x80);
+     }
+ }
+ 
+@@ -978,31 +979,31 @@
+                 switch (ch)
+                 {
+                 case 1:
+-                    *nrx0ptr = channels->sweep;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), channels->sweep);
+                     // fallthrough
+                 case 2:
+-                    *nrx1ptr = ((u32)channels->wavePointer << 6) + channels->length;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), ((u32)channels->wavePointer << 6) + channels->length);
+                     goto init_env_step_time_dir;
+                 case 3:
+                     if (channels->wavePointer != channels->currentPointer)
+                     {
+-                        *nrx0ptr = 0x40;
+-                        REG_WAVE_RAM0 = channels->wavePointer[0];
+-                        REG_WAVE_RAM1 = channels->wavePointer[1];
+-                        REG_WAVE_RAM2 = channels->wavePointer[2];
+-                        REG_WAVE_RAM3 = channels->wavePointer[3];
++                        pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0x40);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM0 - REG_BASE), channels->wavePointer[0]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM1 - REG_BASE), channels->wavePointer[1]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM2 - REG_BASE), channels->wavePointer[2]);
++                        pmd_psg_write32((unsigned)((uintptr_t)&REG_WAVE_RAM3 - REG_BASE), channels->wavePointer[3]);
+                         channels->currentPointer = channels->wavePointer;
+                     }
+-                    *nrx0ptr = 0;
+-                    *nrx1ptr = channels->length;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), channels->length);
+                     if (channels->length)
+                         channels->n4 = 0xC0;
+                     else
+                         channels->n4 = 0x80;
+                     break;
+                 default:
+-                    *nrx1ptr = channels->length;
+-                    *nrx3ptr = (u32)channels->wavePointer << 3;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx1ptr - REG_BASE), channels->length);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), (u32)channels->wavePointer << 3);
+                 init_env_step_time_dir:
+                     envelopeStepTimeAndDir = channels->attack + CGB_NRx2_ENV_DIR_INC;
+                     if (channels->length)
+@@ -1178,34 +1179,34 @@
+             }
+ 
+             if (ch != 4)
+-                *nrx3ptr = channels->frequency;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), channels->frequency);
+             else
+-                *nrx3ptr = (*nrx3ptr & 0x08) | channels->frequency;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx3ptr - REG_BASE), (*nrx3ptr & 0x08) | channels->frequency);
+             channels->n4 = (channels->n4 & 0xC0) + (*((u8 *)(&channels->frequency) + 1));
+-            *nrx4ptr = (s8)(channels->n4 & mask);
++            pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), (s8)(channels->n4 & mask));
+         }
+ 
+         /* 4. apply envelope & volume to HW registers */
+         if (channels->modify & CGB_CHANNEL_MO_VOL)
+         {
+-            REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
++            pmd_psg_write8((unsigned)((uintptr_t)&REG_NR51 - REG_BASE), (REG_NR51 & ~channels->panMask) | channels->pan);
+             if (ch == 3)
+             {
+-                *nrx2ptr = gCgb3Vol[channels->envelopeVolume];
++                pmd_psg_write8((unsigned)((uintptr_t)nrx2ptr - REG_BASE), gCgb3Vol[channels->envelopeVolume]);
+                 if (channels->n4 & 0x80)
+                 {
+-                    *nrx0ptr = 0x80;
+-                    *nrx4ptr = channels->n4;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx0ptr - REG_BASE), 0x80);
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4);
+                     channels->n4 &= 0x7f;
+                 }
+             }
+             else
+             {
+                 u32 envMask = 0xF;
+-                *nrx2ptr = (envelopeStepTimeAndDir & envMask) + (channels->envelopeVolume << 4);
+-                *nrx4ptr = channels->n4 | 0x80;
++                pmd_psg_write8((unsigned)((uintptr_t)nrx2ptr - REG_BASE), (envelopeStepTimeAndDir & envMask) + (channels->envelopeVolume << 4));
++                pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4 | 0x80);
+                 if (ch == 1 && !(*nrx0ptr & 0x08))
+-                    *nrx4ptr = channels->n4 | 0x80;
++                    pmd_psg_write8((unsigned)((uintptr_t)nrx4ptr - REG_BASE), channels->n4 | 0x80);
+             }
+         }
+ 
+--- a/src/m4a_1.s
++++ b/src/m4a_1.s
+@@ -845,16 +845,16 @@
+ 
+ 	thumb_func_start ply_port
+ ply_port:
+-	mov r12, lr
++	push {r4, lr} @ preserve return and eight-byte stack alignment for native C
+ 	ldr r2, [r1, o_MusicPlayerTrack_cmdPtr]
+ 	ldrb r3, [r2]
+ 	adds r2, 1
+-	ldr r0, =REG_SOUND1CNT_L @ sound register base address
++	movs r0, 0x60 @ native service accepts an IO offset
+ 	adds r0, r3
+ 	bl _080AE73A
+-	strb r3, [r0]
+-	bx r12
+-	.pool
++	adds r1, r3, 0
++	bl pmd_psg_write8
++	pop {r4, pc}
+ 	thumb_func_end ply_port
+ 
+ 	thumb_func_start m4aSoundVSync

@@ -1,0 +1,485 @@
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs170_g0_s0_station_sref_script[] = { /* 0x821d1e4 */
+    DEBUGINFO_O(10),
+    SELECT_MAP(170),
+    BGM_STOP,
+    JUMP_SCRIPT(COMMON_ENTER),
+};
+
+static const ScriptRef s_gs170_g0_s0_station_sref = { ENTER_CONTROL, SCRIPT_TYPE_01, NULL, s_gs170_g0_s0_station_sref_script }; /* 0x821d250 */
+
+static const struct ScriptCommand s_gs170_g1_s0_station_sref_script[] = { /* 0x821d25c */
+    DEBUGINFO_O(19),
+    SELECT_MAP(170),
+    SELECT_ENTITIES(-1, 0),
+    BGM_FADEIN(30, 36),
+    { 0x22, 0x01,  0x001e,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(3),
+    FANFARE_PLAY2(506),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 16, RGB_U32(0xFF, 0xFF, 0xFF)),
+    RET,
+};
+
+static const ScriptRef s_gs170_g1_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs170_g1_s0_station_sref_script }; /* 0x821d2ec */
+
+static const struct ScriptCommand s_gs170_g1_s0_lives0_dlg0[] = { /* 0x821d2f8 */
+    DEBUGINFO_O(33),
+    SELECT_ANIMATION(5),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0x3b, 0x36,  0x0004,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    WAIT(120),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:349e035526ade1bad25d5f85112ca00bd082a639f8ea9e26b9be0eba0cff3c5e@@)),
+    MSG_QUIET(0, (@@STRING:2ae67dff2be876bbd5b8b663653f182256d26899eeda578a473d06ebbb3937ab@@)),
+    MSG_QUIET(0, (@@STRING:66ccc5676e4845b23e34bcbd698d15c93190a24b5143934ab2a7e8439dbe93f7@@)),
+    MSG_QUIET(0, (@@STRING:52d46146512eba3e5f28654a5b3f01c2cebcb93805f0a8655b7248f028f4271b@@)),
+    MSG_QUIET(0, (@@STRING:3960b6c56f29670f627068c7f085a6283e0adaa2c7356906a19eef3f145af806@@)),
+    MSG_QUIET(0, (@@STRING:17a398f5ddd4bb38d68572b09c686976cc1a662fa01b6e38a01a6f7432a38aba@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    PORTRAIT(PLACEMENT_MIDRIGHT_TOP, 0x0001, 0x00000002),
+    PORTRAIT_POS(1, 0, 2),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:f47aeddf5372ddd1ec0126e3e403e7b10abe6a3b7f2ff64b9ea81c9eda96824a@@)),
+    VARIANT(/* == */  1, (@@STRING:d97fe20a5210e31ea6a46cb701dae4ff795077971c7538f9a47ad2f00da38252@@)),
+    VARIANT(/* == */  1, (@@STRING:31f94d5fed57d2e6234ae11183e105e98159d4c9be55d13558175ed8c3366e46@@)),
+    VARIANT_DEFAULT((@@STRING:8e8bcc65492befd4ae078ce7404f7429d3d24f83f28cdd1fc901c6cdd5b20359@@)),
+    VARIANT_DEFAULT((@@STRING:2ce4f0ab74aa069fab8eee5a4ae66ac94a69542d653e752521095095081d4990@@)),
+    VARIANT_DEFAULT((@@STRING:4571c8b3f7ac2a788a455421564731a9cd027ad4b6cdb11a021f3b7fb80b37ba@@)),
+    TEXTBOX_CLEAR,
+    WAIT(60),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:d11f04a854d2884212bc5c9d6a1b296b1004b2d6fd80fb0dbe28edf108ef5e90@@)),
+    VARIANT(/* == */  1, (@@STRING:5305d4f5f8940dda6b00442599cd82af952e22c9363bd2cf59e2ad9495c9c7ac@@)),
+    VARIANT(/* == */  1, (@@STRING:452cc34c55aae4d37a664a6fa82ad1b95d3192429ff3dd94ab14f4f751f657fb@@)),
+    VARIANT(/* == */  1, (@@STRING:d85e8cf657e8b2b634c12cd1c346f9d07affa59d38a8e72b7717eeb050d8bf2d@@)),
+    VARIANT(/* == */  3, (@@STRING:a0ca353a12d59aa31e933eb7da4f964c6da36f5cbddc538c7c487c8e717f40eb@@)),
+    VARIANT(/* == */  3, (@@STRING:806853ebaee4bcc4c3369933b12b7d86e2a8fad0a9df27d3379cdb13fa60b001@@)),
+    VARIANT(/* == */  3, (@@STRING:452cc34c55aae4d37a664a6fa82ad1b95d3192429ff3dd94ab14f4f751f657fb@@)),
+    VARIANT(/* == */  3, (@@STRING:3e9213ce9a936aa03a9b614c1097b9b2d93d1919afb7c57cd40c43ce3e9be231@@)),
+    VARIANT_DEFAULT((@@STRING:5edbb4e81cf72a93380012bd0d9865ec6528f3e29eb0998bec53c1e58ce40139@@)),
+    VARIANT_DEFAULT((@@STRING:e941d04591196965db46f2623149b6a22b1470bd606ed5c9bc13839830f7f72f@@)),
+    VARIANT_DEFAULT((@@STRING:9c57e3ed3cb85b5926d74fb6458e455f1d293e4a025d9087722315f31eae1cde@@)),
+    VARIANT_DEFAULT((@@STRING:0c1574cdc5be9ec403d3acb3a7624dda26ae9a4bc8c9279a8adbb30ce68a1bb1@@)),
+    TEXTBOX_CLEAR,
+    PORTRAIT_REP(0x0001, 0x00000005),
+    ASK3_VAR( TRUE, /*default*/ -1, /* speaker */ 1, PARTNER_TALK_KIND),
+    VARIANT(/* == */  1, (@@STRING:75d87e89abe1ed4ef3e2a0a6c10d59529dd434cacdca61ac03b1525f150b9c31@@)),
+    VARIANT(/* == */  3, (@@STRING:75d87e89abe1ed4ef3e2a0a6c10d59529dd434cacdca61ac03b1525f150b9c31@@)),
+    VARIANT_DEFAULT((@@STRING:75d87e89abe1ed4ef3e2a0a6c10d59529dd434cacdca61ac03b1525f150b9c31@@)),
+    CHOICE(/* label */  3, (@@STRING:1a04d7e50d582c17e5e84b94a161b30a47f83646d56da105e6b2c635ccce52e9@@)),
+    CHOICE(/* label */  4, (@@STRING:580e0980009f4f7e0f1cf6c0de92beffb81f390d5a4ffd7f723556ce24897234@@)),
+  LABEL(3), /* = 0x03 */
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    { 0x3b, 0x36,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTHEAST),
+    PORTRAIT(PLACEMENT_MIDRIGHT_TOP_FLIP, 0x0001, 0x00000000),
+    PORTRAIT_POS(1, 0, 2),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:68254ea021778329ad293c640ffdd58acfb2cef6e182473342c2e6648fc69692@@)),
+    VARIANT(/* == */  1, (@@STRING:81fbb8f76a1404b2c3d1b983999c84201db9fb472b4284bc75bdaccfaf8b4d5e@@)),
+    VARIANT(/* == */  1, (@@STRING:18a422cde803eddb471a248aa1177c7562bfe036b75a7d4192471c87f3bf0e83@@)),
+    VARIANT(/* == */  1, (@@STRING:ae7f374c3ee69386b0651c08749e906d3af2facc9928683f942dbcda02a9e7b6@@)),
+    VARIANT(/* == */  1, (@@STRING:21e64496bef5a54fb286b30e3ed04c062c3c93bb9589e9b82b93498426ec2708@@)),
+    VARIANT(/* == */  3, (@@STRING:cdb8a5ed02d222258225d56086b7087958487dd5b14be914d6a5ce35e0d01164@@)),
+    VARIANT(/* == */  3, (@@STRING:d16431b84727f971b94e9dabd0623c08142f92ec94bb1311ba2459292a6c43c9@@)),
+    VARIANT(/* == */  3, (@@STRING:d6cba4bd9e5d782e20787accd290710a23d4a56ab6c4e6945103fc5b594dd713@@)),
+    VARIANT(/* == */  3, (@@STRING:0128fb17230499b8cc2a33e6faed98342d0b9c122a8d9d1b41ee8e109f843f8b@@)),
+    VARIANT(/* == */  3, (@@STRING:fb54fa8abbf14ba4ab00c52c0fbe8abb7d7309ee814be194323bd7af14947130@@)),
+    VARIANT_DEFAULT((@@STRING:6ed209b17d093362096b576e1be75615cbbbcdf2adb0fecdc1fadc458fe505f8@@)),
+    VARIANT_DEFAULT((@@STRING:7b00309164b433ffd36019222da190326978e4f8a9cebb35be9c41315ab0f107@@)),
+    VARIANT_DEFAULT((@@STRING:14856f367dfcc6f177ced03ed3bfb7db7eea0065c1ead6f63bf6dd3a2a280007@@)),
+    VARIANT_DEFAULT((@@STRING:4d57616d180c2c4247cb2c0ae3c7ea68cba30d15c7e66183de6e4c944b784211@@)),
+    VARIANT_DEFAULT((@@STRING:d6cef3b99a1c48f5ff41a8b13dde33f051dd9157fc2588639805036d2ddb3b0a@@)),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:da192d6d976835c89717e097db1984b6611abfdeb22d15b0d2766ad5aa31f842@@)),
+    VARIANT(/* == */  3, (@@STRING:e9c1605df40d8f9d511b595ad37c12157cc836422b1dec8392d1346aeb8c676b@@)),
+    VARIANT_DEFAULT((@@STRING:9e3ffc593d174f4bd57de328fb131b76241ec1d3091189e9e7260c047fe727a6@@)),
+    TEXTBOX_CLEAR,
+    JUMP_LABEL(5),
+  LABEL(4), /* = 0x04 */
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    { 0x3b, 0x36,  0x0000,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    ALERT_CUE(6),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTHEAST),
+    PORTRAIT(PLACEMENT_MIDRIGHT_TOP_FLIP, 0x0001, 0x00000000),
+    PORTRAIT_POS(1, 0, 2),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:95ab30df2c0419896dc9e7f00aae0aa22875ff3be2c8c1dbb651eac6f9a17e35@@)),
+    VARIANT(/* == */  1, (@@STRING:81fbb8f76a1404b2c3d1b983999c84201db9fb472b4284bc75bdaccfaf8b4d5e@@)),
+    VARIANT(/* == */  1, (@@STRING:5feb707788c51bc7ea48e108a2b53a3e941e4b8fe6909ea9d885b3c5c43d8650@@)),
+    VARIANT(/* == */  1, (@@STRING:8bebded4d94e652aa8cb7147931a3f8742980e2664b7635affdcb9f4b2f6ef11@@)),
+    VARIANT(/* == */  1, (@@STRING:ae7f374c3ee69386b0651c08749e906d3af2facc9928683f942dbcda02a9e7b6@@)),
+    VARIANT(/* == */  1, (@@STRING:21e64496bef5a54fb286b30e3ed04c062c3c93bb9589e9b82b93498426ec2708@@)),
+    VARIANT(/* == */  3, (@@STRING:4a584452b7a75e58df383c4c6e2e4387b12bce0ae1a7b08d6abd5fad2f3548d2@@)),
+    VARIANT(/* == */  3, (@@STRING:d16431b84727f971b94e9dabd0623c08142f92ec94bb1311ba2459292a6c43c9@@)),
+    VARIANT(/* == */  3, (@@STRING:2ea02413790398b5308caf988439c62019887c8bea62b85a25c2a7a1411419a7@@)),
+    VARIANT(/* == */  3, (@@STRING:8bebded4d94e652aa8cb7147931a3f8742980e2664b7635affdcb9f4b2f6ef11@@)),
+    VARIANT(/* == */  3, (@@STRING:0128fb17230499b8cc2a33e6faed98342d0b9c122a8d9d1b41ee8e109f843f8b@@)),
+    VARIANT(/* == */  3, (@@STRING:fb54fa8abbf14ba4ab00c52c0fbe8abb7d7309ee814be194323bd7af14947130@@)),
+    VARIANT_DEFAULT((@@STRING:1c42c2c81744509849a100da6bf67dc2bd5eb91dabbf4bb7fa334c56194432be@@)),
+    VARIANT_DEFAULT((@@STRING:7b00309164b433ffd36019222da190326978e4f8a9cebb35be9c41315ab0f107@@)),
+    VARIANT_DEFAULT((@@STRING:af3d520b43b673a116cb0e6f3796ffd67ee6b35aed321cf754fd051bea7b7e9b@@)),
+    VARIANT_DEFAULT((@@STRING:8bebded4d94e652aa8cb7147931a3f8742980e2664b7635affdcb9f4b2f6ef11@@)),
+    VARIANT_DEFAULT((@@STRING:4d57616d180c2c4247cb2c0ae3c7ea68cba30d15c7e66183de6e4c944b784211@@)),
+    VARIANT_DEFAULT((@@STRING:d6cef3b99a1c48f5ff41a8b13dde33f051dd9157fc2588639805036d2ddb3b0a@@)),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000001),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:da192d6d976835c89717e097db1984b6611abfdeb22d15b0d2766ad5aa31f842@@)),
+    VARIANT(/* == */  3, (@@STRING:e9c1605df40d8f9d511b595ad37c12157cc836422b1dec8392d1346aeb8c676b@@)),
+    VARIANT_DEFAULT((@@STRING:9e3ffc593d174f4bd57de328fb131b76241ec1d3091189e9e7260c047fe727a6@@)),
+    TEXTBOX_CLEAR,
+  LABEL(5), /* = 0x05 */
+    ALERT_CUE(6),
+    WAIT(45),
+    MSG_QUIET(0, (@@STRING:079944445611c02b4ff6e2623751353a4e57e5b3792a750c1678583a14cab6cf@@)),
+    MSG_QUIET(0, (@@STRING:e5cda5d7b2ba8557f212d8179a13757a69853f3d9f4cbe75825526dad9b49c2d@@)),
+    MSG_QUIET(0, (@@STRING:6400f503f9b63e318264f0ef1585c326e971fa0078bae9db12f426d18440fa20@@)),
+    MSG_QUIET(0, (@@STRING:c16e4ce35380c9a6d938be0bdf1a958956a9f5042ddc79baaccc2eead277df7b@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    BGM_FADEOUT(30),
+    FANFARE_PLAY2(476),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 4, RGB_U32(0x80, 0x60, 0x40)),
+    SELECT_ANIMATION(9),
+    { 0x54, 0x00,  0x0200,  0x00000000,  0x00000000, NULL },
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 12, RGB_U32(0x80, 0x60, 0x40)),
+    { 0x54, 0x00,  0x0300,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    WAIT(60),
+    PORTRAIT_REP(0x0000, 0x00000002),
+    MSG_QUIET(0, (@@STRING:bff73fa4747e3304bdb36f977bec9cf6067776ece5201191ced6fa17abc3d036@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(476),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 4, RGB_U32(0x80, 0x60, 0x40)),
+    SELECT_ANIMATION(9),
+    { 0x54, 0x00,  0x0200,  0x00000000,  0x00000000, NULL },
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 12, RGB_U32(0x80, 0x60, 0x40)),
+    { 0x54, 0x00,  0x0300,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    MSG_QUIET(0, (@@STRING:84b3f897dc6369605f16553f6bcc342ae85a540c777ca471f89a771c6b8bad29@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(469),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT_REP(0x0001, 0x00000000),
+    PORTRAIT_POS(1, 0, 2),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:31ee2b88658b4457733840a381a6d19c02f5ef755b92c76f1a3b2b275f906a99@@)),
+    VARIANT_DEFAULT((@@STRING:f3730c681812554f9d357a304fb7f65ddf2220ee0f5878681b9fc66444eba4eb@@)),
+    TEXTBOX_CLEAR,
+    FANFARE_PLAY2(476),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 4, RGB_U32(0x80, 0x60, 0x40)),
+    SELECT_ANIMATION(9),
+    { 0x54, 0x00,  0x0200,  0x00000000,  0x00000000, NULL },
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_TO(TRUE, PALUTIL_KIND_07, 8, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_FROM(TRUE, PALUTIL_KIND_07, 12, RGB_U32(0x80, 0x60, 0x40)),
+    FLASH_TO(TRUE, PALUTIL_KIND_05, 8, RGB_U32(0x00, 0x00, 0x00)),
+    { 0x54, 0x00,  0x0300,  0x00000000,  0x00000000, NULL },
+    SELECT_ANIMATION(2),
+    MSG_NPC(-1, (@@STRING:1a2c6f8e5bd83fb905ba5b361d4295afcb059aa52065f1ed61268e18dca0202f@@)),
+    MSG_NPC(-1, (@@STRING:a4b516cd123bee6c4925fb633d0fb43ebd51ca320f7984b0f5ff83ca7a21766c@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_QUIET(0, (@@STRING:bee61adc4cfb7b82c878fc3d926e7c2910dfbe3b30ee4577f62909260070b1e6@@)),
+    MSG_QUIET(0, (@@STRING:e32a3a94ae7be6ad624ed0a205ea52f302397db9e0fdf01a5cced74af4302582@@)),
+    MSG_QUIET(0, (@@STRING:17f2bb2214ef08ea6b75fdcf24a9edd7faef857a26f12889b88249351afa4e06@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    FANFARE_PLAY2(477),
+    SELECT_ENTITIES(-1, 1),
+    FLASH_FROM(TRUE, PALUTIL_KIND_05, 48, RGB_U32(0x00, 0x00, 0x00)),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_EAST),
+    WAIT(30),
+    MSG_NPC(-1, (@@STRING:1a2c6f8e5bd83fb905ba5b361d4295afcb059aa52065f1ed61268e18dca0202f@@)),
+    MSG_NPC(-1, (@@STRING:d8738b590f97d2390f9917ee046e42966582d7444707726cc0b67abf97345046@@)),
+    TEXTBOX_CLEAR,
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs170_g1_s0_lives1_dlg0[] = { /* 0x821ec08 */
+    DEBUGINFO_O(233),
+    SELECT_ANIMATION(5),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    SELECT_ANIMATION(2),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHWEST),
+    AWAIT_CUE(6),
+    { 0x56, 0x00,  0x0000,  0x0000005d,  0x00000000, NULL },
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    { 0x56, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    CALL_SCRIPT(QUESTION_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs170_g1_s0_lives2_dlg0[] = { /* 0x821ed08 */
+    DEBUGINFO_O(252),
+    SELECT_ANIMATION(5),
+    AWAIT_CUE(6),
+    SELECT_ANIMATION(2),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_NORTHEAST),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs170_g1_s1_lives0_dlg0[] = { /* 0x821ed78 */
+    DEBUGINFO_O(262),
+    { 0x54, 0x00,  0x001f,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x07,  0x0002,  0x00000000,  0x00000000, NULL },
+    { 0x53, 0x00,  0x0000,  0x01000000,  0x00000000, NULL },
+    AWAIT_CUE(7),
+    RET,
+};
+
+static const struct ScriptCommand s_gs170_g2_s0_station_sref_script[] = { /* 0x821edd8 */
+    DEBUGINFO_O(271),
+    SELECT_MAP(170),
+    SELECT_ENTITIES(-1, 0),
+    FLASH_FROM(FALSE, PALUTIL_KIND_05, 32, RGB_U32(0xFF, 0xFF, 0xFF)),
+    AWAIT_CUE(3),
+    BGM_FADEOUT(120),
+    { 0x23, 0x01,  0x0078,  0x00000000,  0x00000000, NULL },
+    RET,
+};
+
+static const ScriptRef s_gs170_g2_s0_station_sref = { EVENT_CONTROL, SCRIPT_TYPE_07, NULL, s_gs170_g2_s0_station_sref_script }; /* 0x821ee58 */
+
+static const struct ScriptCommand s_gs170_g2_s0_lives0_dlg0[] = { /* 0x821ee64 */
+    DEBUGINFO_O(284),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0000,  0x00000000,  0x00000000, NULL },
+    { 0xdf, 0x00,  0x0000,  0x00000000,  0x00000000, NULL },
+    WAIT(30),
+    ALERT_CUE(7),
+    PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0002, 0x00000000),
+    MSG_NPC(2, (@@STRING:20125386cd80e16613377fddf869029da88fa4a7299bd6ea37821c4b5c78214d@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT(PLACEMENT_LEFT_BOTTOM_2, 0x0000, 0x00000000),
+    MSG_QUIET(0, (@@STRING:ba73fc5d63044c52aa725ff8acc99232f98f32bf036ea85e8332296d0c142fa3@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    PORTRAIT(PLACEMENT_MIDRIGHT_TOP_FLIP, 0x0001, 0x00000004),
+    PORTRAIT_POS(1, 0, 2),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:5a84b11080d0e2b0448eb11951eee92dc007e697398fbda42be7e6ff74f03d31@@)),
+    VARIANT(/* == */  1, (@@STRING:02eec88fd84fbd6f2095fdbb40cb4d1c7f92e0574379de1653e0dcab23fa744d@@)),
+    VARIANT_DEFAULT((@@STRING:05381acbb76d0afd19b08a249db1cf30ac751483e051856bf0dd7e899d4ad244@@)),
+    VARIANT_DEFAULT((@@STRING:902a3c7eb0d0f743c2d40bd8638c042c041915a573c38e03e5be81c62ed34ac7@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    FANFARE_PLAY2(465),
+    CALL_SCRIPT(NOTICE_FUNC),
+    ROTATE_TO(4, DIR_TRANS_SPINRIGHT1, DIRECTION_SOUTHEAST),
+    WAIT(64),
+    ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_EAST),
+    WAIT(16),
+    MSG_NPC(2, (@@STRING:9771b72a5b4c51842addf153dda80b52627ecc0d649225203689a88e686bcb13@@)),
+    MSG_NPC(2, (@@STRING:8a9b6d58d11fca94c789794f576457dee0ecfdb383336bc0319ab57f0631eb2a@@)),
+    TEXTBOX_CLEAR,
+    WAIT(64),
+    MSG_NPC(2, (@@STRING:32fb38cfee578e481e71f2c6c35f9db98762b870cd33d0cb5ea2b315d32d6c37@@)),
+    MSG_NPC(2, (@@STRING:afa469c94fbdb23d815c74a0e00b386b9e29c3bb12d42cdc339ca64a31401c2b@@)),
+    MSG_NPC(2, (@@STRING:d262a23adef5b11b34b5337e91ce59ed50f9ea7abbff4af7e093a9affe79cd59@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    PORTRAIT_REP(0x0000, 0x0000000c),
+    MSG_QUIET(0, (@@STRING:7026bc6409dcdb8bc909812ae6bc833d4ba721cf1a2a4340425fb9e6f39acc72@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_NPC(2, (@@STRING:4066f1ba40889110583cf5a75938f7530b0df647d536adb8d11f360b60401484@@)),
+    UPDATE_VARINT(CALC_SET, EVENT_LOCAL, 0),
+    ALERT_CUE(7),
+    MSG_NPC(2, (@@STRING:2566fb67b733efa3aff2b5015403399d4df58a79ba53dbcf2219b29a99f2b911@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    MSG_QUIET(0, (@@STRING:631ede6136fbb733b543889ab981b5571225433aa221bc2c7349e6444bb51dbe@@)),
+    UPDATE_VARINT(CALC_SET, EVENT_LOCAL, 1),
+    WAIT(60),
+    PORTRAIT_REP(0x0000, 0x00000005),
+    MSG_QUIET(0, (@@STRING:ed3adfbbb2cfd173449309732340e1908f880aef019222c73d84a697ef7d95f8@@)),
+    TEXTBOX_CLEAR,
+    WAIT(10),
+    ALERT_CUE(6),
+    AWAIT_CUE(5),
+    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    VARIANT(/* == */  1, (@@STRING:8d4f4a22d7acb0e07e698dfa01a85c13919f8e4c7930d1473af5f3d7f1fbb9e9@@)),
+    VARIANT(/* == */  1, (@@STRING:122943dc4807776863043b90f3f0eb5fe26d1d92eafe9b3fa2e8d5f3ca1444d5@@)),
+    VARIANT_DEFAULT((@@STRING:b6967b5ef48a0378cfb5d80a5d64ccbce5ada0910cb71b0ca1475dcea2b8fdd1@@)),
+    VARIANT_DEFAULT((@@STRING:f76f855ee747190e3c32a9c2eda97472dc5c61ccb662fd137b6bbf3df808dc1f@@)),
+    TEXTBOX_CLEAR,
+    WAIT(30),
+    ALERT_CUE(3),
+    HALT,
+};
+
+
+
+
+
+
+
+
+static const struct ScriptCommand s_gs170_g2_s0_lives1_dlg0[] = { /* 0x821f534 */
+    DEBUGINFO_O(362),
+    SELECT_ANIMATION(2),
+    { 0x2d, 0x07,  0x0001,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(6),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(LOOK_AROUND_FUNC),
+    ALERT_CUE(5),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs170_g2_s0_lives2_dlg0[] = { /* 0x821f5e4 */
+    DEBUGINFO_O(376),
+    SELECT_ANIMATION(2),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(LOOK_AROUND_RIGHT_FUNC),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    AWAIT_CUE(6),
+    CALL_SCRIPT(LOOK_AROUND_LEFT_FUNC),
+    ROTATE_TO(4, DIR_TRANS_10, DIRECTION_NORTHEAST),
+    AWAIT_CUE(6),
+    HALT,
+};
+
+static const struct ScriptCommand s_gs170_g2_s0_lives3_dlg0[] = { /* 0x821f684 */
+    DEBUGINFO_O(389),
+    { 0x54, 0x00,  0x001f,  0x00000000,  0x00000000, NULL },
+    { 0x2d, 0x07,  0x0002,  0x00000000,  0x00000000, NULL },
+    { 0x53, 0x00,  0x0000,  0x01000000,  0x00000000, NULL },
+    AWAIT_CUE(7),
+    { 0x54, 0x00,  0x001f,  0x00000000,  0x00000000, NULL },
+    AWAIT_CUE(7),
+  LABEL(0), /* = 0x00 */
+    SELECT_ANIMATION(23),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    WAIT(1),
+    JUMPIF(JUDGE_EQ, EVENT_LOCAL, 0, /* to label */ 0),
+    SELECT_ANIMATION(23),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    WAIT(1),
+    SELECT_ANIMATION(23),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    WAIT(1),
+    SELECT_ANIMATION(23),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    WAIT(1),
+    SELECT_ANIMATION(24),
+    STOP_ANIMATION_ON_CURRENT_FRAME,
+    END_DELETE,
+};
+
+static const struct GroundLivesData s_gs170_g1_s0_lives[] = { /* 0x821f804 */
+    /*  0 */ {   0,   2,   0,   0, { 100,  15, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g1_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   2,   0,   0, { 103,  17, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g1_s0_lives1_dlg0,
+    } },
+    /*  2 */ {  83,   2,   0,   0, {  96,  17, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g1_s0_lives2_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs170_g1_s1_lives[] = { /* 0x821f84c */
+    /*  0 */ {  82,   6,   0,   0, { 106,  15, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g1_s1_lives0_dlg0,
+    } },
+};
+
+static const struct GroundLivesData s_gs170_g2_s0_lives[] = { /* 0x821f864 */
+    /*  0 */ {   0,   2,   0,   0, { 100,  15, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g2_s0_lives0_dlg0,
+    } },
+    /*  1 */ {  34,   5,   0,   0, { 103,  17, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g2_s0_lives1_dlg0,
+    } },
+    /*  2 */ {  83,   3,   0,   0, {  96,  17, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g2_s0_lives2_dlg0,
+    } },
+    /*  3 */ {  82,   6,   0,   0, { 106,  15, CPOS_HALFTILE, CPOS_HALFTILE }, {
+        [0] = s_gs170_g2_s0_lives3_dlg0,
+    } },
+};
+
+static const struct GroundEffectData s_gs170_g1_s0_effs[] = { /* 0x821f8c4 */
+    /*  0 */ {   0,   0,   1,   1, { 103,  15, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const struct GroundEffectData s_gs170_g2_s0_effs[] = { /* 0x821f8d0 */
+    /*  0 */ {   0,   0,   1,   1, { 103,  15, 0, CPOS_HALFTILE }, NULL },
+};
+
+static const ScriptRef * const (sStationScripts[]) = { /* 0x821f8dc */
+    &s_gs170_g0_s0_station_sref,
+    &s_gs170_g1_s0_station_sref,
+    &s_gs170_g2_s0_station_sref,
+};
+
+static const struct GroundScriptSector s_gs170_g0_sectors[] = { /* 0x821f8e8 */
+    { 0,NULL, 0,NULL, 0,NULL, 0,NULL, 1,&sStationScripts[0], },
+};
+
+static const struct GroundScriptSector s_gs170_g1_sectors[] = { /* 0x821f910 */
+    { LPARRAY(s_gs170_g1_s0_lives), 0,NULL, LPARRAY(s_gs170_g1_s0_effs), 0,NULL, 1,&sStationScripts[1], },
+    { LPARRAY(s_gs170_g1_s1_lives), 0,NULL, 0,NULL, 0,NULL, 0,NULL, },
+};
+
+static const struct GroundScriptSector s_gs170_g2_sectors[] = { /* 0x821f960 */
+    { LPARRAY(s_gs170_g2_s0_lives), 0,NULL, LPARRAY(s_gs170_g2_s0_effs), 0,NULL, 1,&sStationScripts[2], },
+};
+
+static const struct GroundScriptGroup s_gs170_groups[] = { /* 0x821f988 */
+    { LPARRAY(s_gs170_g0_sectors) },
+    { LPARRAY(s_gs170_g1_sectors) },
+    { LPARRAY(s_gs170_g2_sectors) },
+};
+
+static const struct GroundLink s_gs170_links[] = { /* 0x821f9a0 */
+    {},
+};
+
+const GroundScriptHeader gGroundScript_gs170 = { LPARRAY(s_gs170_groups), s_gs170_links }; /* 0x821f9a8 */

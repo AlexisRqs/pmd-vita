@@ -1,0 +1,80 @@
+--- a/src/code_800D090.c
++++ b/src/code_800D090.c
+@@ -154,8 +154,8 @@
+ EWRAM_DATA static u8 gUnknown_202DB70 = 0;
+ EWRAM_DATA static u32 gUnknown_202DB74 = 0;
+ // These should not be in EWRAM, but in IWRAM...
+-EWRAM_DATA u32 gUnknown_202DB78[16] = {0};
+-EWRAM_DATA u32 gUnknown_202DBB8[80] = {0};
++/* Native executable functions replace the two copied code buffers. */
++
+ 
+ EWRAM_DATA struct UnkStruct_202DCF8 gUnknown_202DCF8 = {0};
+ 
+@@ -400,8 +400,6 @@
+     (*(vu32 *)REG_ADDR_SIOCNT) = 0x2000;
+     REG_SIOCNT |= 0x4003;
+     CpuFill32(0, &gUnknown_202DCF8, 0x120);
+-    CpuCopy32(sub_80001E8, gUnknown_202DB78, sizeof(gUnknown_202DB78));
+-    CpuCopy32(sub_8000228, gUnknown_202DBB8, sizeof(gUnknown_202DBB8));
+     gUnknown_202DCF8.unk14 = -1;
+     gUnknown_202DCF8.unk28.asU16 = gUnknown_202DCF8.unk60;
+     gUnknown_202DCF8.unk2C = gUnknown_202DCF8.unk78;
+@@ -529,7 +527,7 @@
+ {
+     s32 i;
+     u8 sp0[4];
+-    u32 (*func)(void) = (void *)gUnknown_202DB78;
++    u32 (*func)(void) = sub_80001E8;
+     u32 *spAsU32 = (u32 *)sp0;
+ 
+     *spAsU32 = func();
+--- a/src/reg_control.c
++++ b/src/reg_control.c
+@@ -9,7 +9,7 @@
+ #include "reg_control.h"
+ #include "sprite.h"
+ 
+-extern void (gUnknown_202DBB8)(void);
++extern void sub_8000228(void);
+ 
+ EWRAM_DATA u8 IntrMain_Buffer[0x120] = {0};
+ EWRAM_DATA IntrCallback gIntrTable[6] = {0};
+@@ -39,7 +39,7 @@
+ 
+ static const IntrCallback sInitialIntrTable[6] =
+ {
+-    &gUnknown_202DBB8,
++    &sub_8000228,
+     VBlankIntr,
+     VCountIntr,
+     UnusedIntrFunc,
+--- a/src/arm_funcs.s
++++ b/src/arm_funcs.s
+@@ -8,7 +8,7 @@
+     arm_func_start sub_80001E8
+ sub_80001E8:
+ 	stmdb sp!, {r4-r11}
+-	mov r12, 0x4000000 @ REG_BASE
++	ldr r12, =pmd_io_words @ native register storage
+ 	ldr r11, _08000224
+ 	add r10, r11, 0x40
+ 	mov r9, 0x1
+@@ -28,7 +28,7 @@
+ 
+ 	arm_func_start sub_8000228
+ sub_8000228:
+-	mov r12, 0x4000000
++	ldr r12, =pmd_io_words
+ 	add r12, r12, 0x120 @ REG_SIODATA32
+ 	ldmia r12, {r0,r1}
+ 	stmdb sp!, {r7-r11}
+@@ -106,7 +106,7 @@
+ 	bx lr
+ 	.align 2, 0
+ _08000340: .4byte gUnknown_202DCF8
+-_08000344: .4byte 0x0400010e
++_08000344: .4byte pmd_io_words + 0x10e
+ 	arm_func_end sub_8000228
+ 
+         .align 2,0
