@@ -40,18 +40,18 @@ run([sdk/'bin/arm-vita-eabi-gcc','-Wl,-q','-Wl,-z,nocopyreloc',*objects,'-lSceDi
 run([sdk/'bin/vita-elf-create',elf,out/'pmd-audio-diagnostic.velf'])
 run([sdk/'bin/vita-make-fself',out/'pmd-audio-diagnostic.velf',out/'eboot.bin'])
 run([sdk/'bin/vita-mksfoex','-s','TITLE_ID=PMDA00001','-s','APP_VER=01.00','PMD Audio Diagnostic',out/'param.sfo'])
-notes='''PMD AUDIO DIAGNOSTIC 1.00 — application séparée PMDA00001
-Installer ce VPK dans VitaShell. Il ne remplace pas le jeu et ne lit/modifie aucune sauvegarde.
-Croix : mode suivant. START : quitter. Modes : musique complète, PCM, PSG, sinus440Hz, silence.
-Les trois premiers modes rejouent la même capture native de5secondes avec fondus20ms
-et une pause volontaire0,5seconde entre répétitions. Cette pause est affichée.
-Le sinus est continu, faible (-24dBFS), sans remise à zéro de phase entre blocs.
-Les changements de mode interrompent volontairement le son ; ne pas les confondre avec le parasite.
-La sortie audio est exactement celle du jeu0.12. CPU444MHz, fréquence précédente restaurée à la sortie.
-Les captures sont chargées en mémoire avant lecture ; pas de streaming depuis la carte.
-Cette version a été compilée et testée avec doubles d'API sur ordinateur, pas encore sur Vita.
-Noter dans quels modes le grésillement reste audible, et si le silence numérique en contient.
-Une lecture propre ici ne prouve pas l’absence de manque de données sous la charge du jeu.
+notes='''PMD AUDIO DIAGNOSTIC 1.00 — separate application PMDA00001
+Install this VPK with VitaShell. It does not replace the game or read/modify saves.
+Cross: next mode. START: exit. Modes: full music, PCM, PSG, 440 Hz sine, silence.
+The first three modes replay the same native 5-second capture with 20 ms fades
+and an intentional 0.5-second pause between repetitions. The pause is displayed.
+The sine is continuous and quiet (-24 dBFS), with no phase reset between blocks.
+Mode changes intentionally interrupt audio; do not confuse this with crackling.
+Audio output matches game version 0.12. CPU: 444 MHz; the previous clock is restored on exit.
+Captures are loaded into memory before playback; there is no memory-card streaming.
+This version was compiled and tested with host API doubles, not yet on Vita.
+Record which modes still crackle and whether digital silence also crackles.
+Clean playback here does not rule out buffer starvation under game load.
 '''
 with zipfile.ZipFile(vpk,'w',zipfile.ZIP_DEFLATED) as archive:
  archive.write(out/'eboot.bin','eboot.bin');archive.write(out/'param.sfo','sce_sys/param.sfo')

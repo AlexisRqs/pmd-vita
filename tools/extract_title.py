@@ -9,13 +9,13 @@ a=p.parse_args()
 data=a.rom.read_bytes()
 expected='9f4cfc5b5f4859d17169a485462e977c7aac2b89'
 actual=hashlib.sha1(data).hexdigest()
-if actual!=expected: p.error(f'ROM incompatible: SHA-1 {actual}; attendu {expected}')
+if actual!=expected: p.error(f'Unsupported ROM: SHA-1 {actual}; expected {expected}')
 a.output.mkdir(parents=True,exist_ok=True)
 for name,start,length in [('titlen0.at4px',0x384c9c,0x3e34),('titlen0p.raw',0x388ad0,0x380)]:
     chunk=data[start:start+length]
-    if len(chunk)!=length: p.error('ROM tronquée')
+    if len(chunk)!=length: p.error('Truncated ROM')
     (a.output/name).write_bytes(chunk)
-print('Ressources extraites. Vérifier palette et en-têtes avant intégration au prototype.')
+print('Resources extracted. Check the palette and headers before integrating them into the prototype.')
 
 import struct
 base=0x08000000

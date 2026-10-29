@@ -4,8 +4,8 @@ Experimental native PlayStation Vita adaptation of Pokémon Mystery Dungeon:
 Red Rescue Team, based on [pret/pmd-red](https://github.com/pret/pmd-red).
 Maintained by AlexisRqs, developed with AI assistance.
 
-Candidate: **0.47**, with Port Menu **v0.3.0** bundled as unchanged source.
-**Tests Vita en attente / Physical Vita validation pending.**
+Candidate: **0.47**, with Port Menu **v0.3.0** bundled with unchanged runtime sources.
+**Physical Vita validation pending.**
 This source-only snapshot is published for review; no validated binary release is provided.
 
 ## Build and install
